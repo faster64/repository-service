@@ -1,0 +1,37 @@
+<div class="ts-page-search">
+    <!-- Header  -->
+    <header class="ts-header">
+        <div class="ts-header-box-search">
+            <a ng-click="vm.backToPaysheetDetail()" class="ts-icon-sm">
+                <i class="far fa-chevron-left"></i>
+            </a>
+            <div class="ts-page-header-search">
+                <form>
+                    <div class="form-group search-form">
+                        <i class="far fa-search"></i>
+                        <input
+                            type="text"
+                            class="ts-form-control ts-form-control-search"
+                            placeholder="{{vm._l.paysheet_searchByEmployeeCodeName}}"
+                            ng-change="vm.search();"
+                            ng-model="vm.searchParam"
+                        />
+                        <a class="close-search open" ng-if="vm.searchParam && vm.searchParam.length > 0" ng-click="vm.clearSearchParam()">
+                            <i class="fas fa-times-circle"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ts-search-result ts-dropdowm ts-open">
+                <div id="ts-staff-items" class="ts-staff-items">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="ts-main">
+
+    </main>
+</div>

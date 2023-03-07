@@ -1,0 +1,35 @@
+<!-- Footer  -->
+<footer class="ts-footer">
+    <ul class="menu-footer">
+        <li>
+            <a id="timesheet" ng-href="/mobile/#/timesheet" ng-click="vm.setActive()" class="js-ts-menu-footer active">
+                <i class="fal fa-calendar-alt"></i>
+                <span>{{vm._l.clocking}}</span>
+            </a>
+        </li>
+        <li ng-show="vm.hasPaysheetReadPrivilege">
+            <a id="paysheet" ng-href="/mobile/#/paysheet" ng-click="vm.setActive()" class="js-ts-menu-footer">
+                <i class="fal fa-money-check-edit-alt"></i>
+                <span>{{vm._l.paysheet_title}}</span>
+            </a>
+        </li>
+        <!-- <li style="visibility: hidden;">
+            <a>
+                <i class="fal fa-user-friends"></i>
+                <span>{{vm._l.employee}}</span>
+            </a>
+        </li> -->
+        <!-- <li style="visibility: hidden;">
+            <a>
+                <i class="fal fa-mobile-android"></i>
+                <span>{{vm._l.timesheet}}</span>
+            </a>
+        </li> -->
+        <!-- <li style="visibility: hidden;">
+            <a>
+                <i class="fal fa-bars"></i>
+                <span>{{vm._l.more}}</span>
+            </a>
+        </li> -->
+    </ul>
+</footer>

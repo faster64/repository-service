@@ -1,0 +1,1077 @@
+@keyframes slide-up {
+  0% {
+      opacity: 0;
+      transform: translateY(100%);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+      opacity: 0;
+      transform: translateY(0);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(100%);
+  }
+}
+
+.body-hidden {
+  overflow: hidden;
+}
+
+.ts-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  z-index: 999;
+  @include transition;
+  
+  &.open {
+    display: block;
+
+    .modal-wrap {
+      animation: slide-up 0.4s;
+    }
+  }
+
+  .modal-wrap {
+    padding: $col-padding-md-x 0 0;
+    background-color: $white;
+    border-radius: 1rem 1rem 0 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+    overflow: auto;
+    &-padding {
+      padding: $col-padding-md-x !important;
+    }
+
+    &.h-lg {
+      height: 99%;
+    }
+
+    &.h-md {
+      height: 50%;
+    }
+
+    &.h-xlg {
+      height: 100%;
+      border-radius: 0 !important;
+    }
+
+    &.h-search {
+      height: 100%;
+      top: 0;
+      border-radius: 0 !important;
+
+      .modal-close {
+        width: 85px;
+      }
+    }
+  }
+
+  &:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: $text-color;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    opacity: 0.64;
+  }
+
+  .modal-content {
+    padding-bottom: 1.6rem;
+
+    p {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.07px;
+      line-height: 2.2rem;
+    }
+  }
+
+  .modal-footer {
+    @extend %flex;
+    .btn {
+      width: 50%;
+
+      &:not(:first-child) {
+        margin-left: 0.8rem;
+      }
+    }
+  }
+
+  &-delete {
+    p {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      letter-spacing: 0.07px;
+      font-weight: 600;
+      margin-bottom: 1.6rem;
+    }
+  }
+}
+
+.ts-modal-salaryPeriod {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  z-index: 999;
+  @include transition;
+  
+  &.open {
+    display: block;
+
+    .modal-wrap {
+      animation: slide-up 0.4s;
+    }
+  }
+
+  .modal-wrap {
+    padding: $col-padding-md-x 0 0;
+    background-color: $white;
+    border-radius: 1rem 1rem 0 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+    overflow: auto;
+    &-padding {
+      padding: $col-padding-md-x !important;
+    }
+
+    &.h-md {
+      height: 50%;
+    }
+
+    &.h-xlg {
+      height: 100%;
+      border-radius: 0 !important;
+    }
+
+    &.h-search {
+      height: 100%;
+      top: 0;
+      border-radius: 0 !important;
+
+      .modal-close {
+        width: 85px;
+      }
+    }
+  }
+
+  &:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: $text-color;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    opacity: 0.64;
+  }
+
+  .modal-content {
+    padding-bottom: 1.6rem;
+
+    p {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.07px;
+      line-height: 2.2rem;
+    }
+  }
+
+  .modal-footer {
+    @extend %flex;
+    .btn {
+      width: 50%;
+    }
+  }
+
+  &-delete {
+    p {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      letter-spacing: 0.07px;
+      font-weight: 600;
+      margin-bottom: 1.6rem;
+    }
+  }
+}
+
+.search-form {
+  position: relative;
+  margin-bottom: 0;
+  > i {
+    position: absolute;
+    left: 1.2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    color: $gray-2;
+    z-index: 1;
+    @extend %item-center;
+    font-size: $font-size-md;
+  }
+}
+
+.modal-list {
+  > p {
+    color: $gray-3;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: $col-margin-md-y;
+  }
+
+  .list-items {
+  }
+
+  .list-item {
+    @extend%item-middle-start;
+    padding: 1.1rem 0;
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-border;
+      border-top: 1px solid transparent;
+    }
+
+    .item-icon {
+      @include avatar(48px, 16px);
+    }
+
+    .item-content {
+      margin-left: $col-margin-y;
+      width: calc(100% - 9.6rem);
+
+      h4 {
+        margin-bottom: 0.2rem;
+        font-weight: 400;
+      }
+
+      p {
+        @include text-ellipsis-multiline(1);
+        margin-bottom: 0;
+        color: $gray-2;
+      }
+    }
+
+    .ts-check {
+      width: 48px;
+      @extend %item-center-content-end;
+      visibility: hidden;
+      opacity: 0;
+      &.ts-checked {
+        visibility: visible;
+        opacity: 1;
+      }
+      i {
+        font-size: 2rem;
+        color: $primary;
+      }
+    }
+  }
+}
+
+.modal-calendar {
+  &-button {
+    margin-bottom: $col-padding-y;
+    padding-left: $col-padding-x;
+    padding-right: $col-padding-x;
+
+    .ts-btn {
+      padding: 0.7rem 1.6rem !important;
+    }
+  }
+
+  &-content {
+    .k-calendar {
+      border: 0 !important;
+    }
+
+    .k-header {
+      background-color: $gray-6;
+      box-shadow: none !important;
+      border: 0 !important;
+      margin-bottom: $col-padding-xs-y;
+      .k-nav-prev {
+        margin-left: 10px;
+      }
+
+      .k-nav-next {
+        margin-right: 10px;
+      }
+
+      .k-nav-fast {
+        font-weight: 600;
+        font-size: 1.6rem;
+        letter-spacing: -0.07px;
+      }
+
+      .k-icon {
+        font-family: "Font Awesome 5 Pro";
+        font-size: $font-size-md;
+
+        &.k-i-arrow-60-left {
+          &:before {
+            content: "\f053" !important;
+          }
+        }
+
+        &.k-i-arrow-60-right {
+          &:before {
+            content: "\f054" !important;
+          }
+        }
+      }
+    }
+    
+    .kv-calendar-footer {
+      padding: $col-padding-xs-x $col-padding-md-y $col-padding-md-x;
+      .ts-btn {
+        font-size: 1.7rem;
+      }
+    }
+
+    .k-calendar-monthview {
+      .k-link {
+        color: $text-color;
+        font-weight: 400;
+        font-size: 1.6rem;
+      }
+    }
+
+    .k-calendar-decadeview .k-link,
+    .k-calendar-centuryview .k-link,
+    .k-calendar-yearview .k-link {
+      margin: 0 auto;
+    }
+
+    .k-calendar-th {
+      color: $gray-3;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .k-calendar-view {
+      padding-bottom: $col-padding-md-y;
+      padding-left: 0 !important;
+    }
+  }
+}
+// Style 10.8.2022
+.modal-search,
+.ts-page-header-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .modal-close {
+    width: 33px;
+    margin-left: 1.2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    a {
+      color: $success;
+      font-weight: 400;
+      font-size: $font-size-md;
+    }
+  }
+  .search-form {
+    position: relative;
+
+    .close-search {
+      display: none;
+      position: absolute;
+      right: 1.2rem;
+      top: 25%;
+      font-size: 1.6rem;
+      color: $gray-3;
+      &.open {
+        display: block;
+      }
+    }
+  }
+
+  form {
+    width: calc(100% - 45px);
+  }
+}
+
+#search-modal {
+  bottom: 70px;
+
+  &:before {
+    display: none;
+  }
+}
+
+.code-wrap {
+  h3 {
+    text-align: center;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    line-height: 2.2rem;
+    font-size: 1.6rem;
+    letter-spacing: -0.07rem;
+  }
+
+  p {
+    text-align: center;
+    line-height: 2rem;
+    letter-spacing: -0.3px;
+    font-size: 1.4rem;
+    margin-bottom: 1.6rem;
+  }
+
+  form {
+    @extend %item-center-between;
+    margin-bottom: 1.6rem;
+
+    input {
+      max-width: 24px;
+      font-size: 1.6rem;
+      color: $gray;
+      letter-spacing: -0.07px;
+      text-align: center;
+      line-height: 2.2rem;
+      font-weight: 600;
+    }
+  }
+
+  button {
+    width: 100%;
+    letter-spacing: -0.24px;
+    color: $gray;
+    font-weight: 600;
+    border-radius: 0.4rem;
+  }
+}
+
+.ts-modal-payroll {
+  .modal-wrap {
+    overflow: hidden;
+    padding: 0 !important;
+    background-color: $gray-7;
+  }
+
+  .ts-modal-head {
+    height: 5.6rem;
+    @extend %item-center-between;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+
+    .row {
+      width: 100%;
+      align-items: center;
+    }
+
+    &-left {
+      @extend %flex;
+      @extend %align-items-center;
+
+      strong {
+        font-size: 2rem;
+        line-height: 2.4rem;
+        font-weight: 600;
+        color: $gray;
+      }
+    }
+    &-right {
+      text-align: right;
+
+      .reset {
+        color: $success;
+        font-weight: 600;
+        font-size: 1.7rem;
+        line-height: 2rem;
+        letter-spacing: -0.24px;
+      }
+    }
+  }
+
+  .ts-modal-list-head {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+
+    p {
+      text-transform: uppercase;
+      color: $gray-1;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .ts-modal-list {
+    height: calc(100vh - 15rem);
+    overflow-y: auto;
+    background-color: white;
+
+    .ts-branch-items {
+      padding: 1.4rem 1.6rem;
+
+      &:first-child {
+        padding-top: 2.2rem;
+      }
+      &:last-child {
+        padding-bottom: 2.2rem;
+      }
+    }
+
+    .modal-calendar {
+      &-button {
+        margin-bottom: $col-padding-y;
+        padding-left: $col-padding-x;
+        padding-right: $col-padding-x;
+    
+        .ts-btn {
+          padding: 0.7rem 1.6rem !important;
+        }
+      }
+    
+      &-content {
+        .k-calendar {
+          border: 0 !important;
+        }
+    
+        .k-header {
+          background-color: $gray-6;
+          box-shadow: none !important;
+          border: 0 !important;
+          margin-bottom: $col-padding-xs-y;
+          .k-nav-prev {
+            margin-left: 10px;
+          }
+    
+          .k-nav-next {
+            margin-right: 10px;
+          }
+    
+          .k-nav-fast {
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: -0.07px;
+          }
+    
+          .k-icon {
+            font-family: "Font Awesome 5 Pro";
+            font-size: $font-size-md;
+    
+            &.k-i-arrow-60-left {
+              &:before {
+                content: "\f053" !important;
+              }
+            }
+    
+            &.k-i-arrow-60-right {
+              &:before {
+                content: "\f054" !important;
+              }
+            }
+          }
+        }
+        
+        .kv-calendar-footer {
+          padding: $col-padding-xs-x $col-padding-md-y $col-padding-md-x;
+          .ts-btn {
+            font-size: 1.7rem;
+          }
+        }
+    
+        .k-calendar-monthview {
+          .k-link {
+            color: $text-color;
+            font-weight: 400;
+            font-size: 1.6rem;
+          }
+        }
+    
+        .k-calendar-decadeview .k-link,
+        .k-calendar-centuryview .k-link,
+        .k-calendar-yearview .k-link {
+          margin: 0 auto;
+        }
+    
+        .k-calendar-th {
+          color: $gray-3;
+          font-weight: 600;
+          font-size: 1.2rem;
+        }
+    
+        .k-calendar-view {
+          padding-bottom: $col-padding-md-y;
+          padding-left: 0 !important;
+        }
+      }
+    }
+  }
+
+  .ts-modal-footer {
+    padding: 0.8rem 1.6rem;
+    height: 58px;
+    box-shadow: 0px 0px 24px rgba(#546878, 0.2);
+  }
+}
+
+.ts-modal-payroll-salaryPeriod {
+  .modal-wrap {
+    padding: $col-padding-md-x 0 0;
+    background-color: $white;
+    border-radius: 1rem 1rem 0 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+    overflow: auto;
+    &-padding {
+      padding: $col-padding-md-x !important;
+    }
+  }
+
+  .ts-modal-head {
+    height: 5.6rem;
+    @extend %item-center-between;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    background-color: white;
+    border-radius: 0;
+    border-bottom: 1px solid $gray-5;
+    .row {
+      width: 100%;
+      align-items: center;
+    }
+
+    &-left {
+      @extend %flex;
+      @extend %align-items-center;
+
+      strong {
+        font-size: 2rem;
+        line-height: 2.4rem;
+        font-weight: 600;
+        color: $gray;
+      }
+    }
+    
+    &-right {
+      text-align: right;
+
+      .reset {
+        color: $success;
+        font-weight: 600;
+        font-size: 1.7rem;
+        line-height: 2rem;
+        letter-spacing: -0.24px;
+      }
+    }
+  }
+  
+  .ts-modal-list-head {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+
+    p {
+      text-transform: uppercase;
+      color: $gray-1;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .ts-modal-list {
+    height: calc(100vh - 15rem);
+    overflow-y: auto;
+    background-color: white;
+
+    .ts-branch-items {
+      padding: 1.4rem 1.6rem;
+
+      &:first-child {
+        padding-top: 2.2rem;
+      }
+      &:last-child {
+        padding-bottom: 2.2rem;
+      }
+    }
+  }
+
+  .ts-modal-footer {
+    padding: 0.8rem 1.6rem;
+    height: 58px;
+    box-shadow: 0px 0px 24px rgba(#546878, 0.2);
+  }
+
+  .modal-list {
+    padding: 0 1.6rem;
+
+    .item-content {
+      margin-left: 0 !important;
+    }
+
+    .list-item {
+      padding-top: 1.6rem;
+      padding-bottom: 1.6rem;
+
+      .item-content {
+        width: calc(100% - 4.8rem);
+      }
+
+      .ts-check i {
+        color: $gray !important;
+      }
+    }
+  }
+}
+
+.ts-modal-payroll-calendar {
+  .modal-wrap {
+    padding: $col-padding-md-x 0 0;
+    background-color: $white;
+    border-radius: 1rem 1rem 0 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+    overflow: auto;
+    &-padding {
+      padding: $col-padding-md-x !important;
+    }
+  }
+
+  .ts-modal-head {
+    height: 5.6rem;
+    @extend %item-center-between;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+
+    .row {
+      width: 100%;
+      align-items: center;
+    }
+
+    &-left {
+      @extend %flex;
+      @extend %align-items-center;
+
+      strong {
+        font-size: 2rem;
+        line-height: 2.4rem;
+        font-weight: 600;
+        color: $gray;
+      }
+    }
+    &-right {
+      text-align: right;
+
+      .reset {
+        color: $success;
+        font-weight: 600;
+        font-size: 1.7rem;
+        line-height: 2rem;
+        letter-spacing: -0.24px;
+      }
+    }
+  }
+  
+  .ts-modal-list-head {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+
+    p {
+      text-transform: uppercase;
+      color: $gray-1;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .ts-modal-list {
+    height: calc(100vh - 15rem);
+    overflow-y: auto;
+    background-color: white;
+
+    .ts-branch-items {
+      padding: 1.4rem 1.6rem;
+
+      &:first-child {
+        padding-top: 2.2rem;
+      }
+      &:last-child {
+        padding-bottom: 2.2rem;
+      }
+    }
+
+    .modal-calendar {
+      &-button {
+        margin-bottom: $col-padding-y;
+        padding-left: $col-padding-x;
+        padding-right: $col-padding-x;
+    
+        .ts-btn {
+          padding: 0.7rem 1.6rem !important;
+        }
+      }
+    
+      &-content {
+        .k-calendar {
+          border: 0 !important;
+        }
+    
+        .k-header {
+          background-color: $gray-6;
+          box-shadow: none !important;
+          border: 0 !important;
+          margin-bottom: $col-padding-xs-y;
+          .k-nav-prev {
+            margin-left: 10px;
+          }
+    
+          .k-nav-next {
+            margin-right: 10px;
+          }
+    
+          .k-nav-fast {
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: -0.07px;
+          }
+    
+          .k-icon {
+            font-family: "Font Awesome 5 Pro";
+            font-size: $font-size-md;
+    
+            &.k-i-arrow-60-left {
+              &:before {
+                content: "\f053" !important;
+              }
+            }
+    
+            &.k-i-arrow-60-right {
+              &:before {
+                content: "\f054" !important;
+              }
+            }
+          }
+        }
+        
+        .kv-calendar-footer {
+          padding: $col-padding-xs-x $col-padding-md-y $col-padding-md-x;
+          .ts-btn {
+            font-size: 1.7rem;
+          }
+        }
+    
+        .k-calendar-decadeview .k-link,
+        .k-calendar-centuryview .k-link,
+        .k-calendar-yearview .k-link {
+          margin: 0 auto;
+        }
+    
+        .k-calendar-th {
+          color: $gray-3;
+          font-weight: 600;
+          font-size: 1.2rem;
+        }
+    
+        .k-calendar-view {
+          padding-bottom: $col-padding-md-y;
+          padding-left: 0 !important;
+        }
+      }
+    }
+  }
+
+  .ts-modal-footer {
+    padding: 0.8rem 1.6rem;
+    height: 58px;
+    box-shadow: 0px 0px 24px rgba(#546878, 0.2);
+  }
+}
+
+#ts-period-modal {
+  .ts-modal-list {
+    background-color: transparent;
+
+    .ts-period-list {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 1.6rem;
+
+      .ts-form-label {
+        font-size: 1.1rem;
+      }
+
+      .ts-form-control {
+        height: 3.5rem;
+        border-bottom: 1px solid $gray-5;
+        border-radius: 0!important;
+      }
+    }
+  }
+
+  .input-group {
+    > a {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.ts-header-box-search {
+  @extend %item-center-between;
+  position: relative;
+  > a {
+    @extend %item-center;
+    height: 4.4rem;
+    width: 3.2rem;
+
+    i {
+      font-size: 2rem;
+    }
+  }
+  .ts-page-header-search {
+    width: calc(100% - 32px);
+    margin-bottom: 0;
+
+    form {
+      width: 100%;
+    }
+    
+    .ts-form-control-search {
+      height: 4rem;
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: transparent !important;
+      }
+    }
+  }
+
+  .ts-dropdowm {
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    right: -10px;
+    z-index: 99;
+    height: calc(100vh - 60px);
+    left: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: none;
+    &.ts-open {
+      display: block !important;
+    }
+  }
+
+  .ts-staff-empty {
+    height: calc(100vh - 60px);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    img {
+      margin-bottom: 16px;
+    }
+    p {
+      color: rgba(17, 17, 17, 0.54);
+      margin-bottom: 0;
+    }
+  }
+}
+
+.ts-choose-date {
+  .form-wrap {
+    width: 100%;
+    a {
+      width: 100%;
+    }
+  }
+
+  .input-group {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  span,
+  label {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: $gray-2;
+  }
+}
+
+.ts-payroll-list {
+  .ts-form-label {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .ts-form-control {
+    padding-left: 0;
+    min-height: 3.5rem;
+    border-bottom: 1px solid $gray-5;
+    border-radius: 0!important;
+  }
+}

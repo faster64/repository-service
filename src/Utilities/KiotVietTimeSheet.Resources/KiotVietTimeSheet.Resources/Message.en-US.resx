@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clocking_cannotChangeShiftForClockingHasShiftUnactive" xml:space="preserve">
+    <value>Cannot change to the Outage shift.</value>
+  </data>
+  <data name="clockingHistory_notExists" xml:space="preserve">
+    <value>The working history does not exist on the system</value>
+  </data>
+  <data name="clocking_cannotChangeShiftForClockingTimekeepingOrDayOff" xml:space="preserve">
+    <value>Shifts cannot be changed for clocked or on leave work sessions</value>
+  </data>
+  <data name="clocking_clockingStatusIsVoid" xml:space="preserve">
+    <value>The work sessions have been canceled.</value>
+  </data>
+  <data name="clocking_duplicatedTimeOfShiftChange" xml:space="preserve">
+    <value>The time of the swapped shifts is overlapping.</value>
+  </data>
+  <data name="clocking_employeeHasClockingInTime" xml:space="preserve">
+    <value>The employee had the work sessions in existence at this time. Please check again.</value>
+  </data>
+  <data name="clocking_employeeHasTimeSheetInThisShift" xml:space="preserve">
+    <value>The employee has a schedule on this shift.</value>
+  </data>
+  <data name="clocking_notExist" xml:space="preserve">
+    <value>The work sessions have been canceled. Please check again</value>
+  </data>
+  <data name="delete_successed" xml:space="preserve">
+    <value>Delete {0} successfully</value>
+  </data>
+  <data name="is_existsInStore" xml:space="preserve">
+    <value>{0} {1} already exists in the store</value>
+  </data>
+  <data name="is_existsInSystem" xml:space="preserve">
+    <value>{0} already exists on the system</value>
+  </data>
+  <data name="not_existsInSystem" xml:space="preserve">
+    <value>{0} does not exist in the system</value>
+  </data>
+  <data name="is_hasMapUser" xml:space="preserve">
+    <value>{0} has been tied to another user</value>
+  </data>
+  <data name="is_deletedCheckAgain" xml:space="preserve">
+    <value>{0} {1} was deleted, please check again</value>
+  </data>
+  <data name="error_whenCopyData" xml:space="preserve">
+    <value>Errors when copying data</value>
+  </data>
+  <data name="error_whenCreateData" xml:space="preserve">
+    <value>Error when create data</value>
+  </data>
+  <data name="error_whenDeleteData" xml:space="preserve">
+    <value>Error deleting data</value>
+  </data>
+  <data name="error_whenUpdateData" xml:space="preserve">
+    <value>Error Update Data</value>
+  </data>
+  <data name="holiday_duplicatedHoliday" xml:space="preserve">
+    <value>The holiday is coinciding with another holiday</value>
+  </data>
+  <data name="holiday_notExist" xml:space="preserve">
+    <value>The holiday need updates not exist</value>
+  </data>
+  <data name="shift_cannotDelete" xml:space="preserve">
+    <value>Shift details have exists in the calendar, you can not delete</value>
+  </data>
+  <data name="timeSheet_duplicatedTimeSheet" xml:space="preserve">
+    <value>other existing working schedule of employee</value>
+  </data>
+  <data name="timeSheet_existDataNotInRangeEndDate" xml:space="preserve">
+    <value>A work session exist that are not in the ending time. Please check again</value>
+  </data>
+  <data name="timeSheet_existDataNotInRangeStartDate" xml:space="preserve">
+    <value>A work session exist that are not in the starting time. Please check again</value>
+  </data>
+  <data name="timeSheet_maxTimeCopy" xml:space="preserve">
+    <value>Up to 31 days to copy</value>
+  </data>
+  <data name="timeSheet_noDataInRangeTimeSelectForCopy" xml:space="preserve">
+    <value>There are no working schedules within the time period selected for copying</value>
+  </data>
+  <data name="timeSheet_notExist" xml:space="preserve">
+    <value>The working schedule does not exist. Please check again</value>
+  </data>
+  <data name="update_successed" xml:space="preserve">
+    <value>Updated {0} information successfully</value>
+  </data>
+  <data name="clocking_replaceEmployeeOverlapTime" xml:space="preserve">
+    <value>The replacement employee has a schedule during this time</value>
+  </data>
+  <data name="timeSheet_employeesDoNotExist" xml:space="preserve">
+    <value>Employee {0} has been deleted. Please check again</value>
+  </data>
+  <data name="timeSheet_maximumSelectedTimeSheet" xml:space="preserve">
+    <value>The number of working schedules to be updated cannot exceed 100</value>
+  </data>
+  <data name="timeSheet_differenceBetweenShiftBranchIdAndTSBranchId" xml:space="preserve">
+    <value>The shift is not in the same outlet as the working schedule</value>
+  </data>
+  <data name="timeSheet_objectsDoNotExist" xml:space="preserve">
+    <value>{0} deleted. Please check again</value>
+  </data>
+  <data name="timeSheet_objectsInactive" xml:space="preserve">
+    <value>{0} is inactive. Please check again</value>
+  </data>
+  <data name="clocking_maximumSelectedClocking" xml:space="preserve">
+    <value>Clocking is limited to a maximum of 100 work sessions once</value>
+  </data>
+  <data name="timeSheet_cancelSuccessfully" xml:space="preserve">
+    <value>Cancel the working schedule successfully</value>
+  </data>
+  <data name="timeSheet_replacementEmployeeDoesNotExist" xml:space="preserve">
+    <value>The replacement employee does not exist</value>
+  </data>
+  <data name="timeSheet_differenceBetweenReplacementEmployeeBranchIdAndTSBranchId" xml:space="preserve">
+    <value>The replacement employee is not in the same outlet as the employee who leaves</value>
+  </data>
+  <data name="timeSheet_noTimeSheetIsCreated" xml:space="preserve">
+    <value>Can not add working schedule with selected informations. Please check again</value>
+  </data>
+  <data name="clocking_cannotFindClockings" xml:space="preserve">
+    <value>Not found work sessions satisfying conditions</value>
+  </data>
+  <data name="clocking_allClockingsDoNotExist" xml:space="preserve">
+    <value>The work sessions have been canceled. Please check again</value>
+  </data>
+  <data name="clocking_doesNotExistEmployeeName" xml:space="preserve">
+    <value>The work sessions of the employees {0} have been canceled. Please check again</value>
+  </data>
+  <data name="generalErrorMsg" xml:space="preserve">
+    <value>An error occurs. Please try again.</value>
+  </data>
+  <data name="clocking_haveBeenCancelled" xml:space="preserve">
+    <value>The work sessions have been canceled previously. Please check again</value>
+  </data>
+  <data name="clocking_allHasBeenCancelled" xml:space="preserve">
+    <value>The work sessions have been canceled previously. Please check again</value>
+  </data>
+  <data name="timeSheet_haveBeenCancelled" xml:space="preserve">
+    <value>The working schedule does not exist. Please check again</value>
+  </data>
+  <data name="timeSheet_maximumSelectedEmployee" xml:space="preserve">
+    <value>The number of employees cannot exceed 100</value>
+  </data>
+  <data name="timeSheet_haveNoClockings" xml:space="preserve">
+    <value>No work sessions are included in the working schedule. Please check again</value>
+  </data>
+  <data name="timeSheet_duplicatedBranchDayOff" xml:space="preserve">
+    <value>Rest day</value>
+  </data>
+  <data name="timeSheet_duplicated" xml:space="preserve">
+    <value>The working schedule coincides with {0}</value>
+  </data>
+  <data name="timeSheet_allDuplicated" xml:space="preserve">
+    <value>All of these working schedules overlap with {0}.</value>
+  </data>
+  <data name="timeSheet_allHaveNoClockings" xml:space="preserve">
+    <value>No work sessions are included in all of these working schedules. Please check again</value>
+  </data>
+  <data name="clocking_maximumClockingUpdate" xml:space="preserve">
+    <value>The number of work sessions to be updated must not exceed {0}.</value>
+  </data>
+  <data name="paysheet_maximumWorkingDayNumber" xml:space="preserve">
+    <value>The maximum number of the standard workday is 31</value>
+  </data>
+  <data name="paysheet_minimumWorkingDayNumber" xml:space="preserve">
+    <value>The maximum number of the standard workday is 0</value>
+  </data>
+  <data name="paysheet_existedCode" xml:space="preserve">
+    <value>Payroll number already exists on the system</value>
+  </data>
+  <data name="payslip_cancelSuccessfully" xml:space="preserve">
+    <value>Successful cancellation of payslip {0}</value>
+  </data>
+  <data name="payslip_haveBeenCancelled" xml:space="preserve">
+    <value>Payslip has been canceled previously</value>
+  </data>
+  <data name="paysheet_haveBeenCancelled" xml:space="preserve">
+    <value>Payroll has been canceled previously</value>
+  </data>
+  <data name="paysheet_EmptyName" xml:space="preserve">
+    <value>You have not entered payroll name</value>
+  </data>
+  <data name="paysheet_doNotHasAnyPayslip" xml:space="preserve">
+    <value>Payroll is empty</value>
+  </data>
+  <data name="payslip_duplicateCode" xml:space="preserve">
+    <value>Employee {0} is matching payslip number</value>
+  </data>
+  <data name="payslip_existsCode" xml:space="preserve">
+    <value>Payslip number {0} already exists</value>
+  </data>
+  <data name="paysheet_maximumMonths" xml:space="preserve">
+    <value>The maximum working period is over {0} months</value>
+  </data>
+  <data name="setting_notValidStartDateWorkingPeriod" xml:space="preserve">
+    <value>The pay period start date of the {0} pay cycle is invalid</value>
+  </data>
+  <data name="setting_notValidTimeOfStandardWorkingDay" xml:space="preserve">
+    <value>Invalid standard working hours</value>
+  </data>
+  <data name="setting_startAndEndDateTwiceAMonthEqually" xml:space="preserve">
+    <value>The pay period start date of the 1st and 2nd must not overlap</value>
+  </data>
+  <data name="payRateTemplate_emptyName" xml:space="preserve">
+    <value>Please enter template name</value>
+  </data>
+  <data name="payRateTemplate_existsName" xml:space="preserve">
+    <value>The template {0} already exists</value>
+  </data>
+  <data name="paysheet_hasCanceledPayslip" xml:space="preserve">
+    <value>The payslip {0} has been canceled, please check again</value>
+  </data>
+  <data name="is_userHasMapEmployee" xml:space="preserve">
+    <value>{0} was already being used by another employee.</value>
+  </data>
+  <data name="not_runningOutOfQuota" xml:space="preserve">
+    <value>This is not possible because KiotViet maximizes support for &lt;span class='totalBasic'&gt;{0}&lt;/span&gt; employee(s) with the&lt;span class='totalBasic'&gt;basic package&lt;/span&gt;. You can deactivate unnecessary employees using the software or use KiotViet's &lt;span class='totalBasic'&gt;advanced&lt;/span&gt; service package.</value>
+  </data>
+  <data name="can_addMore" xml:space="preserve">
+    <value>Can add new {0}.</value>
+  </data>
+  <data name="swapShift_haveNotSelectedEmployee" xml:space="preserve">
+    <value>You need to choose the employee</value>
+  </data>
+  <data name="swapShift_haveNotSeletedShift" xml:space="preserve">
+    <value>You need to choose the shift</value>
+  </data>
+  <data name="branch_canUpdate" xml:space="preserve">
+    <value>Can change branches.</value>
+  </data>
+  <data name="timeSheet_differenceBetweenEmployeeBranchIdAndTSBranchId" xml:space="preserve">
+    <value>The employee is not in the same outlet as the working schedule</value>
+  </data>
+  <data name="api_wrong_parameter" xml:space="preserve">
+    <value>The API parameter is incorrect</value>
+  </data>
+  <data name="setting_notValidEarlyTime" xml:space="preserve">
+    <value>Early leave minutes are not valid</value>
+  </data>
+  <data name="setting_notValidEarlyTimeOt" xml:space="preserve">
+    <value>Overtime before shift minutes are not valid</value>
+  </data>
+  <data name="setting_notValidLateTime" xml:space="preserve">
+    <value>Late arrival minutes are not valid</value>
+  </data>
+  <data name="setting_notValidLateTimeOt" xml:space="preserve">
+    <value>Overtime after shift minutes are not valid</value>
+  </data>
+  <data name="shift_overlap" xml:space="preserve">
+    <value>{0} {1} and {2} is duplicated time.</value>
+  </data>
+  <data name="payslip_updateVersionSuccessfully" xml:space="preserve">
+    <value>Verison successful payslip updates</value>
+  </data>
+  <data name="paysheet_minimumPayslipPaymentTime" xml:space="preserve">
+    <value>Payroll is not allowed after the payment</value>
+  </data>
+  <data name="clocking_greaterStartTimeToday" xml:space="preserve">
+    <value>The clocking date cannot be greater than the current date.</value>
+  </data>
+  <data name="clocking_sameShift" xml:space="preserve">
+    <value>The selected shifts do not have the same time frame.</value>
+  </data>
+  <data name="clocking_sameWorkingTime" xml:space="preserve">
+    <value>Clocking cannot be made for work sessions, not at the same time.</value>
+  </data>
+  <data name="shift_duplicatedFromTimeToTime" xml:space="preserve">
+    <value>The working hours from must not match the working hours to</value>
+  </data>
+  <data name="shift_haveNotInputtedName" xml:space="preserve">
+    <value>You need to enter the shift name</value>
+  </data>
+  <data name="timeSheet_employeesNotExist" xml:space="preserve">
+    <value>The selected employee does not exist</value>
+  </data>
+  <data name="timeSheet_greaterStartDateEndDate" xml:space="preserve">
+    <value>The End date must be greater than the Start date</value>
+  </data>
+  <data name="timeSheet_lessthanStartDateEndDate" xml:space="preserve">
+    <value>The Start date must be less than the End date</value>
+  </data>
+  <data name="timeSheet_maximumBookCalendar" xml:space="preserve">
+    <value>Can not set working schedule exceed {0} months</value>
+  </data>
+  <data name="clockingHistory_checkedInDate" xml:space="preserve">
+    <value>The time in must be less than the End time of shift.</value>
+  </data>
+  <data name="clockingHistory_greaterthanOutputTimeStartTime" xml:space="preserve">
+    <value>Time out must be greater than the Starting time of shift.</value>
+  </data>
+  <data name="clockingHistory_lessthanOutputTimeInputTime" xml:space="preserve">
+    <value>Time out must not be less than Time in</value>
+  </data>
+  <data name="holiday_emptyFrom" xml:space="preserve">
+    <value>You have not entered the Start date</value>
+  </data>
+  <data name="holiday_emptyName" xml:space="preserve">
+    <value>You have not entered the Holiday name</value>
+  </data>
+  <data name="holiday_emptyTo" xml:space="preserve">
+    <value>You have not entered Until the end of the day</value>
+  </data>
+  <data name="holiday_fromCannotGreaterThanTo" xml:space="preserve">
+    <value>The Start date must not greater than the End date.</value>
+  </data>
+  <data name="holiday_maximumDays" xml:space="preserve">
+    <value>The holiday must not exceed 31 days</value>
+  </data>
+  <data name="holiday_toMustGreaterOrEqualThanFrom" xml:space="preserve">
+    <value>Until the end of the day must be greater than or equal to the Start date</value>
+  </data>
+  <data name="payRate_cannotDeterminedEmployee" xml:space="preserve">
+    <value>Unable to identify the employee</value>
+  </data>
+  <data name="payRate_cannotDeterminedWorkingPeriod" xml:space="preserve">
+    <value>Unable to identify the work cycle</value>
+  </data>
+  <data name="not_empty" xml:space="preserve">
+    <value>{0} not allowed to be empty </value>
+  </data>
+  <data name="not_invalid" xml:space="preserve">
+    <value>{0} invalid</value>
+  </data>
+  <data name="allow_maximumPicture" xml:space="preserve">
+    <value>{0} only allowed up to {1} photos</value>
+  </data>
+  <data name="not_fomatInvalid" xml:space="preserve">
+    <value>{0} fomat invalid</value>
+  </data>
+  <data name="fingerMachine_emptyName" xml:space="preserve">
+    <value>You have not entered the name of the Time attendance machine</value>
+  </data>
+  <data name="fingerMachine_emptySerial" xml:space="preserve">
+    <value>You have not entered the serial of the Time attendance machine</value>
+  </data>
+  <data name="paysheet_duplicateEmployee" xml:space="preserve">
+    <value>Payroll exists many payslips with the same employee</value>
+  </data>
+  <data name="not_runningOutOfQuotaBlockEmployee" xml:space="preserve">
+    <value>Bạn đang sử dụng &lt;strong&gt;{0}&lt;/strong&gt; áp dụng quản lý tối đa &lt;strong&gt;{1} nhân viên&lt;/strong&gt; theo thời gian hợp đồng. Liên hệ hotline &lt;span class='totalBasic'&gt;1900 6522&lt;/span&gt; để được tư vấn nâng cấp gói.</value>
+  </data>
+  <data name="commission_NotExist" xml:space="preserve">
+    <value>This commission rate list does not exist</value>
+  </data>
+  <data name="commission_haveNotInputtedName" xml:space="preserve">
+    <value>You have not entered the Name of the commission rate list</value>
+  </data>
+  <data name="commission_existsName" xml:space="preserve">
+    <value>The name of the commission rate list already exists on the system</value>
+  </data>
+  <data name="commission_doNotHavePermissionToCreate" xml:space="preserve">
+    <value>You do not have the permission to add a new commission rate list on this branc</value>
+  </data>
+  <data name="commission_doNotHavePermissionToUpdate" xml:space="preserve">
+    <value>You do not have the permission to update the commission rate list on this branch</value>
+  </data>
+  <data name="commission_doNotHavePermissionToDelete" xml:space="preserve">
+    <value>You do not have the permission to delete this commission rate list</value>
+  </data>
+  <data name="commission_haveNotSelected" xml:space="preserve">
+    <value>The commission rate list has not been selected</value>
+  </data>
+  <data name="payRateTemplate_deleteSuccessed" xml:space="preserve">
+    <value>Successful pay type deletion</value>
+  </data>
+  <data name="commission_ProductExistInCommissionBefore" xml:space="preserve">
+    <value>The product already exists in the list</value>
+  </data>
+  <data name="clocking_rejectError" xml:space="preserve">
+    <value>You do not have the right to cancel the details of a shift on a branch {0}</value>
+  </data>
+  <data name="clocking_updateError" xml:space="preserve">
+    <value>You do not have the right to update shifts details on the branch {0}</value>
+  </data>
+  <data name="clocking_updateDragDropError" xml:space="preserve">
+    <value>You do not have permission to update the schedule on the branch {0}</value>
+  </data>
+  <data name="setting_notValidMaxShift" xml:space="preserve">
+    <value>The maximum number of shifts recorded should not be less than 2</value>
+  </data>
+  <data name="setting_notValidRangeShift" xml:space="preserve">
+    <value>The allowed interval per shift is invalid.</value>
+  </data>
+  <data name="commission_InProgress" xml:space="preserve">
+    <value>Ongoing updating commission rate list</value>
+  </data>
+  <data name="commissionDetail_updateToCommission" xml:space="preserve">
+    <value>Successful data update. Press the F5 key to see the latest data.</value>
+  </data>
+  <data name="not_lessThan" xml:space="preserve">
+    <value>{0} can not exceed {1} characters</value>
+  </data>
+  <data name="not_haveSelectedOvertime" xml:space="preserve">
+    <value>You have not selected an overtime setting date</value>
+  </data>
+  <data name="not_haveSelectedOvertimeSalaryWithDay" xml:space="preserve">
+    <value>You have not entered the salary coefficient for overtime {0}</value>
+  </data>
+  <data name="add_successed" xml:space="preserve">
+    <value>Add {0} successfully</value>
+  </data>
+  <data name="create_successed" xml:space="preserve">
+    <value>Create {0} successfully</value>
+  </data>
+  <data name="is_exists" xml:space="preserve">
+    <value>{0} already exists</value>
+  </data>
+  <data name="not_exists" xml:space="preserve">
+    <value>{0} not exists</value>
+  </data>
+  <data name="cancel_successed" xml:space="preserve">
+    <value>Cancel {0} successfully</value>
+  </data>
+  <data name="error_whenGetData" xml:space="preserve">
+    <value>Errors when get data</value>
+  </data>
+  <data name="is_deleted" xml:space="preserve">
+    <value>{0} {1} was deleted</value>
+  </data>
+  <data name="is_stopApply" xml:space="preserve">
+    <value>{0} {1} has ceased to apply</value>
+  </data>
+  <data name="is_stopApplyCheckAgain" xml:space="preserve">
+    <value>{0} {1} has ceased to apply, please check back</value>
+  </data>
+  <data name="not_found" xml:space="preserve">
+    <value>Not found {0}</value>
+  </data>
+  <data name="payRateTemplate_notDelete" xml:space="preserve">
+    <value>This salary type cannot be deleted.</value>
+  </data>
+  <data name="commission_InActiveForBranch" xml:space="preserve">
+    <value>Commission {0} has been discontinued for affiliates</value>
+  </data>
+  <data name="commission_ProductGroupExist" xml:space="preserve">
+    <value>The category is already exists in {0}</value>
+  </data>
+  <data name="paysheet_created_max_two_times" xml:space="preserve">
+    <value>The system support created max two times!</value>
+  </data>
+  <data name="paysheet_has_modifiedDate" xml:space="preserve">
+    <value>The paysheet has been updated before time, Do you really want to accept this paysheet?</value>
+  </data>
+  <data name="paysheet_has_pending" xml:space="preserve">
+    <value>The paysheet has processing</value>
+  </data>
+  <data name="setting_halfShiftMaxTimeInvalid" xml:space="preserve">
+    <value>Thời gian tính nửa công không hợp lệ.</value>
+  </data>
+  <data name="timeSheet_createPaysheetPeriodOptionDays" xml:space="preserve">
+    <value>Kỳ làm việc tối đa trên {0} ngày</value>
+  </data>
+  <data name="number_between" xml:space="preserve">
+    <value>{0} has value between {1} and {2}</value>
+  </data>
+  <data name="timeSheet_gpsInfoHasExits" xml:space="preserve">
+    <value>Gps Infor for branch {0} has exits</value>
+  </data>
+  <data name="timeSheet_gps_audit_updateSetting_title" xml:space="preserve">
+    <value>Updating the information for feature configuration:{0}</value>
+  </data>
+  <data name="timeSheet_gps_audit_updateSetting_subTitle_1" xml:space="preserve">
+    <value>Setting up Mobile timekeeping:{0}</value>
+  </data>
+  <data name="addWorkSchedule" xml:space="preserve">
+    <value>Creating new work schedule</value>
+  </data>
+  <data name="endDate" xml:space="preserve">
+    <value>- End date: {0}</value>
+  </data>
+  <data name="createOnHoliday" xml:space="preserve">
+    <value>- Create on holiday: &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="auditCreateTitle" xml:space="preserve">
+    <value>Creating work schedule: &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br&gt;- Creating work schedule automatically: &lt;strong&gt;{1}&lt;/strong&gt;&lt;br&gt;- Start date: {2} {3}&lt;br&gt;</value>
+  </data>
+  <data name="auditCreateShortTitle" xml:space="preserve">
+    <value>- Creating work schedule automatically: &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;- Start date: {1} {2}&lt;br&gt;</value>
+  </data>
+  <data name="auditShiftRepeat" xml:space="preserve">
+    <value>- Repeat &lt;strong&gt;{0}&lt;/strong&gt;: &lt;strong&gt;{1}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="rejectWorkSchedule" xml:space="preserve">
+    <value>Deleted shift detail</value>
+  </data>
+  <data name="auditRejectHeadTitle" xml:space="preserve">
+    <value>Deleted work schedule: &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="auditRejectTitle" xml:space="preserve">
+    <value>- Start date: {0} {1}&lt;br&gt;</value>
+  </data>
+  <data name="editEmployeeClocking" xml:space="preserve">
+    <value>Edited work schedule &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="repeatFrom" xml:space="preserve">
+    <value>From: {0}</value>
+  </data>
+  <data name="repeatTo" xml:space="preserve">
+    <value>To: {0}</value>
+  </data>
+  <data name="changeFrom" xml:space="preserve">
+    <value>- Change: {0}&lt;br&gt;</value>
+  </data>
+  <data name="forCurrentTo" xml:space="preserve">
+    <value>From now on</value>
+  </data>
+  <data name="forAllWork" xml:space="preserve">
+    <value>All work shift details</value>
+  </data>
+  <data name="updateEmployee" xml:space="preserve">
+    <value>Updating the employee information</value>
+  </data>
+  <data name="deviceName" xml:space="preserve">
+    <value>Mobile device</value>
+  </data>
+  <data name="delDeviceResult" xml:space="preserve">
+    <value>Deleted mobile device</value>
+  </data>
+  <data name="regDeviceResult" xml:space="preserve">
+    <value>Register mobile device</value>
+  </data>
+  <data name="updateSettingInfo" xml:space="preserve">
+    <value>Updating the information for feature configuration</value>
+  </data>
+  <data name="clockingSetting" xml:space="preserve">
+    <value>Setting up Mobile timekeeping</value>
+  </data>
+  <data name="changeQR" xml:space="preserve">
+    <value>Change QR code for branch {0}</value>
+  </data>
+  <data name="validate_when_del_payrateTpl" xml:space="preserve">
+    <value>Không thể xoá mẫu áp dụng vì mẫu áp dụng hiện vẫn còn được sử dụng cho nhân viên trong cửa hàng. Vui lòng bỏ mẫu áp dụng cho nhân viên trước khi xoá.</value>
+  </data>
+  <data name="updateClockingTime" xml:space="preserve">
+    <value>Updated {0} clockings of shift name {1}</value>
+  </data>
+  <data name="not_allowRunningOutOfQuotaBlockEmployee" xml:space="preserve">
+    <value>You cannot add new employees due to exceeding the maximum limit &lt;span class='totalBasic'&gt;{0} You cannot add new employees due to exceeding the maximum limit &lt;span class='totalBasic'&gt;{0} employee(s)&lt;/span&gt;</value>
+  </data>
+  <data name="delPayRateTemplateValidate" xml:space="preserve">
+		<value>{0} was deleted. Please updating information for employee again.</value>
+	</data>
+
+	<data name="delPayRateTemplateValidate" xml:space="preserve">
+		<value>{0} was deleted. Please updating information for employee again.</value>
+	</data>
+  <data name="autoKeeping_log_title" xml:space="preserve">
+	<value>Updating the information for clocking detail : - Automation clocking</value>
+  </data>
+	<data name="autoKeeping_log_detail_date" xml:space="preserve">
+	<value>Ngày</value>
+  </data>
+	<data name="autoKeeping_log_detail_status_title" xml:space="preserve">
+	<value>status</value>
+  </data>  
+  <data name="autoKeeping_log_detail_status_2" xml:space="preserve">
+	<value>in - Out</value>
+  </data>
+</root>

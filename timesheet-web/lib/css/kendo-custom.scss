@@ -1,0 +1,49 @@
+$base-color: #4BAC4D;
+$base-text-color:#333333;
+.kv-calendar {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 transparent;
+    .k-calendar-view,
+    .k-calendar-table {
+        width: 100% !important;
+    }
+    .k-calendar-monthview .k-link {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50%;
+        margin: auto;
+    }
+    .k-calendar-th {
+        font-weight: bold;
+    }
+    .k-calendar-td.k-state-selected .k-link {
+        background-color: $base-color !important;
+        box-shadow: none !important;
+    }
+    .k-calendar-view .k-today {
+        color: $base-color;
+        a {
+            border-radius: 50%;
+            border: 1px solid $base-color;
+        }
+    }
+    .k-header {
+        color: $base-text-color;
+        font-weight: bold;
+        box-shadow: none;
+    }
+    .k-content {
+        color: $base-text-color !important;
+    }
+    .k-content tbody td {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .k-other-month {
+        color: rgba($color: $base-text-color, $alpha: 0.54);
+    }
+    &-today-header {
+        color: $base-color !important;
+    }
+}

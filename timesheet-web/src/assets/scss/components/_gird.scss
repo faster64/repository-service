@@ -1,0 +1,55 @@
+.container {
+  // max-width: $container-width;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+ 
+.error-msg {
+   background-color: $note-error;
+   padding: 1rem 1.4rem;
+   color: $pink;
+   font-size: 1.5rem;
+   margin-bottom: 1.2rem;
+   text-align: left;
+   border-radius: .5rem;
+}
+
+.icon-success-in {
+  background-color: $success;
+
+  > i {
+    color: $white;
+  }
+}
+
+.icon-success-out {
+  background-color: $primary;
+  > i {
+    color: $white;
+  }
+}
+
+.icon-confirm-in {
+  border:3px solid $success;
+  > i {
+    color: $success;
+  }
+}
+
+.icon-confirm-out {
+  border:3px solid $primary;
+  > i {
+    color: $primary;
+  }
+}
+
+.icon-waring {
+  background-color: $orange;
+  > i {
+    color: $white;
+  }
+}

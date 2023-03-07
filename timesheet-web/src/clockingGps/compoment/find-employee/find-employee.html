@@ -1,0 +1,56 @@
+<div class="ts-main">
+  <div class="container">
+    <div class="col-wrap">
+      <div class="main">
+        <div class="qrcode qrcode-success">
+          <img src="https://cdn-app.kiotviet.vn/img/qrcode.svg" alt="" />
+        </div>
+        <h2 class="title-page">Đăng nhập</h2>
+        <div class="ts-form-main">
+          <form name="myForm">
+            <div class="radio-inline">
+              <label class="radio-tab">
+                <input
+                  type="radio"
+                  name="phoneOrCode"
+                  ng-value="true"
+                  ng-model="vm.isPhone"
+                  value="true"
+                  ng-click="vm.changePhoneOrCode(true)"
+                />
+                <span>Số điện thoại</span>
+              </label>
+              <label class="radio-tab">
+                <input
+                  type="radio"
+                  name="phoneOrCode"
+                  ng-value="false"
+                  ng-model="vm.isPhone"
+                  value="false"
+                  ng-click="vm.changePhoneOrCode(false)"
+                />
+                <span>Mã nhân viên</span>
+              </label>
+            </div>
+            <div class="form-group">
+              <input
+                id="input-phone-Code"
+                type="text"
+                placeholder="{{vm.placeholder}}"
+                ng-model="vm.keyWord"
+                class="form-control form-control-sm"
+                ng-class="{'error':vm.error != '','success':vm.error == ''}"
+              />
+            </div>
+            <div ng-if="vm.error" class="error-msg">{{vm.error}}</div>
+          </form>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="btn btn-success btn-xl" ng-click="vm.findEmployee()">
+          Tiếp
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

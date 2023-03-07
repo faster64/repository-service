@@ -1,0 +1,16 @@
+//   %icon-action-color { color: $icon-action-color; }
+  %icon-mask-color   { color: $icon-mask-color; }
+
+  %disabled-color { color: $disabled-color; }
+  %link-color { color: $link-color;}
+  .label-discount {color: $discount-color !important;}
+  .link-color{
+      cursor: pointer;
+    &,
+    & *{
+        @extend %link-color;
+    &:hover{
+        text-decoration: underline;
+    }
+    }
+}

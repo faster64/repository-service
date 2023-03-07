@@ -1,0 +1,105 @@
+@mixin btn-hover($color-btn) {
+  &:hover {
+    background-color: mix(#000, $color-btn, 10%);
+    border-color: mix(#000, $color-btn, 10%);
+  }
+}
+
+@mixin btn-focus($color-btn) {
+  &:focus {
+    background-color: mix(#000, $color-btn, 30%);
+    border-color: mix(#000, $color-btn, 30%);
+  }
+}
+
+//button
+.btn {
+  box-sizing: border-box;
+  font-weight: 400;
+  color: $white;
+  font-size: 1.5;
+  padding: 6px 20px;
+  border: 0;
+  box-shadow: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
+
+  &:not(.btn-icon-no-action) > [class*="fa-"] {
+    // display: none;
+    margin-right: $btn-icon-margin-x;
+  }
+
+  + .btn {
+    margin-left: $btn-margin-x;
+  }
+
+  &-secondary {
+    color: #fff;
+  }
+
+  &-out {
+    i {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.btn-xl {
+  font-size: 2.4rem;
+  padding: $btn-padding-y $btn-padding-x;
+  font-weight: 700;
+  @extend %btn-radius-sm;
+  border-radius: 1rem !important;
+}
+
+.btn-circle {
+  @include border-radius($radius-circle !important);
+}
+
+.btn-radius-sm {
+  @extend %btn-radius-sm;
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  @include btn-hover($primary);
+  @include btn-focus($primary);
+}
+
+.btn-success {
+  background-color: $success;
+  border-color: $success;
+  @include btn-hover($success);
+  @include btn-focus($success);
+}
+
+.btn-outline {
+  color: $gray-3;
+  border: 1px solid $gray-3;
+  background-color: transparent;
+  @include transition();
+}
+
+.btn-outline-success {
+  border-color: $success;
+  color: $success;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $success;
+    color: $white;
+  }
+}
+
+.btn-outline-primary {
+  border-color: $primary;
+  color: $primary;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $primary;
+    color: $white;
+  }
+}

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebTest Name="Test_WebTest1" Id="d07a0415-d6e5-4922-b317-2d749aab9fe3" Owner="" Priority="2147483647" Enabled="True" CssProjectStructure="" CssIteration="" Timeout="0" WorkItemIds="" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010" Description="" CredentialUserName="" CredentialPassword="" PreAuthenticate="True" Proxy="default" StopOnError="False" RecordedResultFile="" ResultsLocale="">
+  <Items>
+    <Loop UniqueStringId="2845977c-31a7-43dd-8569-c8f3abd4df1d">
+      <ConditionalRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ForLoopRule, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="For Loop" Description="The rule represents a traditional &quot;for&quot; loop. The context parameter is initialized before the first loop iteration. The loop statements get executed while the content of the context parameter satisfies the comparison with the provided value. The step value is applied at the end of each loop iteration." MaxIterations="-1" AdvanceDataCursors="False">
+        <RuleParameters>
+          <RuleParameter Name="ContextParameterName" Value="employeeId" />
+          <RuleParameter Name="ComparisonOperator" Value="&lt;=" />
+          <RuleParameter Name="TerminatingValue" Value="2705" />
+          <RuleParameter Name="InitialValue" Value="2701" />
+          <RuleParameter Name="IncrementValue" Value="1" />
+        </RuleParameters>
+      </ConditionalRule>
+      <Items>
+        <Loop UniqueStringId="1e7c7373-d3e1-4566-87e7-1dbfaddc93f7">
+          <ConditionalRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ForLoopRule, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="For Loop" Description="The rule represents a traditional &quot;for&quot; loop. The context parameter is initialized before the first loop iteration. The loop statements get executed while the content of the context parameter satisfies the comparison with the provided value. The step value is applied at the end of each loop iteration." MaxIterations="-1" AdvanceDataCursors="False">
+            <RuleParameters>
+              <RuleParameter Name="ContextParameterName" Value="months" />
+              <RuleParameter Name="ComparisonOperator" Value="&lt;=" />
+              <RuleParameter Name="TerminatingValue" Value="12" />
+              <RuleParameter Name="InitialValue" Value="1" />
+              <RuleParameter Name="IncrementValue" Value="1" />
+            </RuleParameters>
+          </ConditionalRule>
+          <Items>
+            <Loop UniqueStringId="f9e2ac72-4b11-45c6-a0ba-266dd5546892">
+              <ConditionalRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ForLoopRule, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="For Loop" Description="The rule represents a traditional &quot;for&quot; loop. The context parameter is initialized before the first loop iteration. The loop statements get executed while the content of the context parameter satisfies the comparison with the provided value. The step value is applied at the end of each loop iteration." MaxIterations="-1" AdvanceDataCursors="False">
+                <RuleParameters>
+                  <RuleParameter Name="ContextParameterName" Value="days" />
+                  <RuleParameter Name="ComparisonOperator" Value="&lt;=" />
+                  <RuleParameter Name="TerminatingValue" Value="31" />
+                  <RuleParameter Name="InitialValue" Value="1" />
+                  <RuleParameter Name="IncrementValue" Value="1" />
+                </RuleParameters>
+              </ConditionalRule>
+              <Items>
+                <Loop UniqueStringId="404b1efa-4979-4fad-84f1-d50ba5cb630c">
+                  <ConditionalRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ForLoopRule, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="For Loop" Description="The rule represents a traditional &quot;for&quot; loop. The context parameter is initialized before the first loop iteration. The loop statements get executed while the content of the context parameter satisfies the comparison with the provided value. The step value is applied at the end of each loop iteration." MaxIterations="-1" AdvanceDataCursors="False">
+                    <RuleParameters>
+                      <RuleParameter Name="ContextParameterName" Value="shiftId" />
+                      <RuleParameter Name="ComparisonOperator" Value="&lt;=" />
+                      <RuleParameter Name="TerminatingValue" Value="2520" />
+                      <RuleParameter Name="InitialValue" Value="2511" />
+                      <RuleParameter Name="IncrementValue" Value="1" />
+                    </RuleParameters>
+                  </ConditionalRule>
+                  <Items>
+                    <Request Method="POST" Guid="0e705dd3-c91f-48d6-9abf-d60d9a97adbc" Version="1.1" Url="http://localhost:11613/timesheets/batchAddTimeSheetWhenCreateMultipleTimeSheet" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+                      <Headers>
+                        <Header Name="Accept" Value="application/json; charset=UTF-8" />
+                        <Header Name="Content-Type" Value="application/json" />
+                        <Header Name="Authorization" Value="Bearer eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkExMjhDQkMtSFMyNTYiLCJraWQiOiJzQngifQ.eLg2STZ7GC2xCpqgVzxeKrqR_LiUclVIw7kmeOXy8DGjQKNSd3KMhyFv99Bt-MLXV5Df560jpj74T75WJYdopeQLpG12096baJbx_C_jKnXkZH2OESe9A0CCvcse3bmP0pIRNjbvhRkjVJErjHu4wEiFdV5YB4ubf8Ca9dRer_vwbgJq8Rh7PZI70dfUcWYN4PxdZVnySLUNtd7tq2QkM8O7HMilty5EILXaiXAK3rD-oyTiF8iETKD606roLzJ8ZD8SZMulSRyRtwzfxXV8nes8LiuYpoRA4ijj5cVOKAnlS8Dbi_YIfC_gtM0jZZgibVzYIfDyAoquy4RtH_Xt8A.pPns096cfKpehcrksX9T6g.nvxZIxTn3uJ4VxUvp7WlwX-1iVX5PMCQgGeXJ4yn4d3cbam_mOSYKuHDNqWRl8L5ZXgJNTrLRc5a8mWz9M8L7MPHojAhJ32bGyEPUdtQ5xpSu9mwyH6lo400SjmWVuRMepQMf_uX-bISnJ876PFmdk7v2j_b5t3wYeoywTJrdRWCUQacea9VmSD5xPiAB6OFvwVkImhn2POzntNs2ZQ8yMCzJt9S87PWrk1z4BPPGlmaP0azmKJUtHSECx6FCioSsdlv_IWWfigr7rgDgZCXsNXY35kotj7ppEiPrQ9lNHnkvFYxlqOQWPIelTV6r-QCDCfKWdEd1FDithGzopJzPk0n0D5NRrwDLkXXQ3kEkuKEKutHaaJPBuPRCfdRmF43P0dsqRPSqb8V6vDdBbmUO_aYPo-cxNJXFN5pqh3PXqHA_noF3Q4r-qIoD_E7eRP51j2_z2KB9MVxuxh_no6cVExUBSSyvRbGnsepi9-kVCb6jHDFou0jO9ZZqvU8b-6EFwmndB35aT7OTsD9_ul3W-7vsznZ0I_k-ymvBfvQFxU.UYVKc84CruuoW1vohbmCkvRUfEj_Fr7i57QfU96Q8TM" />
+                      </Headers>
+                      <StringHttpBody ContentType="application/json" InsertByteOrderMark="False">ewANAAoAIAAgACAAIgBFAG0AcABsAG8AeQBlAGUASQBkAHMAIgA6ACAAWwANAAoAIAAgACAAIAAgACAAewB7AGUAbQBwAGwAbwB5AGUAZQBJAGQAfQB9AA0ACgAgACAAIABdACwADQAKACAAIAAgACIAVABpAG0AZQBTAGgAZQBlAHQAIgA6ACAAewANAAoAIAAgACAAIAAgACAAIgBiAHIAYQBuAGMAaABJAGQAIgA6ACAANQAwADcANAAsAA0ACgAgACAAIAAgACAAIAAiAGMAbABvAGMAawBpAG4AZwBzACIAOgAgAFsAXQAsAA0ACgAgACAAIAAgACAAIAAiAGUAbQBwAGwAbwB5AGUAZQBJAGQAIgA6ACAAIAB7AHsAZQBtAHAAbABvAHkAZQBlAEkAZAB9AH0ALAANAAoAIAAgACAAIAAgACAAIgBlAG4AZABEAGEAdABlACIAOgAgACIAMgAwADEAOQAtAHsAewBtAG8AbgB0AGgAcwB9AH0ALQB7AHsAZABhAHkAcwB9AH0AVAAxADcAOgAwADAAOgAwADAALgAwADAAMABaACIALAANAAoAIAAgACAAIAAgACAAIgBpAGQAIgA6ACAAMAAsAA0ACgAgACAAIAAgACAAIAAiAGkAcwBEAGUAbABlAHQAZQBkACIAOgAgAGYAYQBsAHMAZQAsAA0ACgAgACAAIAAgACAAIAAiAGkAcwBSAGUAcABlAGEAdAAiADoAIABmAGEAbABzAGUALAANAAoAIAAgACAAIAAgACAAIgByAGUAcABlAGEAdABEAGEAeQBzAE8AZgBXAGUAZQBrACIAOgAgAG4AdQBsAGwALAANAAoAIAAgACAAIAAgACAAIgByAGUAcABlAGEAdABFAGEAYwBoAEQAYQB5ACIAOgAgADEALAANAAoAIAAgACAAIAAgACAAIgByAGUAcABlAGEAdABUAHkAcABlACIAOgAgADEALAANAAoAIAAgACAAIAAgACAAIgBzAGEAdgBlAE8AbgBEAGEAeQBzAE8AZgBmAE8AZgBCAHIAYQBuAGMAaAAiADoAIABmAGEAbABzAGUALAANAAoAIAAgACAAIAAgACAAIgBzAGEAdgBlAE8AbgBIAG8AbABpAGQAYQB5ACIAOgAgAGYAYQBsAHMAZQAsAA0ACgAgACAAIAAgACAAIAAiAHMAaABpAGYAdABJAGQAIgA6ACAAewB7AHMAaABpAGYAdABJAGQAfQB9ACwADQAKACAAIAAgACAAIAAgACIAcwB0AGEAcgB0AEQAYQB0AGUAIgA6ACAAIgAyADAAMQA5AC0AewB7AG0AbwBuAHQAaABzAH0AfQAtAHsAewBkAGEAeQBzAH0AfQBUADEANwA6ADAAMAA6ADAAMAAuADAAMAAwAFoAIgANAAoAIAAgACAAfQANAAoAfQA=</StringHttpBody>
+                    </Request>
+                  </Items>
+                </Loop>
+              </Items>
+            </Loop>
+          </Items>
+        </Loop>
+      </Items>
+    </Loop>
+  </Items>
+</WebTest>

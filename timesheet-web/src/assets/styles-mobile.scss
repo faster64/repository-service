@@ -1,0 +1,32 @@
+//===== Abstracts ===============================
+@import "scss-mobile/abstracts/variables";
+
+//===== Libraries ===============================
+@import "scss-mobile/libraries/fontawesome.scss";
+@import "scss-mobile/libraries/bootstraps.scss";
+@import "scss-mobile/abstracts/mixins";
+
+//===== Base ====================================
+// @import "font/font";
+@import "scss-mobile/base/reboot";
+// @import 'assets/scss/base/colors';
+@import "scss-mobile/base/text";
+@import "scss-mobile/base/common";
+
+//===== Components ==============================
+@import "scss-mobile/components/buttons";
+@import "scss-mobile/components/common";
+@import "scss-mobile/components/forms";
+@import "scss-mobile/components/toast";
+//===== Layouts =================================
+@import "scss-mobile/layout/col-main";
+@import "scss-mobile/layout/header";
+@import "scss-mobile/layout/footer";
+@import "scss-mobile/layout/calender";
+@import "scss-mobile/layout/calender-detail";
+@import "scss-mobile/layout/staff";
+@import "scss-mobile/layout/popup";
+@import "scss-mobile/layout/payroll";
+//===== Others =================================
+
+@import "scss-mobile/custom.scss";

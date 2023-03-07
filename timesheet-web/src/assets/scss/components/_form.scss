@@ -1,0 +1,20 @@
+.form-group {
+  &.input-comfirm {
+    @extend %flex;
+
+    input {
+      text-align: center;
+      + input {
+        margin-left: .8rem;
+      }
+    }
+  }
+}
+
+.form-control {
+  @extend %form-control;
+}
+
+.form-control-sm {
+  @extend %form-control-sm;
+}

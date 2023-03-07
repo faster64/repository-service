@@ -1,0 +1,120 @@
+
+
+
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Base styles
+//
+.ts-btn {
+  display: inline-block;
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  color: $body-color;
+  text-align: center;
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: $btn-white-space;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: $btn-border-width solid transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+  @include transition($btn-transition);
+
+  @include hover() {
+    color: $body-color;
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    // @include box-shadow(none);
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+
+    &:active,
+    &.active {
+      // @include box-shadow($btn-active-box-shadow);
+
+      &:focus {
+        // @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+      }
+    }
+  }
+
+  &.round {
+    border-radius: 99px;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .ts-btn-#{$color} {
+    @include button-variant-custome($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .ts-btn-outline-#{$color} {
+    @include button-outline-variant-custome($value);
+  }
+}
+
+//
+// Button Sizes
+//
+
+.ts-btn-lg {
+  @include button-size-custome($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+}
+
+.ts-btn-sm {
+  @include button-size-custome($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+}
+
+
+//button
+.ts-btn {
+  font-weight: 600;
+  @include border-radius(4px);
+  @include transition;
+  line-height: 20px;
+
+  + .ts-btn {
+    margin-left: 1rem;
+  }
+
+  &-primary {
+    color: $white;
+  }
+
+  &-secondary {
+    color: $text-color;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+//btn-icon
+.ts-btn-icon {
+  @extend %btn-icon;
+  @extend %box-size-sm;
+  @include transition;
+}
+
+.ts-btn-full {
+  width: 100%;
+}

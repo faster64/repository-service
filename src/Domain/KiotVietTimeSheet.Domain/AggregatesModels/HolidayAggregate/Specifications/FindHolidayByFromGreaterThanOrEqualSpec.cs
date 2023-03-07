@@ -1,0 +1,14 @@
+﻿using KiotVietTimeSheet.Domain.AggregatesModels.HolidayAggregate.Models;
+using KiotVietTimeSheet.SharedKernel.Specifications;
+using System;
+
+namespace KiotVietTimeSheet.Domain.AggregatesModels.HolidayAggregate.Specifications
+{
+    public class FindHolidayByFromGreaterThanOrEqualSpec : ExpressionSpecification<Holiday>
+    {
+        public FindHolidayByFromGreaterThanOrEqualSpec(DateTime dateTime)
+            : base(c => c.From >= dateTime.Date)
+        {
+        }
+    }
+}

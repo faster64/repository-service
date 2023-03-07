@@ -1,0 +1,24 @@
+.text-primary {
+  color: $primary;
+}
+
+.avatar {
+  @include avatar(72px, 40px);
+}
+
+.avatar-sm {
+  @include avatar(44.5px, 24px);
+}
+
+.avatar-md {
+  @include avatar(67px, 24px);
+}
+
+.text-success {
+  color: $success;
+  font-weight: 600;
+}
+
+.ts-hidden {
+  display: none !important;
+}

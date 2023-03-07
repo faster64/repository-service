@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-KiotVietTimeSheet.Worker-A2BAE95A-71FF-41E0-AD4E-09F5479AA2AB</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'KiotVietTimeSheet.Worker' ">
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.9" />
+    <PackageReference Include="Serilog.Exceptions" Version="6.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Application\KiotVietTimeSheet.Application\KiotVietTimeSheet.Application.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\KiotVietTimeSheet.Infrastructure\KiotVietTimeSheet.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\KiotVietTimeSheet.Utilities\KiotVietTimeSheet.Utilities.csproj" />
+  </ItemGroup>
+</Project>

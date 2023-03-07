@@ -1,0 +1,39 @@
+
+// display
+
+.d-none {
+  @extend %d-none;
+}
+
+.d-block {
+  @extend %d-block;
+}
+
+// flex
+.flex-grow-0 {
+  @extend %flex-grow-0
+}
+
+::-webkit-scrollbar-thumb {
+  width: $scrollbar-size;
+  background-color: $gray-2;
+  @include border-radius(8px);
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: $gray-9 !important;
+  font-weight: 400;
+  opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+  color: $gray-9 !important;
+  font-weight: 400;
+  opacity: 1;
+}
+
+::placeholder {
+  color: $gray-9 !important;
+  font-weight: 400;
+  opacity: 1;
+}

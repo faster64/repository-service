@@ -1,0 +1,262 @@
+// ======================== Main Color ==========================
+// color-gray-variable
+$white: #ffffff !default;
+$black: #000000 !default;
+
+// color-main
+$red: #ed2e67 !default;
+$yellow: #ffba07 !default;
+$pink: #ff2f86 !default;
+$purple: #8861d6 !default;
+$blue: #237fcd !default;
+$green: #4bac4d !default;
+$teal: #52ada2 !default;
+
+$gray: #111111;
+$gray-1: mix($gray, $white, 84%);
+$gray-2: mix($gray, $white, 68%);
+$gray-3: mix($gray, $white, 54%);
+$gray-4: mix($gray, $white, 38%);
+$gray-5: mix($gray, $white, 8%);
+$gray-6: mix($gray, $white, 4%);
+$gray-7: #f3f3f3;
+
+// Theme color
+$primary: $blue;
+$secondary: $gray-6;
+$info: $teal;
+$warning: $yellow;
+$danger: $red;
+$success: $green;
+$link: $blue;
+
+// Color Mix
+$primary-dark-22: mix($black, $primary, 22%);
+
+$primary-20: mix($white, $primary, 20%);
+$primary-40: mix($white, $primary, 40%);
+$primary-62: mix($white, $primary, 62%);
+$primary-86: mix($white, $primary, 86%);
+
+$success-dark-22: mix($black, $success, 22%);
+
+$success-20: mix($white, $success, 20%);
+$success-40: mix($white, $success, 40%);
+$success-62: mix($white, $success, 62%);
+$success-86: mix($white, $success, 86%);
+
+$warning-dark-22: mix($black, $warning, 22%);
+
+$warning-20: mix($white, $warning, 20%);
+$warning-40: mix($white, $warning, 40%);
+$warning-62: mix($white, $warning, 62%);
+$warning-86: mix($white, $warning, 86%);
+
+$danger-dark-22: mix($black, $danger, 22%);
+
+$danger-20: mix($white, $danger, 20%);
+$danger-40: mix($white, $danger, 40%);
+$danger-62: mix($white, $danger, 62%);
+$danger-86: mix($white, $danger, 86%);
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "success": $success,
+    "blue": $blue,
+    "link": $blue,
+    "default": $gray-6,
+  ),
+  $theme-colors
+);
+
+// $btn-icon-colors: (
+//   "secondary": $secondary,
+//   "primary": $primary,
+//   "danger": $danger,
+//   "success": $success,
+// );
+
+// text color
+$text-color: $gray;
+$text-color-light: $gray-2;
+$text-disable: $gray-3;
+$text-link-color: $primary;
+$text-danger-color: $danger;
+$placehoder-color: $gray-4;
+
+$color-border: $gray-5;
+$color-border-light: $gray-6;
+$color-today: $green;
+$bg-today: $success-86;
+
+$color-avatar: $success;
+$bg-avatar: $success-86;
+
+
+// bg color
+// line color
+
+$line-color: #000000;
+$line-dashed-color: #000000;
+
+// Color Clocking
+$clocking-created: $warning;
+$clocking-created-1: $warning-86;
+
+$clocking-checkOut-no-checkIn: $danger;
+$clocking-checkOut-no-checkIn-1: $danger-86;
+
+$clocking-checkedIn-no-checkOut: $success;
+$clocking-checkedIn-no-checkOut-1: $success-86;
+
+$clocking-checkedIn-checkOut: $primary;
+$clocking-checkedIn-checkOut-1: $primary-86;
+
+$clocking-work-off: $gray-3;
+$clocking-work-off-1: $gray-5;
+$clocking-work-off-2: $gray-5;
+$clocking-work-off-3: $gray-2;
+
+$event-future: $gray-5;
+$event-future-1: $gray-6;
+
+// ======================== Path ==========================
+$fonts-path: "/scss/font/";
+$img-path: "./scss/images/";
+// $cdn-img-path: "https://cdn-app.kiotviet.vn/retailler/Content";
+$fa-font-path: "../../node_modules/@fortawesome/fontawesome-pro/webfonts";
+
+// ======================== Radius ==========================
+$border-radius: 4px;
+$border-radius-md: 10px;
+
+// ======================== Shadow ==========================
+$box-shadow-footer: 0px 6px 24px rgba(84, 104, 120, 0.24);
+$box-shadow-box: 0px 0px 16px rgba(84, 104, 120, 0.16);
+
+// ========================= Font ===========================
+$font-family-base: "Inter", sans-serif;
+$font-awesome-pro: "Font Awesome 5 Pro";
+$font-size: 1.4rem;
+
+$font-size-xsm: 1.1rem;
+$font-size-sm: 1.2rem;
+$font-size-md: 1.6rem;
+$font-size-lg: 1.7rem;
+
+$h1-font-size: 2.8rem;
+$h2-font-size: 2.2rem;
+$h3-font-size: 2rem;
+$h4-font-size: 1.6rem;
+$h5-font-size: 1.5rem;
+$h6-font-size: 1.4rem;
+
+$line-height: 1.4;
+$h1-line-height: 3.4rem;
+$h2-line-height: 2.8rem;
+$h3-line-height: 2.4rem;
+$h4-line-height: 2.2rem;
+$h5-line-height: 2rem;
+$h6-line-height: 2rem;
+
+$input-btn-font-size: $font-size;
+$input-btn-font-size-sm: $font-size;
+$input-btn-font-size-lg: $font-size;
+
+// ========================= Body ===========================
+$body-background: $gray-7;
+$radius-circle: 999px;
+$scrollbar-size: 0.6rem;
+$scrollbar-space-x: 1px;
+
+$icon-space: 0.8rem;
+
+$col-padding-xxs-x: 0.4rem;
+$col-padding-xxs-y: 0.4rem;
+$col-padding-xs-x: 0.8rem;
+$col-padding-xs-y: 0.8rem;
+$col-padding-y: 1.2rem;
+$col-padding-x: 1.2rem;
+$col-padding-md-x: 1.6rem;
+$col-padding-md-y: 1.6rem;
+
+$col-margin-x: 1.2rem;
+$col-margin-y: 1.2rem;
+$col-margin-md-x: 1.6rem;
+$col-margin-md-y: 1.6rem;
+
+$col-margin-lg-x: 2.4rem;
+$col-margin-lg-y: 2.4rem;
+
+// ========================= Input & Button ===========================
+$input-padding-x: 0.4rem;
+$select-padding-y: $input-padding-x;
+
+$input-height-border: 0.1rem;
+
+$input-btn-padding-x: 0.8rem;
+$input-btn-padding-y: 0.1rem;
+
+$input-btn-padding-x-xs: 0.3rem;
+$input-btn-padding-y-xs: 0.14rem;
+
+$input-btn-padding-x-sm: 0.5rem;
+$input-btn-padding-y-sm: 0.24rem;
+
+$input-btn-padding-x-lg: 1.5rem;
+$input-btn-padding-y-lg: 2rem;
+
+$input-height: $line-height * $input-btn-font-size + $input-btn-padding-y * 2 +
+  $input-height-border;
+$input-height-sm: $line-height * $input-btn-font-size-sm +
+  $input-btn-padding-y-sm * 2 + $input-height-border;
+$input-height-xs: $line-height * $input-btn-font-size-sm +
+  $input-btn-padding-y-xs * 2 + $input-height-border;
+$input-height-lg: $line-height * $input-btn-font-size-lg +
+  $input-btn-padding-y-lg * 2 + $input-height-border;
+
+$input-custom-padding-x-sm: 1rem;
+$input-custom-padding-x: 1.2rem;
+$input-custom-padding-x-lg: 1.5rem;
+
+$btn-padding-x: 1.6rem;
+$btn-padding-y: 1rem;
+
+$btn-padding-x-sm: 1.2rem;
+$btn-padding-y-sm: 0.6rem;
+
+$btn-padding-x-lg: 2.6rem;
+$btn-padding-y-lg: 0.95rem;
+
+$zindex-top: 10000;
+$zindex-middle: $zindex-top - 1;
+$zindex-bottom: $zindex-middle - 1;
+$list-margin: 0, 4, 5, 8, 10, 12, 20, 24;
+$list-fontsize-icon: 10, 12, 14, 16;
+
+// ====================== Form Check ========================
+$form-check-padding-y: $input-btn-padding-y;
+$check-switch-width: 3.2rem;
+$check-switch-height: 1.2rem;
+$check-switch-cursor-size: 1.6rem;
+
+$btn-box-shadow: none;
+$btn-active-box-shadow: none;
+$btn-active-box-shadow: none;
+$input-btn-focus-width: 0;
+// Responsive
+
+$sm: 768;
+
+// ========================= Input & Button ===========================
+
+$ts-input-font-weight: 400;
+$ts-input-border-color: $gray-5;
+$ts-input-border-width: 1px;
+$ts-input-bg-search: $gray-6;

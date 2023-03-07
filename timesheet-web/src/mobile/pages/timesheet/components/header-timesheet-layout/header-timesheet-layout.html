@@ -1,0 +1,184 @@
+<!-- Header  -->
+<header id="header-container" class="ts-header">
+  <div class="ts-header-top">
+    <div class="row">
+      <div class="col-7">
+        <div class="ts-header-back">
+          <a ng-click="vm.backToMainApp();">
+            <span class="ts-icon-sm"><i class="far fa-chevron-left"></i></span>
+            <span>{{vm._l.clocking}}</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-5"></div>
+    </div>
+  </div>
+  <div class="ts-header-bottom">
+    <div class="row">
+      <div class="col-6">
+        <div class="ts-header-date">
+          <a rel="calendar-modal" ng-click="vm.openModal($event)">
+            <span class="ts-icon-sm"><i class="far fa-calendar-alt"></i></span>
+            <span ng-if="vm.viewBy===1">{{vm.dateName}} | {{vm.now}}</span>
+            <span ng-if="vm.viewBy===2"
+              >Tuần {{vm.weekOfMonth}} | Th {{vm.monthNow}}</span
+            >
+          </a>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="ts-header-branch">
+          <a
+            class="js-ts-branch text-primary"
+            rel="branch-modal"
+            ng-click="vm.openModal($event)"
+          >
+            <i class="far fa-map-marker-alt"></i>
+            <span>{{vm.branchSelected.name}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div ng-if="vm.viewBy===2" class="ts-header-shift">
+      <a rel="shift-modal" ng-click="vm.openModal($event)">
+        <span>
+          <i class="far fa-clock"></i>
+          <span>
+            <span class="ts-name-shift">{{vm.shiftSelected.name}}</span>
+            <span class="ts-time"
+              >({{vm.tsFn.toHHMM(vm.shiftSelected.from)}} -
+              {{vm.tsFn.toHHMM(vm.shiftSelected.to)}})</span
+            >
+          </span>
+        </span>
+        <i class="far fa-chevron-down"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="ts-modal" id="branch-modal">
+  <div class="modal-wrap modal-wrap-padding h-lg">
+    <div class="modal-search">
+      <form>
+        <div class="search-form">
+          <i class="far fa-search"></i>
+          <input
+            type="text"
+            class="ts-form-control ts-form-control-search"
+            placeholder="{{vm._l.searchBranch}}"
+            ng-change="vm.filterBranch();"
+            ng-model="vm.branchFilterParam"
+          />
+        </div>
+      </form>
+      <div class="modal-close">
+        <a href="" class="js-modal-close">Hủy</a>
+      </div>
+    </div>
+    <div class="modal-list">
+      <p>{{vm._l.selectBranch}}</p>
+      <ul class="list-items">
+        <li
+          ng-repeat="branch in vm.branchsFilter"
+          class="list-item"
+          ng-click="vm.selectBranchItem($event, branch);"
+        >
+          <div class="item-icon no-images"><i class="fas fa-home"></i></div>
+          <div class="item-content">
+            <h4>{{branch.name}}</h4>
+            <p>
+              {{branch.address}}, {{branch.wardName}}, {{branch.district}},
+              {{branch.province}}
+            </p>
+          </div>
+          <div ng-if="branch.id == vm.branchId" class="ts-check ts-checked">
+            <i class="fal fa-check"></i>
+          </div>
+          <div ng-if="branch.id != vm.branchId" class="ts-check">
+            <i class="fal fa-check"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="ts-modal" id="shift-modal">
+  <div class="modal-wrap modal-wrap-padding h-lg">
+    <div class="modal-search">
+      <form>
+        <div class="search-form">
+          <i class="far fa-search"></i>
+          <input
+            type="text"
+            class="ts-form-control ts-form-control-search"
+            placeholder="{{vm._l.searchShift}}"
+            ng-change="vm.filterShift();"
+            ng-model="vm.shiftFilterParam"
+          />
+        </div>
+      </form>
+      <div class="modal-close">
+        <a href="" class="js-modal-close">Hủy</a>
+      </div>
+    </div>
+    <div class="modal-list">
+      <p>{{vm._l.selectShift}}</p>
+      <ul class="list-items">
+        <li
+          ng-repeat="shift in vm.shiftsFilter"
+          class="list-item"
+          ng-click="vm.selectShiftItem($event, shift);"
+        >
+          <div class="item-icon no-images">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="item-content">
+            <h4>{{shift.name}}</h4>
+            <p>
+              Từ {{vm.tsFn.toHHMM(shift.from)}} đến {{vm.tsFn.toHHMM(shift.to)}}
+            </p>
+          </div>
+          <div ng-if="shift.id == vm.shiftId" class="ts-check ts-checked">
+            <i class="fal fa-check"></i>
+          </div>
+          <div ng-if="shift.id != vm.shiftId" class="ts-check">
+            <i class="fal fa-check"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="ts-modal" id="calendar-modal">
+  <div class="modal-wrap">
+    <div class="modal-calendar-button">
+      <span class="view-by">{{vm._l.viewBy}}</span>
+      <button
+        class="ts-btn round"
+        ng-class="{'ts-btn-outline-success':vm.selectedView===1,'ts-btn-outline-gray':vm.selectedView!==1}"
+        ng-click="vm.viewByClick(1)"
+      >
+        {{vm._l.date}}
+      </button>
+      <button
+        class="ts-btn round"
+        ng-class="{'ts-btn-outline-success':vm.selectedView===2,'ts-btn-outline-gray':vm.selectedView!==2}"
+        ng-click="vm.viewByClick(2)"
+      >
+        {{vm._l.week}}
+      </button>
+      <!-- <button class="ts-btn round" ng-class="{'ts-btn-outline-success':vm.viewBy===3,'ts-btn-outline-gray':vm.viewBy!==3}" ng-click="vm.viewByClick(3)">{{vm._l.month}}</button> -->
+    </div>
+    <div class="modal-list modal-calendar-content">
+      <div id="calendar" class="kv-calendar"></div>
+      <div class="kv-calendar-footer">
+        <button class="ts-btn ts-btn-success w-100" ng-click="vm.changeDate()">
+          {{vm._l.confirm}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

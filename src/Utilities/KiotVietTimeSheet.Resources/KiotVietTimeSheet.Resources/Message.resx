@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clocking_cannotChangeShiftForClockingHasShiftUnactive" xml:space="preserve">
+    <value>Không thể đổi sang ca Ngừng hoạt động.</value>
+  </data>
+  <data name="clockingHistory_notExists" xml:space="preserve">
+    <value>Lịch sử lịch làm việc không tồn tại trên hệ thống</value>
+  </data>
+  <data name="clocking_cannotChangeShiftForClockingTimekeepingOrDayOff" xml:space="preserve">
+    <value>Không thể đổi ca cho chi tiết ca làm việc đã chấm công hoặc nghỉ</value>
+  </data>
+  <data name="clocking_clockingStatusIsVoid" xml:space="preserve">
+    <value>Chi tiết ca làm việc đã bị hủy.</value>
+  </data>
+  <data name="clocking_duplicatedTimeOfShiftChange" xml:space="preserve">
+    <value>Thời gian các ca làm việc được đổi đang trùng nhau.</value>
+  </data>
+  <data name="clocking_employeeHasClockingInTime" xml:space="preserve">
+    <value>Nhân viên đã tồn tại chi tiết ca làm việc ở thời gian này. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="clocking_employeeHasTimeSheetInThisShift" xml:space="preserve">
+    <value>Nhân viên đã có lịch làm việc trên ca này.</value>
+  </data>
+  <data name="clocking_notExist" xml:space="preserve">
+    <value>Chi tiết ca làm việc đã bị hủy. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="delete_successed" xml:space="preserve">
+    <value>Xóa {0} thành công</value>
+  </data>
+  <data name="not_runningOutOfQuota" xml:space="preserve">
+    <value>Không thực hiện được vì KiotViet hỗ trợ tối đa &lt;span class='totalBasic'&gt;{0}&lt;/span&gt; nhân viên với &lt;span class='totalBasic'&gt;gói cơ bản&lt;/span&gt;. Bạn có thể ngừng hoạt động những nhân viên không cần thiết sử dụng phần mềm hoặc sử dụng gói dịch vụ &lt;span class='totalBasic'&gt;nâng cao&lt;/span&gt; của KiotViet.</value>
+  </data>
+  <data name="not_runningOutOfQuotaBlockEmployee" xml:space="preserve">
+    <value>Bạn đang sử dụng &lt;strong&gt;{0}&lt;/strong&gt; áp dụng quản lý tối đa &lt;strong&gt;{1} nhân viên&lt;/strong&gt; theo thời gian hợp đồng. Liên hệ hotline &lt;span class='totalBasic'&gt;1900 6522&lt;/span&gt; để được tư vấn nâng cấp gói.</value>
+  </data>
+  <data name="is_existsInStore" xml:space="preserve">
+    <value>{0} {1} đã tồn tại trong cửa hàng</value>
+  </data>
+  <data name="is_existsInSystem" xml:space="preserve">
+    <value>{0} đã tồn tại trên hệ thống</value>
+  </data>
+  <data name="not_existsInSystem" xml:space="preserve">
+    <value>{0} không tồn tại trong hệ thống</value>
+  </data>
+  <data name="is_hasMapUser" xml:space="preserve">
+    <value>{0} này đã được gắn với người dùng khác</value>
+  </data>
+  <data name="is_deletedCheckAgain" xml:space="preserve">
+    <value>{0} {1} này đã xóa, vui lòng kiểm tra lại</value>
+  </data>
+  <data name="is_userHasMapEmployee" xml:space="preserve">
+    <value>{0} hệ thống này đã được sử dụng bởi Nhân viên khác.</value>
+  </data>
+  <data name="can_addMore" xml:space="preserve">
+    <value>Có thể thêm mới {0}</value>
+  </data>
+  <data name="error_whenCopyData" xml:space="preserve">
+    <value>Có lỗi khi copy dữ liệu</value>
+  </data>
+  <data name="error_whenCreateData" xml:space="preserve">
+    <value>Có lỗi khi tạo dữ liệu</value>
+  </data>
+  <data name="error_whenDeleteData" xml:space="preserve">
+    <value>Có lỗi khi xóa dữ liệu</value>
+  </data>
+  <data name="error_whenUpdateData" xml:space="preserve">
+    <value>Có lỗi khi cập nhật dữ liệu</value>
+  </data>
+  <data name="holiday_duplicatedHoliday" xml:space="preserve">
+    <value>Kỳ lễ tết đang trùng ngày với kỳ lễ tết khác.</value>
+  </data>
+  <data name="holiday_notExist" xml:space="preserve">
+    <value>Kỳ nghỉ lễ / tết cần cập nhật không tồn tại</value>
+  </data>
+  <data name="shift_cannotDelete" xml:space="preserve">
+    <value>Không thể xóa do đang có chi tiết ca làm việc thuộc ca làm việc này</value>
+  </data>
+  <data name="shift_overlap" xml:space="preserve">
+    <value>{0} {1} và {2} bị trùng giờ làm việc.</value>
+  </data>
+  <data name="swapShift_haveNotSelectedEmployee" xml:space="preserve">
+    <value>Bạn chưa chọn nhân viên</value>
+  </data>
+  <data name="swapShift_haveNotSeletedShift" xml:space="preserve">
+    <value>Bạn chưa chọn ca làm việc</value>
+  </data>
+  <data name="timeSheet_duplicated" xml:space="preserve">
+    <value>Lịch làm việc bị trùng với {0}.</value>
+  </data>
+  <data name="timeSheet_allDuplicated" xml:space="preserve">
+    <value>Toàn bộ các lịch làm việc này bị trùng với {0}.</value>
+  </data>
+  <data name="timeSheet_duplicatedBranchDayOff" xml:space="preserve">
+    <value>ngày nghỉ chi nhánh</value>
+  </data>
+  <data name="timeSheet_duplicatedTimeSheet" xml:space="preserve">
+    <value>lịch làm việc đã có khác của nhân viên</value>
+  </data>
+  <data name="timeSheet_haveNoClockings" xml:space="preserve">
+    <value>Lịch làm việc không có chi tiết ca làm việc nào. Vui lòng xem lại.</value>
+  </data>
+  <data name="timeSheet_allHaveNoClockings" xml:space="preserve">
+    <value>Toàn bộ lịch làm việc không có chi tiết ca làm việc nào. Vui lòng xem lại.</value>
+  </data>
+  <data name="timeSheet_existDataNotInRangeEndDate" xml:space="preserve">
+    <value>Tồn tại chi tiết ca làm việc đã chấm công không nằm trong khoảng thời gian từ Bắt đầu đến Kết thúc. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="timeSheet_existDataNotInRangeStartDate" xml:space="preserve">
+    <value>Tồn tại chi tiết ca làm việc đã chấm công không nằm trong khoảng thời gian từ Bắt đầu đến Kết thúc. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="timeSheet_maxTimeCopy" xml:space="preserve">
+    <value>Khoảng thời gian sao chép tối đa 31 ngày</value>
+  </data>
+  <data name="timeSheet_noDataInRangeTimeSelectForCopy" xml:space="preserve">
+    <value>Không có lịch làm việc nào nằm trong khoảng thời gian chọn để sao chép</value>
+  </data>
+  <data name="timeSheet_notExist" xml:space="preserve">
+    <value>Lịch làm việc đã bị hủy. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="branch_canUpdate" xml:space="preserve">
+    <value>Có thể thay đổi chi nhánh.</value>
+  </data>
+  <data name="update_successed" xml:space="preserve">
+    <value>Cập nhật {0} thành công</value>
+  </data>
+  <data name="clocking_replaceEmployeeOverlapTime" xml:space="preserve">
+    <value>Nhân viên làm thay đã có lịch làm việc trong thời gian này</value>
+  </data>
+  <data name="timeSheet_employeesDoNotExist" xml:space="preserve">
+    <value>Nhân viên {0} đã xóa. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="timeSheet_maximumSelectedTimeSheet" xml:space="preserve">
+    <value>Số lượng lịch làm việc cần cập nhật không được quá {0}</value>
+  </data>
+  <data name="timeSheet_differenceBetweenEmployeeBranchIdAndTSBranchId" xml:space="preserve">
+    <value>Nhân viên không cùng chi nhánh với lịch làm việc</value>
+  </data>
+  <data name="timeSheet_differenceBetweenShiftBranchIdAndTSBranchId" xml:space="preserve">
+    <value>Ca làm việc không cùng chi nhánh với lịch làm việc</value>
+  </data>
+  <data name="timeSheet_objectsDoNotExist" xml:space="preserve">
+    <value>{0} đã xóa. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="timeSheet_objectsInactive" xml:space="preserve">
+    <value>{0} đã ngừng hoạt động. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="clocking_maximumSelectedClocking" xml:space="preserve">
+    <value>Chỉ được chấm công tối đa 100 chi tiết ca làm việc 1 lần</value>
+  </data>
+  <data name="clocking_maximumClockingUpdate" xml:space="preserve">
+    <value>Số lượng chi tiết ca làm việc cần cập nhật không được quá {0}.</value>
+  </data>
+  <data name="timeSheet_cancelSuccessfully" xml:space="preserve">
+    <value>Hủy lịch làm việc thành công</value>
+  </data>
+  <data name="timeSheet_replacementEmployeeDoesNotExist" xml:space="preserve">
+    <value>Nhân viên làm thay đã bị xóa</value>
+  </data>
+  <data name="timeSheet_differenceBetweenReplacementEmployeeBranchIdAndTSBranchId" xml:space="preserve">
+    <value>Nhân viên làm thay không cùng chi nhánh với nhân viên nghỉ</value>
+  </data>
+  <data name="timeSheet_noTimeSheetIsCreated" xml:space="preserve">
+    <value>Toàn bộ các lịch làm việc này bị trùng với lịch làm việc đã có khác của nhân viên</value>
+  </data>
+  <data name="clocking_cannotFindClockings" xml:space="preserve">
+    <value>Không tìm thấy chi tiết ca làm việc nào thỏa mãn điều kiện</value>
+  </data>
+  <data name="clocking_allClockingsDoNotExist" xml:space="preserve">
+    <value>Các chi tiết ca làm việc đã bị hủy. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="clocking_doesNotExistEmployeeName" xml:space="preserve">
+    <value>Chi tiết ca làm việc của nhân viên {0} đã bị hủy. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="generalErrorMsg" xml:space="preserve">
+    <value>Có lỗi xảy ra. Xin vui lòng thử lại sau.</value>
+  </data>
+  <data name="api_wrong_parameter" xml:space="preserve">
+    <value>Tham số API không chính xác</value>
+  </data>
+  <data name="clocking_haveBeenCancelled" xml:space="preserve">
+    <value>Chi tiết ca làm việc đã bị hủy trước đó. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="clocking_allHasBeenCancelled" xml:space="preserve">
+    <value>Các chi tiết ca làm việc đã bị hủy trước đó. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="timeSheet_haveBeenCancelled" xml:space="preserve">
+    <value>Lịch làm việc đã bị hủy trước đó. Vui lòng kiểm tra lại</value>
+  </data>
+  <data name="timeSheet_maximumSelectedEmployee" xml:space="preserve">
+    <value>Số lượng nhân viên không được vượt quá 100</value>
+  </data>
+  <data name="paysheet_existedCode" xml:space="preserve">
+    <value>Mã bảng lương đã tồn tại trên hệ thống</value>
+  </data>
+  <data name="paysheet_maximumMonths" xml:space="preserve">
+    <value>Kỳ làm việc tối đa trên {0} tháng</value>
+  </data>
+  <data name="paysheet_maximumWorkingDayNumber" xml:space="preserve">
+    <value>Giá trị tối đa của ngày công chuẩn là 31</value>
+  </data>
+  <data name="paysheet_minimumWorkingDayNumber" xml:space="preserve">
+    <value>Giá trị tối thiểu của ngày công chuẩn là 1</value>
+  </data>
+  <data name="payslip_cancelSuccessfully" xml:space="preserve">
+    <value>Hủy phiếu lương {0} thành công</value>
+  </data>
+  <data name="payslip_updateVersionSuccessfully" xml:space="preserve">
+    <value>Cập nhật verison phiếu lương thành công</value>
+  </data>
+  <data name="payslip_haveBeenCancelled" xml:space="preserve">
+    <value>Phiếu lương đã bị hủy trước đó</value>
+  </data>
+  <data name="paysheet_haveBeenCancelled" xml:space="preserve">
+    <value>Bảng lương đã bị hủy trước đó</value>
+  </data>
+  <data name="paysheet_EmptyName" xml:space="preserve">
+    <value>Bạn chưa nhập tên bảng lương</value>
+  </data>
+  <data name="paysheet_duplicateEmployee" xml:space="preserve">
+    <value>Bảng lương tồn tại nhiều phiếu lương cùng một nhân viên</value>
+  </data>
+  <data name="paysheet_doNotHasAnyPayslip" xml:space="preserve">
+    <value>Bảng lương đang trống</value>
+  </data>
+  <data name="payslip_duplicateCode" xml:space="preserve">
+    <value>Nhân viên {0} đang trùng mã phiếu lương</value>
+  </data>
+  <data name="payslip_existsCode" xml:space="preserve">
+    <value>Mã phiếu lương {0} của nhân viên {1} đã tồn tại trong hệ thống.</value>
+  </data>
+  <data name="setting_notValidStartDateWorkingPeriod" xml:space="preserve">
+    <value>Ngày bắt đầu tính công của kỳ hạn trả lương {0} không hợp lệ</value>
+  </data>
+  <data name="setting_notValidTimeOfStandardWorkingDay" xml:space="preserve">
+    <value>Số giờ 1 ngày công chuẩn không hợp lệ</value>
+  </data>
+  <data name="setting_startAndEndDateTwiceAMonthEqually" xml:space="preserve">
+    <value>Ngày bắt đầu tính công lần 1 và lần 2 của kỳ lương 2 lần 1 tháng không được trùng nhau</value>
+  </data>
+  <data name="payRateTemplate_emptyName" xml:space="preserve">
+    <value>Bạn chưa nhập tên mẫu áp dụng</value>
+  </data>
+  <data name="payRateTemplate_existsName" xml:space="preserve">
+    <value>Mẫu áp dụng {0} đã tồn tại</value>
+  </data>
+  <data name="paysheet_hasCanceledPayslip" xml:space="preserve">
+    <value>Phiếu lương {0} đã bị hủy, vui lòng kiểm tra lại</value>
+  </data>
+  <data name="setting_notValidEarlyTime" xml:space="preserve">
+    <value>Số phút tính về sớm không hợp lệ</value>
+  </data>
+  <data name="setting_notValidEarlyTimeOt" xml:space="preserve">
+    <value>Số phút tính làm thêm trước ca không hợp lệ</value>
+  </data>
+  <data name="setting_notValidLateTime" xml:space="preserve">
+    <value>Số phút tính đi muộn không hợp lệ</value>
+  </data>
+  <data name="setting_notValidLateTimeOt" xml:space="preserve">
+    <value>Số phút tính làm thêm sau ca không hợp lệ</value>
+  </data>
+  <data name="paysheet_minimumPayslipPaymentTime" xml:space="preserve">
+    <value>Thời gian lập bảng lương không được sau thời gian phiếu thanh toán</value>
+  </data>
+  <data name="shift_duplicatedFromTimeToTime" xml:space="preserve">
+    <value>Giờ làm từ không được trùng Giờ làm đến</value>
+  </data>
+  <data name="shift_haveNotInputtedName" xml:space="preserve">
+    <value>Bạn chưa nhập tên ca</value>
+  </data>
+  <data name="clocking_greaterStartTimeToday" xml:space="preserve">
+    <value>Ngày chấm công không được lớn hơn ngày hiện tại.</value>
+  </data>
+  <data name="clocking_sameShift" xml:space="preserve">
+    <value>Các ca làm việc được chọn chấm công không cùng khung giờ làm.</value>
+  </data>
+  <data name="clocking_sameWorkingTime" xml:space="preserve">
+    <value>Không thể chấm công cho các chi tiết làm việc không cùng giờ làm.</value>
+  </data>
+  <data name="timeSheet_employeesNotExist" xml:space="preserve">
+    <value>Nhân viên được chọn không tồn tại</value>
+  </data>
+  <data name="timeSheet_greaterStartDateEndDate" xml:space="preserve">
+    <value>Ngày kết thúc phải lớn hơn Ngày bắt đầu</value>
+  </data>
+  <data name="timeSheet_lessthanStartDateEndDate" xml:space="preserve">
+    <value>Ngày kết thúc không được nhỏ hơn Ngày bắt đầu</value>
+  </data>
+  <data name="timeSheet_maximumBookCalendar" xml:space="preserve">
+    <value>Không được đặt lịch quá {0} tháng.</value>
+  </data>
+  <data name="clockingHistory_checkedInDate" xml:space="preserve">
+    <value>Giờ vào phải nhỏ hơn Giờ kết thúc ca.</value>
+  </data>
+  <data name="clockingHistory_greaterthanOutputTimeStartTime" xml:space="preserve">
+    <value>Giờ ra phải lớn hơn Giờ bắt đầu ca.</value>
+  </data>
+  <data name="clockingHistory_lessthanOutputTimeInputTime" xml:space="preserve">
+    <value>Giờ ra không được nhỏ hơn Giờ vào</value>
+  </data>
+  <data name="holiday_emptyFrom" xml:space="preserve">
+    <value>Bạn chưa nhập Ngày nghỉ từ</value>
+  </data>
+  <data name="holiday_emptyName" xml:space="preserve">
+    <value>Bạn chưa nhập Tên kỳ lễ tết</value>
+  </data>
+  <data name="holiday_emptyTo" xml:space="preserve">
+    <value>Bạn chưa nhập Đến hết ngày</value>
+  </data>
+  <data name="holiday_fromCannotGreaterThanTo" xml:space="preserve">
+    <value>Ngày bắt đầu không được lớn ngày kết thúc.</value>
+  </data>
+  <data name="holiday_maximumDays" xml:space="preserve">
+    <value>Kỳ lễ tết không được quá 31 ngày</value>
+  </data>
+  <data name="holiday_toMustGreaterOrEqualThanFrom" xml:space="preserve">
+    <value>Đến hết ngày phải lớn hơn hoặc bằng ngày nghỉ từ</value>
+  </data>
+  <data name="payRate_cannotDeterminedEmployee" xml:space="preserve">
+    <value>Không thể xác định nhân viên</value>
+  </data>
+  <data name="payRate_cannotDeterminedWorkingPeriod" xml:space="preserve">
+    <value>Không thể xác định chu kì làm việc</value>
+  </data>
+  <data name="not_empty" xml:space="preserve">
+    <value>{0} không được để trống</value>
+  </data>
+  <data name="not_invalid" xml:space="preserve">
+    <value>{0} không hợp lệ</value>
+  </data>
+  <data name="allow_maximumPicture" xml:space="preserve">
+    <value>{0} chỉ cho phép tối đa {1} ảnh</value>
+  </data>
+  <data name="not_fomatInvalid" xml:space="preserve">
+    <value>{0} không đúng định dạng</value>
+  </data>
+  <data name="fingerMachine_emptyName" xml:space="preserve">
+    <value>Bạn chưa nhập tên máy chấm công</value>
+  </data>
+  <data name="fingerMachine_emptySerial" xml:space="preserve">
+    <value>Bạn chưa nhập serial máy chấm công</value>
+  </data>
+  <data name="commission_NotExist" xml:space="preserve">
+    <value>Hoa hồng này không tồn tại</value>
+  </data>
+  <data name="commission_ProductExistInCommissionBefore" xml:space="preserve">
+    <value>Sản phẩm đã tồn tại trong danh sách</value>
+  </data>
+  <data name="commission_ProductGroupExist" xml:space="preserve">
+    <value>Nhóm hàng đã tồn tại trong {0}</value>
+  </data>
+  <data name="commission_haveNotInputtedName" xml:space="preserve">
+    <value>Bạn chưa nhập Tên bảng hoa hồng</value>
+  </data>
+  <data name="commission_existsName" xml:space="preserve">
+    <value>Tên bảng hoa hồng đã tồn tại trên hệ thống</value>
+  </data>
+  <data name="commission_doNotHavePermissionToCreate" xml:space="preserve">
+    <value>Bạn không có quyền thêm mới bảng hoa hồng trên chi nhánh này</value>
+  </data>
+  <data name="commission_doNotHavePermissionToDelete" xml:space="preserve">
+    <value>Bạn không có quyền xóa bảng hoa hồng này</value>
+  </data>
+  <data name="commission_doNotHavePermissionToUpdate" xml:space="preserve">
+    <value>Bạn không có quyền cập nhật bảng hoa hồng trên chi nhánh này</value>
+  </data>
+  <data name="commission_haveNotSelected" xml:space="preserve">
+    <value>Bảng hoa hồng chưa được chọn</value>
+  </data>
+  <data name="not_haveSelectedOvertime" xml:space="preserve">
+    <value>Bạn chưa chọn ngày thiết lập làm thêm giờ</value>
+  </data>
+  <data name="not_haveSelectedOvertimeSalaryWithDay" xml:space="preserve">
+    <value>Bạn chưa nhập hệ số lương làm thêm cho {0}</value>
+  </data>
+  <data name="payRateTemplate_deleteSuccessed" xml:space="preserve">
+    <value>Xóa loại lương thành công</value>
+  </data>
+  <data name="clocking_rejectError" xml:space="preserve">
+    <value>Bạn không có quyền hủy chi tiết ca làm việc trên chi nhánh {0}</value>
+  </data>
+  <data name="clocking_updateError" xml:space="preserve">
+    <value>Bạn không có quyền cập nhật chi tiết ca làm việc trên chi nhánh {0}</value>
+  </data>
+  <data name="clocking_updateDragDropError" xml:space="preserve">
+    <value>Bạn không có quyền cập nhật lịch làm việc trên chi nhánh {0}</value>
+  </data>
+  <data name="setting_notValidMaxShift" xml:space="preserve">
+    <value>Số ca tối đa ghi nhận không được nhỏ hơn 2</value>
+  </data>
+  <data name="setting_notValidRangeShift" xml:space="preserve">
+    <value>Khoảng cách mỗi ca cho phép không hợp lệ.</value>
+  </data>
+  <data name="commission_InProgress" xml:space="preserve">
+    <value>Đang thực hiện cập nhật hoa hồng</value>
+  </data>
+  <data name="commissionDetail_updateToCommission" xml:space="preserve">
+    <value>Cập nhật dữ liệu thành công. Nhấn phím F5 để thấy dữ liệu mới nhất.</value>
+  </data>
+  <data name="not_lessThan" xml:space="preserve">
+    <value>{0} không được phép dài quá {1} kí tự</value>
+  </data>
+  <data name="add_successed" xml:space="preserve">
+    <value>Thêm {0} thành công</value>
+  </data>
+  <data name="create_successed" xml:space="preserve">
+    <value>Tạo {0} thành công</value>
+  </data>
+  <data name="is_exists" xml:space="preserve">
+    <value>{0} đã tồn tại</value>
+  </data>
+  <data name="not_exists" xml:space="preserve">
+    <value>{0} không tồn tại</value>
+  </data>
+  <data name="cancel_successed" xml:space="preserve">
+    <value>Hủy bỏ {0} thành công</value>
+  </data>
+  <data name="error_whenGetData" xml:space="preserve">
+    <value>Có lỗi khi lấy dữ liệu</value>
+  </data>
+  <data name="is_deleted" xml:space="preserve">
+    <value>{0} {1} đã bị xóa</value>
+  </data>
+  <data name="is_stopApply" xml:space="preserve">
+    <value>{0} {1} đã ngừng áp dụng,</value>
+  </data>
+  <data name="is_stopApplyCheckAgain" xml:space="preserve">
+    <value>{0} {1} đã ngừng áp dụng, vui lòng kiểm tra lại</value>
+  </data>
+  <data name="not_found" xml:space="preserve">
+    <value>Không tìm thấy {0}</value>
+  </data>
+  <data name="payRateTemplate_notDelete" xml:space="preserve">
+    <value>Không thể xóa, đang có nhân viên được áp dụng loại lương này.</value>
+  </data>
+  <data name="commission_InActiveForBranch" xml:space="preserve">
+    <value>Bảng hoa hồng {0} đã ngừng áp dụng cho chi nhánh</value>
+  </data>
+  <data name="paysheet_created_max_two_times" xml:space="preserve">
+    <value>Hệ thống hỗ trợ tạo tối đa 2 bảng lương cùng lúc!</value>
+  </data>
+  <data name="paysheet_has_modifiedDate" xml:space="preserve">
+    <value>Dữ liệu bảng lương đã có cập nhật trước đó. Bạn có muốn cập nhật lại dữ liệu không?</value>
+  </data>
+  <data name="paysheet_has_pending" xml:space="preserve">
+    <value>Bảng lương đang xử lỉ.</value>
+  </data>
+  <data name="setting_halfShiftMaxTimeInvalid" xml:space="preserve">
+    <value>Thời gian tính nửa công không hợp lệ.</value>
+  </data>
+  <data name="timeSheet_createPaysheetPeriodOptionDays" xml:space="preserve">
+    <value>Kỳ làm việc tối đa trên {0} ngày</value>
+  </data>
+  <data name="number_between" xml:space="preserve">
+    <value>{0} có giá trị nằm giữa {1} và {2}</value>
+  </data>
+  <data name="timeSheet_gpsInfoHasExits" xml:space="preserve">
+    <value>Thông tin Gps cho chi nhánh {0} đã tồn tại</value>
+  </data>
+  <data name="timeSheet_gps_audit_updateSetting_title" xml:space="preserve">
+    <value>Cập nhật thông tin thiết lập tính năng:{0}</value>
+  </data>
+  <data name="timeSheet_gps_audit_updateSetting_subTitle_1" xml:space="preserve">
+    <value>Thiết lập chấm công trên thiết bị di dộng:{0}</value>
+  </data>
+  <data name="addWorkSchedule" xml:space="preserve">
+    <value>Tạo mới chi tiết làm việc</value>
+  </data>
+  <data name="endDate" xml:space="preserve">
+    <value>- Ngày kết thúc: {0}</value>
+  </data>
+  <data name="createOnHoliday" xml:space="preserve">
+    <value>- Tạo lịch cả ngày lễ tết: &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="auditCreateTitle" xml:space="preserve">
+    <value>Đặt lịch làm việc cho nhân viên: &lt;strong&gt;{0}&lt;/strong&gt;.&lt;br&gt;- Tự động tạo lịch làm việc khi kết thúc: &lt;strong&gt;{1}&lt;/strong&gt;&lt;br&gt;- Ngày bắt đầu: {2} {3}&lt;br&gt;</value>
+  </data>
+  <data name="auditCreateShortTitle" xml:space="preserve">
+    <value>- Tự động tạo lịch làm việc khi kết thúc: &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;- Ngày bắt đầu: {1} {2}&lt;br&gt;</value>
+  </data>
+  <data name="auditShiftRepeat" xml:space="preserve">
+    <value>- Lặp lại mỗi &lt;strong&gt;{0}&lt;/strong&gt;: &lt;strong&gt;{1}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="rejectWorkSchedule" xml:space="preserve">
+    <value>Hủy chi tiết làm việc</value>
+  </data>
+  <data name="auditRejectHeadTitle" xml:space="preserve">
+    <value>Huỷ lịch làm việc cho nhân viên: &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="auditRejectTitle" xml:space="preserve">
+    <value>- Ngày bắt đầu: {0} {1}&lt;br&gt;</value>
+  </data>
+  <data name="editEmployeeClocking" xml:space="preserve">
+    <value>Chỉnh sửa đặt lịch làm việc cho nhân viên &lt;strong&gt;{0}&lt;/strong&gt;&lt;br&gt;</value>
+  </data>
+  <data name="repeatFrom" xml:space="preserve">
+    <value>Từ: {0}</value>
+  </data>
+  <data name="repeatTo" xml:space="preserve">
+    <value>Thành: {0}</value>
+  </data>
+  <data name="changeFrom" xml:space="preserve">
+    <value>- Thay đổi: {0}&lt;br&gt;</value>
+  </data>
+  <data name="forCurrentTo" xml:space="preserve">
+    <value>Từ nay trở về sau</value>
+  </data>
+  <data name="forAllWork" xml:space="preserve">
+    <value>Tất cả chi tiết làm việc</value>
+  </data>
+  <data name="updateEmployee" xml:space="preserve">
+    <value>Cập nhật thông tin nhân viên</value>
+  </data>
+  <data name="deviceName" xml:space="preserve">
+    <value>Thiết bị di động</value>
+  </data>
+  <data name="delDeviceResult" xml:space="preserve">
+    <value>Xoá thiết bị di động</value>
+  </data>
+  <data name="regDeviceResult" xml:space="preserve">
+    <value>Đăng ký thiết bị chấm công</value>
+  </data>
+  <data name="updateSettingInfo" xml:space="preserve">
+    <value>Cập nhật thông tin thiết lập tính năng</value>
+  </data>
+  <data name="clockingSetting" xml:space="preserve">
+    <value>Thiết lập chấm công trên thiết bị di dộng</value>
+  </data>
+  <data name="changeQR" xml:space="preserve">
+    <value>Đổi mã QR cho chi nhánh {0}</value>
+  </data>
+	<data name="validate_when_del_payrateTpl" xml:space="preserve">
+    <value>Không thể xoá mẫu áp dụng vì mẫu áp dụng hiện vẫn còn được sử dụng cho nhân viên trong cửa hàng. Vui lòng bỏ mẫu áp dụng cho nhân viên trước khi xoá.</value>
+  </data>
+  <data name="updateClockingTime" xml:space="preserve">
+    <value>Đã cập nhật {0} lịch làm việc thuộc ca {1}</value>
+  </data>
+
+  <data name="not_allowRunningOutOfQuotaBlockEmployee" xml:space="preserve">
+    <value>Bạn không thể thêm nhân viên mới do quá hạn mức &lt;span class='totalBasic'&gt;{0} nhân viên&lt;/span&gt;</value>
+  </data>
+  <data name="delPayRateTemplateValidate" xml:space="preserve">
+		<value>Mẫu lương {0} này đã xóa. Vui lòng cập nhật lại thông tin cho nhân viên.</value>
+	</data>
+
+  <data name="delPayRateTemplateValidate" xml:space="preserve">
+	<value>Mẫu lương {0} này đã xóa. Vui lòng cập nhật lại thông tin cho nhân viên.</value>
+  </data>
+  <data name="autoKeeping_log_title" xml:space="preserve">
+	<value>Cập nhật thông tin chi tiết làm việc: Hệ thống tự động chấm công</value>
+  </data>
+  <data name="autoKeeping_log_detail_date" xml:space="preserve">
+	<value>Ngày</value>
+  </data>	
+  <data name="autoKeeping_log_detail_status_title" xml:space="preserve">
+	<value>status</value>
+  </data>
+	<data name="autoKeeping_log_detail_status_2" xml:space="preserve">
+	<value>in - Out</value>
+  </data>
+</root>

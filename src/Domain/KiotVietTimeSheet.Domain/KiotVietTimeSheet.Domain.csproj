@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>KiotVietTimeSheet.Domain</AssemblyName>
+    <RootNamespace>KiotVietTimeSheet.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AggregatesModels\EmployeeAggregate\Dto\**" />
+    <Compile Remove="AggregatesModels\GpsInfoAggregate\Validators\**" />
+    <Compile Remove="AggregatesModels\HolidayAggregate\Dto\**" />
+    <EmbeddedResource Remove="AggregatesModels\EmployeeAggregate\Dto\**" />
+    <EmbeddedResource Remove="AggregatesModels\GpsInfoAggregate\Validators\**" />
+    <EmbeddedResource Remove="AggregatesModels\HolidayAggregate\Dto\**" />
+    <None Remove="AggregatesModels\EmployeeAggregate\Dto\**" />
+    <None Remove="AggregatesModels\GpsInfoAggregate\Validators\**" />
+    <None Remove="AggregatesModels\HolidayAggregate\Dto\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="AggregatesModels\ClockingAggregate\Specifications\FindClockingByEndTimeLessThanOrEqualSpec.cs" />
+    <Compile Remove="Common\GetSoftDeleteSpec.cs" />
+    <Compile Remove="Common\OrderByCodeSpec.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.0.100" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared Kernel\KiotVietTimeSheet.SharedKernel\KiotVietTimeSheet.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\Utilities\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources.csproj" />
+    <ProjectReference Include="..\..\Utilities\KiotVietTimeSheet.Utilities\KiotVietTimeSheet.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AggregatesModels\DepartmentAggregate\Validations\" />
+    <Folder Include="AggregatesModels\JobTitleAggregate\Validations\" />
+    <Folder Include="AggregatesModels\JobTitleAggregate\Specifications\" />
+    <Folder Include="AggregatesModels\SettingsAggregate\Validators\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>

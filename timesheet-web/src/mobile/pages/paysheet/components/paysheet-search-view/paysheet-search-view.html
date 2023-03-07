@@ -1,0 +1,54 @@
+<div class="ts-page-search">
+    <!-- Header  -->
+    <header class="ts-header">
+        <div class="ts-header-box-search">
+            <a ng-click="vm.backToPaysheet()" class="ts-icon-sm">
+                <i class="far fa-chevron-left"></i>
+            </a>
+            <div class="ts-page-header-search">
+                <form>
+                    <div class="form-group search-form">
+                        <i class="far fa-search"></i>
+                        <input
+                            type="text"
+                            class="ts-form-control ts-form-control-search"
+                            placeholder="{{vm._l.paysheet_searchByPayrollNumberName}}"
+                            ng-change="vm.search();"
+                            ng-model="vm.searchParam"
+                        />
+                        <a class="close-search open" ng-if="vm.searchParam && vm.searchParam.length > 0" ng-click="vm.clearSearchParam()">
+                            <i class="fas fa-times-circle"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ts-search-result ts-dropdowm ts-open">
+                <div id="ts-staff-items" class="ts-staff-items" ng-show="!vm.isNoSearchData">
+                </div>
+                <div class="ts-staff-empty" ng-show="vm.isNoSearchData">
+                    <div class="ts-staff-empty-wrap">
+                        <img src="../../../../../assets/img/empty-folder.png" alt="">
+                        <p>Không tìm thấy kết quả phù hợp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="ts-main">
+
+    </main>
+    
+    <!-- Toast Xóa bảng lương-->
+    <div class="ts-toast ts-toast-success" id="ts-toast-delete-payroll-search-paysheet">
+        <div class="ts-toast-main">
+            <div class="ts-toast-content">
+                <i class="fas fa-check-circle"></i>
+                <span>Xóa thành công Bảng lương {{vm.paysheetDelete.code}}</span>
+            </div>
+            <a class="ts-toast-close"><i class="fal fa-times"></i></a>
+        </div>
+    </div>
+</div>

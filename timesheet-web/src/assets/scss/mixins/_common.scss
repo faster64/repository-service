@@ -1,0 +1,696 @@
+%position-center-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+%center-horizontally {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+%center-vertically {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+@mixin border-radius($border-radius) {
+    border-radius: $border-radius;
+}
+
+@mixin opacity($value) {
+    $IEValue: $value*100;
+    opacity: $value;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+    filter: alpha(opacity=$IEValue);
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $color;
+        -moz-box-shadow:inset $top $left $blur $color;
+        box-shadow:inset $top $left $blur $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
+}
+
+@mixin moving($element: 100%, $time: 200ms, $ease: ease-out) {
+    -webkit-transition: $element $time $ease;
+    -moz-transition: $element $time $ease;
+    -o-transition: $element $time $ease;
+    -ms-transition: $element $time $ease;
+    transition: $element $time $ease;
+}
+// =================== Transition ======================
+@mixin transition ($prop: all, $time: 200ms, $ease: linear) {
+	-webkit-transition: $prop $time $ease;
+	-moz-transition: $prop $time $ease;
+	-o-transition: $prop $time $ease;
+	-ms-transition: $prop $time $ease;
+	transition: $prop $time $ease;
+}
+
+@mixin position($position, $left: null, $top: null, $right: null, $bottom: null) {
+    position: $position;
+    left: $left;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+}
+
+@mixin absolute-right-bottom($right, $bottom) {
+    position: absolute;
+    right: $right;
+    bottom: $bottom;
+}
+
+@mixin absolute-left-bottom($left, $bottom) {
+    position: absolute;
+    left: $left;
+    bottom: $bottom;
+}
+
+@mixin absolute-top-left($top, $left) {
+    position: absolute;
+    left: $left;
+    top: $top;
+}
+
+@mixin absolute-top-right($top, $right) {
+    position: absolute;
+    top: $top;
+    right: $right;
+}
+
+@mixin absolute-right-middle($right) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: $right;
+    margin: auto;
+}
+
+@mixin absolute-left-middle($left) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: $left;
+    margin: auto;
+}
+
+@mixin absolute-right-middle($right) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: $right;
+    margin: auto;
+}
+
+@mixin absolute-center($width, $height: $width) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $width;
+    height: $height;
+    margin-top: -$height/2;
+    margin-left: -$width/2;
+}
+
+@mixin position-absolute($top: null, $bottom: null, $left: null, $right: null) {
+    position: absolute;
+    left: $left;
+    top: $top;
+    bottom: $bottom;
+    right: $right;
+}
+
+%ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+%w-full {
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+
+%w-100 {
+    width: 100%;
+}
+
+%overflow-hidden {
+    overflow: hidden;
+}
+
+%overflow-auto {
+    overflow: auto;
+}
+
+// ========================= FlexBox ========================================
+%flex {
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+}
+
+%inline-flex         { display: inline-flex; }
+
+%align-items-start   { align-items: flex-start; }
+%align-items-end     { align-items: flex-end; }
+%align-items-center  { align-items: center; }
+%align-items-stretch { align-items: stretch; }
+
+%align-self-end     { align-self: flex-end; }
+
+%justify-content-center  { justify-content: center; }
+%justify-content-start   { justify-content: flex-start; }
+%justify-content-between { justify-content: space-between; }
+%justify-content-end     { justify-content: flex-end; }
+%justify-content-around  { justify-content: space-around; }
+
+%flex-flow   { flex-flow: row wrap; }
+// %flex-row    { flex-direction: row; }
+%flex-column { flex-direction: column; }
+
+%flex-row {
+    @extend %flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+%flex-wrap {
+    @extend %flex;
+    flex-wrap: wrap;
+}
+
+%flex-grow-0   { flex-grow:0 !important; }
+
+%full-height {
+    @extend %flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+%scroll-content {
+    @extend %flex; 
+    flex-direction: column;
+    flex: 1 0 0;
+    overflow: auto;
+}
+
+%item-middle {
+    @extend %flex;
+    @extend %align-items-center;
+}
+
+%item-align-end {
+    @extend %flex;
+    @extend %align-items-end;
+}
+
+%item-content-end {
+    @extend %flex;
+    @extend %align-items-end;
+}
+
+%item-middle-end {
+    @extend %flex;
+    @extend %align-items-center;
+    @extend %justify-content-end;
+}
+
+%item-middle-start {
+    @extend %flex;
+    @extend %align-items-center;
+    @extend %justify-content-start;
+}
+
+%item-center {
+    @extend %flex;
+    @extend %align-items-center;
+    @extend %justify-content-center;
+}
+
+%item-center-between {
+    @extend %flex;
+    @extend %align-items-center;
+    @extend %justify-content-between;
+}
+
+%item-center-content-end {
+    @extend %flex;
+    @extend %align-items-center;
+    @extend %justify-content-end;
+}
+
+// ========================= Display ========================================
+%inline-block {
+    display: inline-block;
+}
+%d-none {
+    display: none !important;
+}
+%d-block {
+    display: block !important;
+}
+%d-initial {
+    display: initial !important;
+}
+%d-inherit {
+    display: inherit !important;
+}
+// ========================= Position ========================================
+
+%relative {
+    position: relative;
+}
+
+// ========================= border-radius ===================================
+
+%global-radius {
+    @include border-radius($global-radius);
+}
+
+%radius-circle-sm {
+    @include border-radius(16px);
+}
+
+%radius-none {
+    @include border-radius(0);
+}
+
+%btn-radius {
+    @extend %global-radius;
+}
+
+%btn-radius-sm {
+    @extend %global-radius-sm;
+}
+
+// %btn-radius-lg {
+//     @extend %global-radius-lg;
+// }
+
+%radius-circle {
+    @include border-radius($radius-circle!important);
+}
+
+%global-radius-sm {
+    @include border-radius($global-radius-sm);
+}
+
+%text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+%uncolor {
+    border-color: transparent;
+    background-color: transparent;
+    background-image: none;
+}
+
+%disabled {
+    @include opacity(0.6);
+    pointer-events: none;
+}
+
+%text-left {
+    text-align: left !important
+}
+
+%text-center {
+    text-align: center !important
+}
+
+%text-right {
+    text-align: right !important
+}
+
+%font-bold {
+    font-weight: 700 !important
+}
+
+%font-medium {
+    font-weight: 500 !important
+}
+
+%font-regular {
+    font-weight: 400 !important
+}
+
+%font-italic {
+    font-style: italic !important
+}
+
+%word-break {
+    word-break: break-word;
+}
+
+%box-shadow-input {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+%text-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin cell-width($width: 100px) {
+    flex: 0 0 $width;
+    max-width: $width;
+}
+
+// @mixin border-line($direction: bottom, $space: 1) {
+// 	padding-#{$direction}: $space*1rem;
+// 	margin-#{$direction}: $space*1rem;
+// 	border-#{$direction}: 1px solid $border-color;
+// }
+
+// =============================== form ======================================
+
+@mixin placeholder($color: $color-placehoder) {
+    &::-moz-placeholder {
+        color: $color;
+        opacity: 1;
+        font-size: 1.8rem;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+        font-size: 1.8rem;
+    }
+
+    &::-webkit-input-placeholder {
+        color: $color;
+        font-size: 1.8rem;
+    }
+}
+
+@mixin padding-x($index:5) {
+    padding-left: $index*1px;
+    padding-right: $index*1px;
+}
+
+@mixin row-padding($index:5) {
+    margin-left: -$index*1px;
+    margin-right: -$index*1px;
+
+    >[class*="col-"] {
+        padding-left: $index*1px;
+        padding-right: $index*1px;
+    }
+}
+
+@mixin text-ellipsis-multiline($line) {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+%unstyled {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+}
+
+//fa icon
+%fa-font {
+    // @extend %icon-action-color;
+    font-size: $icon-font-size;
+}
+
+%fa-font-form {
+    // @extend %icon-action-color;
+    font-size: $icon-font-size-xs;
+}
+
+//icon
+@mixin box-image($background: $background-image) {
+    @extend %item-center;
+    flex: none;
+    overflow: hidden;
+    background-color: $background;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+@mixin box-text($border-color: transparent, $color: $body-color, $background: transparent) {
+    text-align: center;
+    border: 1px solid $border-color;
+    color: $color;
+    background-color: $background;
+}
+
+@mixin box-circle($font-size: $font-size, $padding-x: 5px) {
+    font-size: $font-size;
+    padding: 0 $padding-x;
+    @extend %inline-flex;
+    @extend %align-items-center;
+    @extend %justify-content-center;
+    @extend %radius-circle;
+}
+
+@mixin size-images($width, $height) {
+    width: $width;
+    height: $height;
+    min-width: $width;
+}
+
+@mixin breakpoint-between($min, $max) {
+    @media (min-width: $min*1px) and (max-width: $max*1px) {
+        @content;
+    }
+}
+
+@mixin breakpoint-height-between($min, $max) {
+    @media (min-height: $min*1px) and (max-height: $max*1px) {
+        @content;
+    }
+}
+
+@mixin breakpoint-height-down($max-height) {
+    @media (max-height: $max-height *1px) {
+        @content;
+    }
+}
+
+@mixin breakpoint-height-up($min-height) {
+    @media (min-height: $min-height *1px) {
+        @content;
+    }
+}
+
+@mixin breakpoint-down($max-width) {
+    @media (max-width: $max-width *1px) {
+        @content;
+    }
+}
+
+@mixin breakpoint-up($min-width) {
+    @media (min-width: $min-width *1px) {
+        @content;
+    }
+}
+
+@mixin form-images-height($height) {
+    .form-images {
+        &::before {
+            padding-top: $height;
+        }
+    }
+}
+
+@each $name,
+$color in $color-random {
+    .color-random-#{$name} {
+        .img-default {
+            color: rgba($color, .6);
+        }
+    }
+
+    // .filter-title.color-random-#{$name} {
+    //     &:before {
+    //         background-color: $color;
+    //     }
+    // }
+
+    //li:nth-child(#{$name}),
+    .dropdown-item-nth-#{$name},
+    .k-item-nth-#{$name} {
+        .dropdown-thumb {
+            color: $color;
+            background-color: rgba($color, 0.1) !important;
+        }
+
+        .img-default {
+            color: $color;
+        }
+    }
+}
+
+@mixin scroll-space($space) {
+    margin-right: -($space - $scrollbar-space-x);
+    padding-right: $space - $scrollbar-space-x;
+}
+
+//scroll
+%scrollbar {
+    &::-webkit-scrollbar {
+        width: $scrollbar-size;
+        height: $scrollbar-size;
+        background-color: $scroll-background;
+
+        &-track {
+            box-shadow: inset 0 0 $scrollbar-size rgba($scroll-background, 1);
+            background-color: $scroll-background;
+        }
+
+        &-thumb {
+            background-color: #999fa5;
+        }
+    }
+}
+
+ %clearfix {
+    &:before,
+	&:after {
+		content: " "; 
+		display: table; 
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin loading-style{
+    position: relative;
+    z-index: 10003;
+    .bar{
+        background-color:$success;
+    }
+    &-spinner{
+        //display: none;
+        pointer-events: fill;
+        z-index: 9999999;
+        top:0;
+        left: 0;
+        width: 100%;
+        height:100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        position: fixed;
+
+        // custom loading
+        .no-freeze-spinner {
+            .spinner--container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+                padding: 6px;
+                background: rgba(62, 171, 56, .75);
+                > div {
+                    animation-play-state: running;
+                    border: 3px solid #fff;
+                    border-radius: 100%;
+                    animation: rotate 1s linear infinite;
+                    border-left-color: transparent;
+                    width: 54px;
+                    height: 54px;
+                    position: relative;
+                    margin-left: 1px;
+                    margin-top: 1px;                    
+                }
+                i {
+                    font-size: 24px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    color: #fff;
+                    width: 24px;
+                    height: 24px;
+                    line-height: 1;
+                    transform: scale(0) translate3d(0, 0, 0);
+                    &:nth-of-type(1) {
+                        animation: loadicons 2s infinite ease-in-out;
+                        left: -3px;
+                        top: -2px;
+                    }
+                    &:nth-of-type(2) {
+                        animation: loadicons 2s 1s infinite ease-in-out;
+                        top: -4px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes loadicons {
+    0% {
+      transform: scale(1.2) translate3d(0, 0, 0);
+    }
+    11% {
+      transform: scale(1.2) translate3d(0, 0, 0);
+    }
+    22% {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    33% {
+      transform: scale(0) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+// =============== Lighten and Darken =================
+@mixin lighten-color($color, $value) {
+    background-color: mix(#fff, $color, $value);
+}
+
+@mixin darken-color($color, $value) {
+    background-color: mix(#000, $color, $value);
+}
+

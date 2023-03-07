@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-KiotVietTimeSheet.BackgroundTasks-8944DF2D-8384-4B2B-A80C-A8ABE032D031</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.1" />
+    <PackageReference Include="MQTTnet" Version="3.0.13" />
+    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.0.13" />
+    <PackageReference Include="Polly" Version="7.2.1" />
+    <PackageReference Include="Serilog.Exceptions" Version="6.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+	<PackageReference Include="Quartz" Version="3.4.0" />
+	<PackageReference Include="Quartz.Extensions.Hosting" Version="3.4.0" />
+	<PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.4.0" />
+	<PackageReference Include="ServiceStack.Core" Version="5.5.0" />
+	<PackageReference Include="ServiceStack.OrmLite.Core" Version="5.5.0" />
+	<PackageReference Include="ServiceStack.OrmLite.SqlServer.Core" Version="5.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Application\KiotVietTimeSheet.Application\KiotVietTimeSheet.Application.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\KiotVietTimeSheet.Infrastructure\KiotVietTimeSheet.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\KiotVietTimeSheet.Utilities\KiotVietTimeSheet.Utilities.csproj" />
+    <ProjectReference Include="..\..\Api\KiotVietTimeSheet.Api.ServiceModel\KiotVietTimeSheet.Api.ServiceModel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infras\KiotVietInternalService\Impls\" />
+  </ItemGroup>
+</Project>

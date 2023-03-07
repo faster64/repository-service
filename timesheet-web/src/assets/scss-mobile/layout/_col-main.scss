@@ -1,0 +1,42 @@
+.ts-main {
+  padding: 1.2rem 0;
+  width: 100%;
+  &.box-main-empty-wrap {
+    height: calc(100vh - 8rem);
+  }  
+  .ts-calender-pages &,
+  .ts-staff-page & {
+    overflow: auto;
+  }
+
+  week-view-cmp & {
+    max-height: calc(100vh - 14.6rem);
+  }
+
+  day-view-cmp & {
+    max-height: calc(100vh - 8rem);
+  }
+
+  .box-main {
+    background-color: $white;
+    border-radius: $border-radius-md;
+    padding: $col-padding-x;
+
+    &-md {
+      padding: $col-padding-md-x;
+    }
+
+    &-empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100% - 70px);
+      text-align: center;
+      overflow: hidden;
+
+      &.has-footer {
+        height: calc(100% - 160px);
+      }
+    }
+  }
+}

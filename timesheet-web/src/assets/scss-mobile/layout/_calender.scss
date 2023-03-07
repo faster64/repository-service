@@ -1,0 +1,414 @@
+.ts-shift {
+  background-color: $white;
+  border-radius: $border-radius-md;
+  padding: $col-padding-x;
+
+  &:not(:last-child) {
+    margin-bottom: $col-margin-y;
+  }
+
+  &-list {
+    margin-bottom: 0;
+  }
+
+  &-item {
+    &:not(:last-child) {
+      margin-bottom: $col-margin-y;
+    }
+
+    .ts-timeline-event {
+      padding-left: $col-padding-md-x;
+      padding-top: $col-padding-y;
+      padding-right: $col-padding-x;
+      padding-bottom: $col-padding-y;
+      display: block;
+      border-radius: $border-radius;
+      min-height: 9rem;
+      position: relative;
+
+      &:before {
+        content: "";
+        width: 3px;
+        height: 4.4rem;
+        border-radius: 0px 3px 3px 0px;
+        top: 1.2rem;
+        left: 0;
+        position: absolute;
+      }
+      .ts-kvTimeLineDay & {
+        &.clocking-created {
+          background-color: $clocking-created-1;
+          &:before {
+            background-color: $clocking-created;
+          }
+        }
+        &.clocking-checkOut-no-checkIn {
+          background-color: $clocking-checkOut-no-checkIn-1;
+          &:before {
+            background-color: $clocking-checkOut-no-checkIn;
+          }
+        }
+        &.clocking-checkedIn-no-checkOut {
+          background-color: $clocking-checkedIn-no-checkOut-1;
+          &:before {
+            background-color: $clocking-checkedIn-no-checkOut;
+          }
+        }
+        &.clocking-checkedIn-checkOut {
+          background-color: $clocking-checkedIn-checkOut-1;
+          &:before {
+            background-color: $clocking-checkedIn-checkOut;
+          }
+        }
+        &.clocking-work-off {
+          background-color: $clocking-work-off-1;
+          &:before {
+            background-color: $clocking-work-off;
+          }
+        }
+        &.event-future {
+          background-color: $event-future-1;
+          &:before {
+            display: none;
+          }
+        }
+      }
+
+      .name-title {
+        font-weight: 400;
+        margin-bottom: 6px;
+      }
+
+      .timeline-container--timer {
+        width: 100%;
+        font-size: $font-size-sm;
+        margin-bottom: 0.4rem;
+        display: block;
+
+        .time-check-in-red {
+          color: #db4e65;
+        }
+
+        .time-check-out-red {
+          color: #db4e65;
+        }
+
+        .worked-time {
+          background-color: $primary;
+          color: $white;
+          margin-left: 0.6rem;
+          padding: 2px 4px;
+          border-radius: $border-radius;
+        }
+
+        .footer {
+          padding-top: 6px;
+        }
+      }
+
+      .footer {
+        // @include text-ellipsis-multiline(1);
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: $font-size-sm;
+        float: left;
+        width: 100%;
+      }
+    }
+  }
+
+  &-header {
+    margin-bottom: $col-margin-y; 
+    @extend %item-center-between;
+    
+    &-left {
+      width: calc(100% - 120px);
+    }
+    &-right {
+      width: 120px;
+      margin-left: 1.6rem; 
+
+      .ts-icon-sm {
+        margin-top: -3px;
+      }
+    }
+  }
+
+  &-title {
+    margin-bottom: 0;
+    word-break: break-word;
+  }
+
+  &-time {
+    @extend %item-center-content-end;
+    height: 100%;
+    font-weight: 600;
+    color: $gray-2;
+
+    span:not(.ts-icon-sm) {
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.ts-calender {
+  &-wrap {
+  }
+  &-row {
+    @extend %flex;
+    @extend %justify-content-between;
+    margin-left: -$col-margin-x;
+    margin-right: -$col-margin-x;
+    
+    .ts-col-item {
+      @include breakpoint-down($sm) {
+        flex: 0 0 calc((100% - 9.4rem) / 7);
+        max-width: calc((100% - 9.4rem) / 7);
+      }
+      @include breakpoint-up($sm) {
+        flex: 0 0 calc((100% - 15rem) / 7);
+        max-width: calc((100% - 15rem) / 7);
+      }
+      @extend %item-center;
+    }
+
+    .shift-name {
+      @include breakpoint-down($sm) {
+        min-width: 9.4rem;
+        max-width: 9.4rem;
+        min-height: 6.8rem;
+      }
+      @include breakpoint-up($sm) {
+        min-width: 15rem;
+        max-width: 15rem;
+        min-height: 60px;
+      }
+      padding: 0.4rem 0.8rem;
+      justify-content: flex-start;
+
+      h6 {
+        font-weight: 400;
+        margin-bottom: 0;
+        line-height: 2rem;
+        font-size: 1.4rem;
+        letter-spacing: -.03rem;
+        
+        &:not(.text-truncate) {
+          word-break: break-word;
+          @include text-ellipsis-multiline(3);
+        }
+      }
+    }
+  }
+  &-head {
+    .ts-calender-row {
+      box-shadow: 0px 0px 8px rgba(84, 104, 120, 0.06);
+      padding-top: 1.2rem;
+    }
+    .ts-col-item {
+      text-align: center;
+      padding: 0 0 10px;
+      position: relative;
+      &:not(.shift-name) {
+        &:before {
+          content: "";
+          height: 16px;
+          width: 1px;
+          background-color: $color-border-light;
+          position: absolute;
+          left: -1px;
+          bottom: 0;
+        }
+      }
+      .col-titme {
+        display: flex;
+        flex-direction: column;
+      }
+      .ts-day {
+        width: 100%;
+        color: $text-color-light;
+        font-size: $font-size-sm;
+      }
+
+      .ts-date {
+        width: 36px;
+        height: 36px;
+        @extend %item-center;
+        border-radius: 100%;
+      }
+
+      &.ts-today {
+        .ts-day {
+          color: $color-today;
+        }
+        .ts-date {
+          color: $color-today;
+          background-color: $bg-today;
+        }
+      }
+    }
+  }
+
+  &-content {
+    > .ts-calender-row {
+      &:not(:last-child) {
+        border-bottom: 1px dashed $color-border;
+      }
+
+      // &:last-child {
+      //   border-bottom: 1px solid $color-border;
+      // }
+
+      &:first-child {
+        border-top: 1px solid $color-border;
+      }
+    }
+
+    .ts-col-item {
+      border-right: 1px solid $color-border;
+
+      .col-event {
+        span {
+          width: 1rem;
+          height: 1rem;
+          border-radius: 100%;
+          display: block;
+        }
+
+        &.clocking-created {
+          span {
+            background-color: $clocking-created;
+          }
+        }
+        &.clocking-checkOut-no-checkIn {
+          span {
+            background-color: $clocking-checkOut-no-checkIn;
+          }
+        }
+
+        &.clocking-checkedIn-no-checkOut {
+          span {
+            background-color: $clocking-checkedIn-no-checkOut;
+          }
+        }
+
+        &.clocking-checkedIn-checkOut {
+          span {
+            background-color: $clocking-checkedIn-checkOut;
+          }
+        }
+
+        &.clocking-work-off {
+          span {
+            background-color: $clocking-work-off-3;
+          }
+        }
+        &.event-future {
+          span {
+            background-color: $event-future;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ts-icon-sm {
+  width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  margin-right: $icon-space/2;
+  @extend %item-center;
+  > i {
+    font-size: 1.6rem;
+  } 
+}
+
+.ts-icon-md {
+  width: 3.2rem;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  margin-right: $icon-space/2;
+  @extend %item-center;
+  > i {
+    font-size: 2.6rem;
+  } 
+}
+
+.no-clocking {
+  text-align: center;
+  @extend %item-center;
+  height: calc(100vh - 14.2rem - 14.7rem);
+
+  span {
+    display: block;
+    margin-top: 1.2rem;
+    color: $gray-3;
+  }
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#calendar-modal {
+  .week-selected {
+    td {
+      background-color:$success-86 !important;
+
+      .k-link {
+        background-color: $success-86 !important;
+        color: $success !important;
+      }
+
+      &.k-today {
+        a {
+          border: 1px solid $success !important;
+        }
+      }
+
+      &:first-child,
+      &:last-child {
+        position: relative;
+        background-color: $white !important;
+
+        .k-link {
+          background-color: $success !important;
+          color: $white !important;
+        }
+
+        &:before {
+          content: "";
+          width: 50%;
+          top: 0;
+          bottom: 0;
+          height: 100%;
+          background-color: $success-86;
+          position: absolute;
+        }
+       }
+  
+      &:first-child {
+        &:before {
+          right: 0;
+        }
+      }
+  
+      &:last-child {
+        position: relative;
+  
+       &:before {
+          left: 0;
+       }
+      }
+    }
+  }
+}
+
+.k-calendar .k-calendar-td.k-state-focus .k-link, .k-calendar .k-calendar-td.k-state-focused .k-link {
+  box-shadow: none !important;
+}

@@ -1,0 +1,143 @@
+//form-control******************/
+.ts-form-control {
+  @extend %form-control;
+}
+
+.ts-form-control-sm {
+  @extend %form-control-sm;
+}
+
+.ts-form-control-md {
+  @extend %form-control-md;
+}
+
+.ts-form-control-lg {
+  @extend %form-control-lg;
+}
+
+.ts-form-control-search {
+  @extend %form-control-search;
+}
+
+.ts-form-control-line {
+  @extend %form-control-line;
+  color: black;
+}
+
+//form-control******************/
+.ts-form-group {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  .form-wrap {
+    position: relative;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  .ts-form-control-static {
+    padding-top: $input-btn-padding-y / 2;
+    height: $input-height;
+    border-width: 0 0 1px 0;
+    border-color: $color-border;
+    border-style: solid;
+    position: relative;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-width: 0 0 2px 0;
+      border-color: $success;
+      box-sizing: border-box;
+      outline: none;
+    }
+  }
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+
+.title-form {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: $gray-1;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  clear: both;
+  float: left;
+  width: 100%;
+}
+
+.input-group,
+.input-group-append {
+  @extend %flex;
+}
+
+.input-group-append {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  right: 0;
+  bottom: 0.8rem;
+  margin: auto;
+  font-size: 1.6rem;
+  justify-content: flex-end;
+}
+
+.ts-input-check {
+  position: relative;
+  input {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 1.8rem;
+    opacity: 0;
+
+    & ~ span {
+      z-index: 1;
+      padding-left: 2.6rem;
+
+      &:before {
+        font-family: "Font Awesome 5 Pro";
+        font-weight: 900;
+        content: "\f00c";
+        font-size: 1rem;
+        position: absolute;
+        left: 4px;
+        top: 1.5px;
+        color: $success;
+        display: none;
+      }
+
+      &:after {
+        width: 1.8rem;
+        height: 1.8rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-style: solid;
+        border-width: 2px;
+        border-color: $gray;
+        border-radius: 0.4rem;
+        content: "";
+      }
+    }
+
+    &:checked ~ span {
+      &:before {
+        display: block;
+      }
+      &:after {
+        border-color: $success;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>KiotVietTimeSheet.Application</AssemblyName>
+    <RootNamespace>KiotVietTimeSheet.Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\CreatePaysheetAllowance\**" />
+    <Compile Remove="Commands\CreatePaysheetClocking\**" />
+    <Compile Remove="Commands\CreatePaysheetCommission\**" />
+    <Compile Remove="Commands\CreatePaysheetDeduction\**" />
+    <Compile Remove="Common\**" />
+    <Compile Remove="Ports\**" />
+    <Compile Remove="ViewModels\**" />
+    <EmbeddedResource Remove="Commands\CreatePaysheetAllowance\**" />
+    <EmbeddedResource Remove="Commands\CreatePaysheetClocking\**" />
+    <EmbeddedResource Remove="Commands\CreatePaysheetCommission\**" />
+    <EmbeddedResource Remove="Commands\CreatePaysheetDeduction\**" />
+    <EmbeddedResource Remove="Common\**" />
+    <EmbeddedResource Remove="Ports\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="Commands\CreatePaysheetAllowance\**" />
+    <None Remove="Commands\CreatePaysheetClocking\**" />
+    <None Remove="Commands\CreatePaysheetCommission\**" />
+    <None Remove="Commands\CreatePaysheetDeduction\**" />
+    <None Remove="Common\**" />
+    <None Remove="Ports\**" />
+    <None Remove="ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logging\ILogger.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="FluentFTP" Version="33.1.6" />
+    <PackageReference Include="Moq" Version="4.12.0" />
+    <PackageReference Include="ServiceStack.Core" Version="5.5.0" />
+    <PackageReference Include="ServiceStack.OrmLite.Core" Version="5.5.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\KiotVietTimeSheet.Domain\KiotVietTimeSheet.Domain.csproj" />
+    <ProjectReference Include="..\..\Utilities\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources.csproj" />
+    <ProjectReference Include="..\..\Utilities\KiotVietTimeSheet.Utilities\KiotVietTimeSheet.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\CreateAllowance\" />
+  </ItemGroup>
+</Project>

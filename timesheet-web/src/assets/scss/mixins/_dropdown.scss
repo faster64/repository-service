@@ -1,0 +1,46 @@
+//dropdown
+%dropdown {
+  background-color: $white;
+  @include absolute-top-right(10px, 0);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: $global-radius-sm;
+  display: none;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-width: 24rem;
+
+  .active-dropdown & {
+    display: block;
+  }
+}
+
+%item-hover {
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+%item-focus-active {
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+%dropdown-item {
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  line-height: $line-height-base;
+  min-height: inherit;
+  cursor: pointer;
+  //   color: $body-color;
+  @extend %item-middle;
+  // @extend %dropdown-item-radius;
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    @extend %item-focus-active;
+    color: $primary;
+  }
+}

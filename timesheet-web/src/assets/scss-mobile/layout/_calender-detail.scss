@@ -1,0 +1,211 @@
+.detail {
+  &-checkin {
+    margin-bottom: $col-padding-y;
+
+    .shift-info {
+      @extend %item-center-between;
+      margin-bottom: $col-margin-md-y;
+
+      &-profle {
+        padding-left: 30px;
+        position: relative;
+        width: calc(100% - 94px);
+        
+        &:before {
+          content: "";
+          width: 1.6rem;
+          height: 1.6rem;
+          border-radius: 100%;
+          display: block;
+          overflow: hidden;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          top: 0;
+          margin: auto;
+
+          @at-root .clocking-checkedIn-no-checkOut#{&} {
+            background-color: $clocking-checkedIn-no-checkOut;
+          }
+          @at-root .clocking-created#{&} {
+            background-color: $clocking-created;
+          }
+          @at-root .clocking-checkOut-no-checkIn#{&} {
+            background-color: $clocking-checkOut-no-checkIn;
+          }
+          @at-root .clocking-checkedIn-checkOut#{&} {
+            background-color: $clocking-checkedIn-checkOut;
+          }
+          @at-root .clocking-work-off#{&} {
+            background-color: $clocking-work-off-3;
+          }
+          @at-root .event-future#{&} {
+            background-color: $event-future;
+          }
+        }
+      }
+
+      &-avatar {
+        margin-left: $col-margin-lg-x;
+      }
+    }
+
+    .shift-time {
+      border-radius: $border-radius-md;
+      background-color: $primary-86;
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+
+      @at-root .clocking-checkedIn-no-checkOut#{&} {
+        background-color: $clocking-checkedIn-no-checkOut-1;
+      }
+      @at-root .clocking-created#{&} {
+        background-color: $clocking-created-1;
+      }
+      @at-root .clocking-checkOut-no-checkIn#{&} {
+        background-color: $clocking-checkOut-no-checkIn-1;
+      }
+      @at-root .clocking-checkedIn-checkOut#{&} {
+        background-color: $clocking-checkedIn-checkOut-1;
+      }
+      @at-root .clocking-work-off#{&} {
+        background-color: $clocking-work-off-2;
+      }
+      @at-root .event-future#{&} {
+        background-color: $event-future;
+      }
+
+      &-item {
+        @extend %item-center-between;
+        padding: 1rem 1rem;
+        min-height: 7.4rem;
+        &.time-off {
+          justify-content: center;
+          text-align: center;
+        }
+        &:not(:last-child) {
+          border-bottom: 1px dashed rgba($color: $text-color, $alpha: 0.08);
+        }
+      }
+
+      &-in,
+      &-out {
+        width: 40%;
+        text-align: center;
+        h3 {
+          margin-bottom: 0;
+          &.no-check {
+            color: $text-disable;
+          }
+
+          &.notOutIn {
+            color: $gray-3;
+          }
+        }
+
+        span {
+          color: $text-disable;
+          text-transform: uppercase;
+          font-size: $font-size-xsm;
+          font-weight: 500;
+        }
+
+        p {
+          margin-bottom: 0;
+          font-size: $font-size-xsm;
+          font-size: $gray-1;
+        }
+      }
+
+      &-icon {
+        width: 20%;
+        @extend %item-center;
+        span {
+          background: rgba(51, 51, 51, 0.04);
+          border-radius: 100%;
+          height: 34px;
+          width: 34px;
+          color: $gray-1;
+          font-size: 2rem;
+          @extend %item-center;
+        }
+      }
+    }
+  }
+
+  &-info {
+    margin-bottom: $col-padding-y;
+
+    &-item {
+      @extend %item-middle-start;
+      position: relative;
+      padding: 10px 0;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      &:not(:last-child) {
+        &:before {
+          content: "";
+          height: 1px;
+          width: calc(100% - 4rem);
+          background-color: $color-border-light;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+      }
+
+      span {
+        &:not(.ts-icon) {
+          font-weight: 600;
+          letter-spacing: -0.5px;
+        }
+        span {
+          float: left;
+          width: 100%;
+          &.detail-info-time {
+            font-size: $font-size-sm;
+            font-weight: 400;
+            margin-top: 0.2rem;
+            color: rgba($color: $gray, $alpha: 0.84)
+          }
+        }
+      }
+
+      .ts-icon {
+        @include avatar(32px, 16px);
+        margin-right: $icon-space;
+      }
+    }
+  }
+
+  &-note {
+    h4 {
+      letter-spacing: 0.07px;
+    }
+
+    p {
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      margin-bottom: 0;
+
+      &.note-empty {
+        color: $text-disable;
+      }
+    }
+  }
+}
+
+.ts-staff {
+  h3 {
+    margin-bottom: 0.2rem;
+  }
+  p {
+    color: $text-color-light;
+    font-size: $font-size;
+    letter-spacing: -0.3px;
+    margin-bottom: 0;
+  }
+}

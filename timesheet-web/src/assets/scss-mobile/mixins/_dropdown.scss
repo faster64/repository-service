@@ -1,0 +1,73 @@
+//dropdown
+%item-hover {
+  // background-color: $background-gray;
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+%item-focus-active {
+  background-color: rgba($primary, 0.1);
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+%dropdown-item {
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  line-height: $line-height;
+  min-height: inherit;
+  cursor: pointer;
+  color: $text-color;
+  @extend %item-middle;
+  // @extend %dropdown-item-radius;
+  &:hover,
+  &.k-state-hover {
+    @extend %item-hover;
+  }
+  &:focus,
+  &:active,
+  &.active,
+  &.k-state-focused,
+  &.k-state-selected {
+    @extend %item-focus-active;
+    color: $primary;
+  }
+}
+
+%dropdown-container {
+  @include border-radius(8px);
+  background-color: $white;
+  border: 1px solid $line-color;
+  box-shadow: 1px 0 10px 0 rgba($black, 0.2);
+  padding: $dropdown-padding-y 0;
+  z-index: $zindex-top;
+  min-width: 160px;
+
+  ul {
+    @extend %ul;
+    // padding-right: ($dropdown-padding-x - $scrollbar-space-x);
+    margin-right: 0;
+  }
+
+  .k-textbox {
+    @extend %form-control-custom;
+    // @extend %dropdown-item-radius;
+    height: $input-height;
+  }
+
+  .k-list,
+  .k-list-scroller:not(.k-list-container),
+  ul {
+    @extend %scrollbar;
+    // @include scroll-space($dropdown-padding-x);
+  }
+
+  .k-list-scroller {
+    > ul {
+      max-height: auto;
+      overflow: hidden;
+    }
+  }
+}

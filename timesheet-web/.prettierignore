@@ -1,0 +1,13 @@
+node_modules
+dist
+src/assets
+coverage
+lib
+
+main.js
+main.js.map
+.prettierrc
+.gitlab-ci.yml
+README.md
+package.json
+package-lock.json

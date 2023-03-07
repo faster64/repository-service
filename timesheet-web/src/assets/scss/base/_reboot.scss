@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+html,
+body {
+    height: 100%;
+
+    * {
+        @extend %scrollbar;
+    }
+}
+
+body {
+    overflow-x: hidden;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-size: $font-size-base;
+    color: $text-color;
+    background-color: $bg-body;
+    line-height: $line-height-base;
+}
+
+a {
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    line-height: 1.4;
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

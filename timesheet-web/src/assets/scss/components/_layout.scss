@@ -1,0 +1,28 @@
+.col-wrap {
+  @extend %full-height;
+  position: relative;
+}
+
+.main {
+  text-align: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.wrapper,
+.ts-main,
+.ts-main > .container,
+.main-page {
+  min-height: 100%;
+  height: calc(100vh - calc(100vh - 100%));
+  min-height: -webkit-fill-available;
+}
+
+.main-page {
+  width: 100%;
+  display: inline-block;
+}
+
+.ts-form-main {
+  padding-bottom: 3.4rem;
+}

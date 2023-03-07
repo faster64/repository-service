@@ -1,0 +1,18 @@
+@mixin check-custom-hover($color: $primary) {
+    &:hover {
+         background-color: rgba($color, 0.1);
+         border-color: $color;
+         color: $color;
+    }
+}
+
+@mixin check-custom-active($color: $primary) {
+    &,
+    &:focus,
+    &.active{
+        color: $white;
+        background-color: $color;
+        outline: none;
+        border-color: $color;
+    }
+}

@@ -1,0 +1,86 @@
+<div class="ts-main">
+  <div class="container">
+    <div class="col-wrap">
+      <div class="main">
+        <div class="comfirm-code">
+          <h2 class="title">Mã xác nhận</h2>
+          <p>Nhập mã xác nhận được cấp từ quản lý</p>
+        </div>
+
+        <div class="ts-form-main form-comfirm">
+          <form name="myForm">
+            <div class="form-group input-comfirm input-code">
+              <input
+                type="number"
+                maxlength="1"
+                ng-model="vm.verifyCode1"
+                ng-change="vm.onChange(this)"
+                placeholder=""
+                class="form-control checked"
+                ng-class="{'error':vm.errorMessage != '' && vm.isValidInput == false,'success':vm.isValidInput == true}"
+                id="verifyCode1"
+              />
+              <input
+                type="number"
+                maxlength="1"
+                ng-model="vm.verifyCode2"
+                ng-change="vm.onChange(this)"
+                placeholder=""
+                class="form-control checked"
+                ng-class="{'error':vm.errorMessage != '' && vm.isValidInput == false,'success':vm.isValidInput == true}"
+              />
+              <input
+                type="number"
+                maxlength="1"
+                ng-model="vm.verifyCode3"
+                ng-change="vm.onChange(this)"
+                placeholder=""
+                class="form-control checked"
+                ng-class="{'error':vm.errorMessage != '' && vm.isValidInput == false,'success':vm.isValidInput == true}"
+              />
+              <input
+                type="number"
+                maxlength="1"
+                ng-model="vm.verifyCode4"
+                ng-change="vm.onChange(this)"
+                placeholder=""
+                class="form-control checked"
+                ng-class="{'error':vm.errorMessage != '' && vm.isValidInput == false,'success':vm.isValidInput == true}"
+              />
+              <input
+                type="number"
+                maxlength="1"
+                ng-model="vm.verifyCode5"
+                ng-change="vm.onChange(this)"
+                placeholder=""
+                class="form-control checked"
+                ng-class="{'error':vm.errorMessage != '' && vm.isValidInput == false,'success':vm.isValidInput == true}"
+              />
+              <input
+                type="number"
+                maxlength="1"
+                ng-model="vm.verifyCode6"
+                ng-change="vm.onChange(this)"
+                placeholder=""
+                class="form-control checked"
+                ng-class="{'error':vm.errorMessage != '' && vm.isValidInput == false,'success':vm.isValidInput == true}"
+              />
+            </div>
+            <div ng-show="vm.errorMessage != ''" class="error-msg">
+              {{vm.errorMessage}}
+            </div>
+          </form>
+        </div>
+        <div class="comfirm-code-time">
+          <p>Mã có hiệu lực trong <b>05:00</b></p>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <button class="btn btn-success btn-xl" ng-click="vm.onSubmit()">
+          Tiếp
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

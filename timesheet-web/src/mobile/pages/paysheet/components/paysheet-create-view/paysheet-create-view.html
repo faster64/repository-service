@@ -1,0 +1,190 @@
+<!-- Header  -->
+<header class="ts-header">
+    <div class="ts-header-top">
+        <div class="row">
+            <div class="col-12">
+                <div class="ts-header-back">
+                    <a ng-click="vm.backToPaysheet()">
+                        <span class="ts-icon-sm"><i class="far fa-chevron-left"></i></span>
+                        <span>Thêm bảng lương</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main -->
+<main class="ts-main">
+	<div class="ts-staff-wrap">
+		<div class="ts-staff-main">
+			<div class="ts-staff-wrap box-main ts-payroll-list">
+				<div class="ts-form-group">
+					<a rel="ts-salaryPeriod-modal" ng-click="vm.openModal($event)">
+						<label class="ts-form-label">{{vm._l.paysheet_payCycleSalary}}</label>
+						<div class="form-wrap">
+							<input
+							type="text" 
+							class="ts-form-control"
+							value="{{vm.salaryPeriodSelected.name}}"
+							placeholder="Chọn kỳ hạn"
+							readonly>
+							<div class="input-group-append">
+								<i class="far fa-chevron-down"></i>
+							</div>
+						</div>	
+					</a>
+				</div>
+				<div class="ts-form-group" ng-if="vm.salaryPeriodSelected.value !== 5">
+					<a rel="ts-workingPeriod-modal" ng-click="vm.openModal($event)">
+						<label class="ts-form-label">{{vm._l.paysheet_periodPay}}</label>
+						<div class="form-wrap">
+							<input
+							type="text" 
+							class="ts-form-control"
+							value="{{vm.workingPeriodSelected.name}}"
+							placeholder=""
+							readonly>
+							<div class="input-group-append">
+								<i class="far fa-chevron-down"></i>
+							</div>
+						</div>	
+					</a>
+				</div>
+				<div class="ts-form-group ts-choose-date" ng-if="vm.salaryPeriodSelected.value === 5">
+					<div class="form-wrap input-group">
+						<a rel="ts-calendar-start-modal" ng-click="vm.openModal($event)">
+							<label>{{vm._l.paysheet_periodPayFrom}}</label>
+							<input 
+								type="text" 
+								class="ts-form-control"
+								value="{{(vm.startTime) ? (vm.startTime | date: 'dd/MM/yyyy') : vm._l.exportDebtDetail_SelectTime }}"
+								placeholder="{{vm._l.exportDebtDetail_SelectTime}}"
+								readonly>
+							<div class="input-group-append">
+								<i class="far fa-calendar-alt"></i>
+							</div>
+						</a>
+					</div>
+					<div class="form-wrap input-group">
+						<a rel="ts-calendar-end-modal" ng-click="vm.openModal($event)">
+							<label>{{vm._l.paysheet_periodPayTo}}</label>
+							<input 
+								type="text" 
+								class="ts-form-control"
+								value="{{(vm.endTime) ? (vm.endTime | date: 'dd/MM/yyyy') : vm._l.exportDebtDetail_SelectTime }}"
+								placeholder="{{vm._l.exportDebtDetail_SelectTime}}"
+								readonly>
+							<div class="input-group-append">
+								<i class="far fa-calendar-alt"></i>
+							</div>
+						</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="ts-modal-salaryPeriod ts-modal-payroll-salaryPeriod" id="ts-salaryPeriod-modal">
+		<div class="modal-wrap h-lg">
+			<div class="ts-modal-head">
+				<div class="row d-flex">
+					<div class="col-11 ts-modal-head-left">
+						<strong>Chọn kỳ hạn</strong>
+					</div>
+					<div class="col-1 ts-modal-head-right">
+						<a ng-click="vm.backFromModal($event)" class="js-ts-modal-close ts-icon-md"><i class="far fa-times"></i></a>
+					</div>
+				</div>
+			</div>
+		  	<div class="modal-list">
+				<ul class="list-items">
+					<li
+						ng-repeat="salaryPeriod in vm.salaryPeriods"
+						class="list-item"
+						ng-click="vm.chooseSalaryPeriod($event, salaryPeriod);"
+					>
+						<div class="item-content">
+							<h4>{{salaryPeriod.name}}</h4>
+						</div>
+						<div ng-if="salaryPeriod.value == vm.salaryPeriodSelected.value" class="ts-check ts-checked">
+							<i class="far fa-check"></i>
+						</div>
+						<div ng-if="salaryPeriod.value != vm.salaryPeriodSelected.value" class="ts-check">
+							<i class="far fa-check"></i>
+						</div>
+					</li>
+				</ul>
+		  	</div>
+		</div>
+	</div>
+
+	<div class="ts-modal-salaryPeriod ts-modal-payroll-salaryPeriod" id="ts-workingPeriod-modal">
+		<div class="modal-wrap h-md">
+			<div class="ts-modal-head">
+				<div class="row d-flex">
+					<div class="col-11 ts-modal-head-left">
+						<strong>Chọn kỳ hạn</strong>
+					</div>
+					<div class="col-1 ts-modal-head-right">
+						<a ng-click="vm.backFromModal($event)" class="js-ts-modal-close ts-icon-md"><i class="far fa-times"></i></a>
+					</div>
+				</div>
+			</div>
+		  	<div class="modal-list">
+				<ul class="list-items">
+					<li
+						ng-repeat="workingPeriod in vm.workingPeriods"
+						class="list-item"
+						ng-click="vm.chooseWorkingPeriod($event, workingPeriod);"
+					>
+						<div class="item-content">
+							<h4>{{workingPeriod.name}}</h4>
+						</div>
+						<div ng-if="workingPeriod.id == vm.workingPeriodSelected.id" class="ts-check ts-checked">
+							<i class="far fa-check"></i>
+						</div>
+						<div ng-if="workingPeriod.id != vm.workingPeriodSelected.id" class="ts-check">
+							<i class="far fa-check"></i>
+						</div>
+					</li>
+				</ul>
+		  	</div>
+		</div>
+	</div>
+
+	<div class="ts-modal ts-modal-payroll-calendar" id="ts-calendar-start-modal">
+		<div class="modal-wrap">
+			<div class="modal-calendar-button">
+				<strong>{{vm._l.timesheet_startDay}}</strong>
+			</div>
+			<div class="modal-list modal-calendar-content">
+				<div id="calendarStartTime" class="kv-calendar"></div>
+				<div class="kv-calendar-footer">
+					<button class="ts-btn ts-btn-success w-100" ng-click="vm.setStartTime()">{{vm._l.confirm}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ts-modal ts-modal-payroll-calendar" id="ts-calendar-end-modal">
+		<div class="modal-wrap">
+			<div class="modal-calendar-button">
+				<strong>{{vm._l.timesheet_endDay}}</strong>
+			</div>
+			<div class="modal-list modal-calendar-content">
+				<div id="calendarEndTime" class="kv-calendar"></div>
+				<div class="kv-calendar-footer">
+					<button class="ts-btn ts-btn-success w-100" ng-click="vm.setEndTime()">{{vm._l.confirm}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<!-- Footer  -->
+<footer class="ts-footer">
+    <div class="ts-footer-bottom">
+        <button ng-click="vm.createPaysheet()" class="btn btn-success ts-btn-full">Tạo bảng lương</button>
+    </div>
+</footer>

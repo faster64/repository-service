@@ -1,0 +1,689 @@
+﻿
+using System;
+using KiotVietTimeSheet.Application.Auth;
+using KiotVietTimeSheet.Application.EventBus.Events.PaysheetEvents;
+using KiotVietTimeSheet.Application.Queries.GetPaysheetById;
+using MediatR;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using KiotVietTimeSheet.Application.Queries.GetEmployeeByBranchId;
+using System.Linq;
+using System.Collections.Generic;
+using System.Net;
+using AutoMapper;
+using KiotVietTimeSheet.Application.Commands.CreatePaysheetPayslip;
+using KiotVietTimeSheet.Application.Commands.UpdatePaysheetFailed;
+using KiotVietTimeSheet.Application.Dto;
+using KiotVietTimeSheet.Application.Queries.GetAllDeductionByTenantD;
+using KiotVietTimeSheet.Application.Queries.GetAllowanceByTenantId;
+using KiotVietTimeSheet.Application.Queries.GetClockingForPaySheet;
+using KiotVietTimeSheet.Application.Queries.GetEmployeeBranchByEmployeeIds;
+using KiotVietTimeSheet.Domain.AggregatesModels.ClockingAggregate.Enums;
+using KiotVietTimeSheet.Application.Queries.GetCommissionByIds;
+using KiotVietTimeSheet.Application.Queries.GetHolidayForPaySheet;
+using KiotVietTimeSheet.Application.Queries.GetPayRateByEmployeeIds;
+using KiotVietTimeSheet.Application.Queries.GetShiftByBranchId;
+using KiotVietTimeSheet.Application.ServiceClients.Dtos;
+using KiotVietTimeSheet.BackgroundTasks.BackgroundProcess.Common;
+using KiotVietTimeSheet.Domain.AggregatesModels.EmployeeAggregate.Models;
+using KiotVietTimeSheet.Domain.Engines.SalaryEngine.Rules.CommisisonSalaryV2;
+using Newtonsoft.Json;
+using KiotVietTimeSheet.Domain.Common;
+using KiotVietTimeSheet.BackgroundTasks.Infras.KiotVietInternalService;
+using KiotVietTimeSheet.BackgroundTasks.EventHandlers;
+using KiotVietTimeSheet.Domain.AggregatesModels.PayRateAggregate.Models;
+using KiotVietTimeSheet.BackgroundTasks.IntegrationEvents.Events;
+using KiotVietTimeSheet.Resources;
+using KiotVietTimeSheet.SharedKernel.EventBus;
+using KiotVietTimeSheet.Application.Commands.UpdatePaySheetPayslips;
+using KiotVietTimeSheet.BackgroundTasks.Infras.Mqtt;
+using KiotVietTimeSheet.Domain.AggregatesModels.PaysheetAggregate.Enum;
+using Microsoft.Extensions.Configuration;
+
+namespace KiotVietTimeSheet.BackgroundTasks.BackgroundProcess.Types
+{
+    public class PaySheetProcess : BaseBackgroundProcess
+    {
+        private readonly RealtimeProcess _realtimeProcess;
+        private readonly ILogger<PaySheetIntegrationEventHandler> _logger;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+        private readonly AuditLogProcess _auditLogProcess;
+        private readonly MqttClientWrapper _mqttClient;
+        private readonly bool _useSocket;
+        private readonly bool _useMqtt;
+
+        public PaySheetProcess(
+            IMediator mediator,
+            ILogger<PaySheetIntegrationEventHandler> logger,
+            IKiotVietInternalService kiotVietInternalService,
+            IMapper mapper,
+            AuditLogProcess auditLogProcess,
+            IAuthService authService,
+            RealtimeProcess realtimeProcess,
+            IConfiguration configuration,
+            MqttClientWrapper mqttClient) : base(kiotVietInternalService,
+            authService)
+        {
+            _logger = logger;
+            _mediator = mediator;
+            _mapper = mapper;
+            _auditLogProcess = auditLogProcess;
+            _realtimeProcess = realtimeProcess;
+            _mqttClient = mqttClient;
+            _useSocket = bool.Parse(configuration.GetValue<string>("UseSocket"));
+            _useMqtt = bool.Parse(configuration.GetValue<string>("UseMqtt"));
+        }
+
+        public async Task CreatePaySheet(CreatePaysheetEmptyIntegrationEvent @event)
+        {
+            try
+            {
+                var paySheetDto = await _mediator.Send(new GetPaysheetByIdQuery(@event.PaySheetId, false));
+                if (paySheetDto.PaysheetStatus != (byte)PaysheetStatuses.Pending)
+                {
+                    return;    
+                }
+
+                if (paySheetDto.PaysheetStatus == (byte)PaysheetStatuses.Pending)
+                {
+                    await PublishMessageAsync(paySheetDto, EventTypeStatic.PaySheetEmptyPendingIntegrationSocket,
+                        "", (byte)PaysheetStatuses.Pending, (int)HttpStatusCode.OK, @event.Context);
+                }
+
+                var (employees, listEmployeeId) = await GetListEmployeesDto(paySheetDto.BranchId, paySheetDto, @event.Context);
+
+                var listPayRatedDto = await GetListPayrateProcessAsync(listEmployeeId, paySheetDto, @event.Context);
+
+                var (userRevenues, userProductRevenues) = await GetApiInternalRevenue(employees, paySheetDto, @event.Context);
+
+                var (listClocking, listPaidClocking, listUnPaidClocking, listShiftDto, listHolidayDto) = await GetClockingProcessAsync(paySheetDto.StartTime, paySheetDto.EndTime, listEmployeeId, paySheetDto.BranchId, paySheetDto, @event.Context);
+                
+                var (productBranchRevenues, listCommissionDto) = await GetCommissionProcessAsync(listPayRatedDto, paySheetDto, @event.BranchesDto, @event.Context);
+
+                var deductionsTask = GetDeductionProcessAsync(paySheetDto.TenantId, paySheetDto, @event.Context);
+
+                var allowancesTask = GetAllowanceProcessAsync(paySheetDto.TenantId, paySheetDto, @event.Context);
+
+                await Task.WhenAll(deductionsTask, allowancesTask);
+
+                var resultPaySheetDto = await CreatePaySheetPayslips(
+                    paySheetDto, employees, userRevenues, deductionsTask.Result, allowancesTask.Result, listCommissionDto,
+                    listClocking, listPaidClocking, listUnPaidClocking,
+                    listPayRatedDto, listHolidayDto, listShiftDto, userProductRevenues, productBranchRevenues, @event.Context);
+
+                var eventContext = GetIntegrationEventContext(paySheetDto, @event.Context);
+
+                var eventAuditPaySheet = new CreatePaysheetProcessIntegrationEvent(paySheetDto.Id, paySheetDto.Code, paySheetDto.Name, paySheetDto.PaysheetStatus);
+                eventAuditPaySheet.SetContext(eventContext);
+
+                _auditLogProcess.SendEventData(eventAuditPaySheet, nameof(CreatePaysheetProcessIntegrationEvent));
+
+                var descriptions = string.Format(Message.create_successed, Label.paysheet.ToLower());
+                await PublishMessageAsync(paySheetDto, EventTypeStatic.CreateDraftPaySheetIntegrationSocket,
+                    descriptions, resultPaySheetDto.PaysheetStatus, (int) HttpStatusCode.OK, @event.Context);
+            }
+            catch (Exception ex)
+            {
+                var descriptions = "Lỗi khi tạo phiếu lương";
+                var paySheetDto = await _mediator.Send(new GetPaysheetByIdQuery(@event.PaySheetId, false));
+                await PublishMessageAsync(paySheetDto, EventTypeStatic.CreateDraftPaySheetIntegrationSocket,
+                    descriptions, (byte) PaysheetStatuses.Void, (int) HttpStatusCode.InternalServerError, @event.Context);
+                _logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+
+        private async Task PublishMessageAsync(PaysheetDto paySheetDto, string eventType, string descriptions, byte paySheetStatus,  int statusCode, IntegrationEventContext context)
+        {
+            try
+            {
+                if (paySheetDto.TenantId < 1 || paySheetDto.BranchId < 1)
+                {
+                    return;
+                }
+
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+
+                var eventPaySheet = new SocketPaySheetCreateIntegrationEvent(
+                    paySheetDto.TenantId, paySheetDto.BranchId, paySheetDto.Id,
+                    paySheetStatus, descriptions,
+                    eventType, statusCode);
+                eventPaySheet.SetContext(eventContext);
+
+                if (_useMqtt)
+                {
+                    await _mqttClient.PublishAsync(new MqttClientPublishMessage
+                    {
+                        Topic = $"timesheet/{paySheetDto.TenantId}/{paySheetDto.BranchId}",
+                        Message = JsonConvert.SerializeObject(eventPaySheet,
+                            new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }),
+                        Qos = 0,
+                        Retain = false
+                    });
+                }
+                else
+                {
+                    _realtimeProcess.SendEventData(eventPaySheet, EventTypeStatic.CreateDraftPaySheetIntegrationSocket);
+                }
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        private IntegrationEventContext GetIntegrationEventContext(PaysheetDto paySheetDto, IntegrationEventContext context)
+        {
+            return new IntegrationEventContext(
+                paySheetDto.TenantId,
+                paySheetDto.BranchId,
+                paySheetDto.CreatedBy,
+                _authService.Context.User.GroupId,
+                _authService.Context.TenantCode,
+                context.User,
+                context.AuthorizedBranchIds,
+                context.TimeSheetConnection,
+                context.Permissions,
+                context.AtLeastNecessaryPermissionMap
+            );
+        }
+
+        public async Task ChangePeriodPaySheet(ChangePeriodPaysheetIntegrationEvent @event)
+        {
+            await AutoLoadingAndUpdatePaySheet(new AutoLoadingAndUpdatePaysheetIntegrationEvent(@event.PaySheetId, null, null, @event.BranchesDto));
+        }
+
+        public async Task AutoLoadingAndUpdatePaySheet(AutoLoadingAndUpdatePaysheetIntegrationEvent @event)
+        {
+            var paySheetDto = await _mediator.Send(new GetPaysheetByIdQuery(@event.PaySheetId, false));
+
+            if (paySheetDto.PaysheetStatus != (byte)PaysheetStatuses.Pending)
+            {
+                return;
+            }
+
+            if (paySheetDto.PaysheetStatus == (byte)PaysheetStatuses.Pending)
+            {
+                await PublishMessageAsync(paySheetDto, EventTypeStatic.PaySheetPendingIntegrationSocket,
+                    "", (byte)PaysheetStatuses.Pending, (int)HttpStatusCode.OK, @event.Context);
+            }
+
+<<<<<<< HEAD
+            var (employees, listEmployeeId) = await GetListEmployeesDto(paySheetDto.BranchId, paySheetDto, @event.Context);
+=======
+            if (@event.TimeOfStandardWorkingDay != null)
+            {
+                paySheetDto.TimeOfStandardWorkingDay = @event.TimeOfStandardWorkingDay.Value;
+            }
+
+            if (@event.StandardWorkingDayNumber != null)
+            {
+                paySheetDto.WorkingDayNumber = @event.StandardWorkingDayNumber.Value;
+            }
+
+            var (employees, listEmployeeId) = await GetListEmployeesDto(paySheetDto.BranchId, paySheetDto);
+>>>>>>> c6fe4b5d8b22317b73afa42e8563fb720a1aa0f2
+
+            var listPayRatedDto = await GetListPayrateProcessAsync(listEmployeeId, paySheetDto, @event.Context);
+
+            var (userRevenues, userProductRevenues) = await GetApiInternalRevenue(employees, paySheetDto, @event.Context);
+
+            var (listClocking, listPaidClocking, listUnPaidClocking, listShiftDto, listHolidayDto) = await GetClockingProcessAsync(paySheetDto.StartTime, paySheetDto.EndTime, listEmployeeId, paySheetDto.BranchId, paySheetDto, @event.Context);
+
+            var (productBranchRevenues, listCommissionDto) = await GetCommissionProcessAsync(listPayRatedDto, paySheetDto, @event.BranchesDto, @event.Context);
+
+            var deductionsTask = GetDeductionProcessAsync(paySheetDto.TenantId, paySheetDto, @event.Context);
+
+            var allowancesTask = GetAllowanceProcessAsync(paySheetDto.TenantId, paySheetDto, @event.Context);
+
+            await Task.WhenAll(deductionsTask, allowancesTask);
+
+            await UpdatePaySheetPayslips(
+                paySheetDto, employees, userRevenues, deductionsTask.Result, allowancesTask.Result, listCommissionDto,
+                listClocking, listPaidClocking, listUnPaidClocking,
+                listPayRatedDto, listHolidayDto, listShiftDto, userProductRevenues, productBranchRevenues, @event.Context);
+        }
+
+        #region process COMMISSION
+        private CommissionSalaryRuleValueV2 GetCommissionRuleValue(List<PayRateDetail> payRateDetails)
+        {
+
+                var commissionRule = payRateDetails.FirstOrDefault(p => p.RuleType == typeof(CommissionSalaryRuleV2).Name);
+                var commissionSalaryValue = new CommissionSalaryRuleValueV2();
+                if (commissionRule != null)
+                {
+                    commissionSalaryValue = (CommissionSalaryRuleValueV2)JsonConvert.DeserializeObject(commissionRule.RuleValue,
+                        typeof(CommissionSalaryRuleValueV2));
+                }
+                return commissionSalaryValue;
+
+        }
+
+        /// <summary>
+        /// Lấy doanh thu theo chi nhánh và list commission in source.
+        /// </summary>
+        /// <param name="listPayRatedDto"></param>
+        /// <param name="paySheetDto"></param>
+        /// <param name="paysheetDto"></param>
+        /// <param name="branchedDto"></param>
+        /// <returns> 
+        /// Return two items.
+        /// Item 1: List ProductRevenue (Doanh thu chi nhánh)
+        /// Item 2: List Commission in source
+        /// </returns>
+        private async Task<Tuple<List<ProductRevenue>, List<CommissionDto>>> GetCommissionProcessAsync(List<PayRate> listPayRatedDto, PaysheetDto paysheetDto, List<BranchDto> branchedDto, IntegrationEventContext context)
+        {
+            try
+            {
+                //start Kiểm tra nếu có bất kỳ nhân viên nào có cài đặt tính hoa hồng cho tất cả chi nhánh
+                var payRateDetails = listPayRatedDto.Select(p => p.PayRateDetails).ToList();
+
+                var branchIds = new List<long>();
+                var commissionIds = new List<long>();
+                var commissionSalaryRuleValue = payRateDetails.Select(GetCommissionRuleValue).ToList();
+                commissionSalaryRuleValue = commissionSalaryRuleValue.Where(c => c.CommissionSalaryRuleValueDetails != null).ToList();
+                foreach (var commissionSalaryValue in commissionSalaryRuleValue)
+                {
+                    //Lấy danh sách các bảng hoa hồng được gán cho nhân viên
+                    commissionIds.AddRange(commissionSalaryValue.CommissionSalaryRuleValueDetails
+                        .Select(c => c.CommissionTableId ?? 0).ToList());
+
+                    //Nếu có bất kỳ nhân viên nào có thiết lập hoa hồng chi nhánh mà chọn All chi nhánh
+                    if (commissionSalaryValue.FormalityTypes !=
+                        CommissionSalaryFormalityTypes.BranchCommissionRevenue) continue;
+
+                    if (commissionSalaryValue.BranchIds != null && commissionSalaryValue.BranchIds.Count > 0)
+                        branchIds.AddRange(commissionSalaryValue.BranchIds.Select(x => (long)x).ToList());
+                }
+
+                commissionIds = commissionIds.Where(c => c != 0).Distinct().ToList();
+
+                var branchProductRevenuesTask = GetProductBranchRevenue(paysheetDto, branchedDto, branchIds, commissionSalaryRuleValue);
+
+                var commissionTablesTask = GetListCommissionByCommissionIds(commissionIds);
+
+                await Task.WhenAll(branchProductRevenuesTask, commissionTablesTask);
+
+                return new Tuple<List<ProductRevenue>, List<CommissionDto>>(branchProductRevenuesTask.Result, commissionTablesTask.Result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex,ex.Message);
+                await _mediator.Send(new UpdatePaysheetFailedCommand(paysheetDto.Id));
+                var eventContext = GetIntegrationEventContext(paysheetDto,context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paysheetDto.Code, paysheetDto.Name,
+                    paysheetDto.PaysheetStatus, "Lỗi khi lấy thông tin bảng hoa hồng");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+
+        private async Task<List<CommissionDto>> GetListCommissionByCommissionIds(List<long> commissionIds)
+        {
+            var commissionTables = await _mediator.Send(new GetCommissionByIdsQuery(commissionIds));
+
+            return commissionTables;
+        }
+
+        private async Task<List<ProductRevenue>> GetProductBranchRevenue(PaysheetDto paySheetDto, List<BranchDto> branchedDto, List<long> branchIds, List<CommissionSalaryRuleValueV2> commissionSalaryRuleValue)
+        {
+
+            var branchProductRevenues = new List<ProductRevenue>();
+            if (commissionSalaryRuleValue.Any(c => c.FormalityTypes == CommissionSalaryFormalityTypes.BranchCommissionRevenue))
+            {
+                var isAllBranch = commissionSalaryRuleValue.Any(c => c.IsAllBranch && c.FormalityTypes == CommissionSalaryFormalityTypes.BranchCommissionRevenue);
+                branchProductRevenues = await _kiotVietInternalService.GetBranchProductRevenues(
+                    paySheetDto.TenantId,
+                    _authService.Context.TenantCode,
+                    isAllBranch,
+                    branchedDto,
+                    branchIds,
+                    paySheetDto.StartTime.Date,
+                    paySheetDto.EndTime.Date.AddDays(1).Date);
+            }
+
+            return branchProductRevenues;
+        }
+
+        #endregion
+
+        #region Process Payrate
+
+        /// <summary>
+        /// Lấy danh sách thiết lập lương cho nhân viên
+        /// </summary>
+        /// <param name="listEmployeeId"></param>
+        /// <returns></returns>
+        private async Task<List<PayRate>> GetListPayrateProcessAsync(List<long> listEmployeeId, PaysheetDto paysheetDto, IntegrationEventContext context)
+        {
+            try
+            {
+                var listPayRatedDto = await _mediator.Send(new GetPayRateByEmployeeIdsQuery(listEmployeeId));
+
+                return listPayRatedDto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                var eventContext = GetIntegrationEventContext(paysheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paysheetDto.Code, paysheetDto.Name,
+                    paysheetDto.PaysheetStatus, "Lỗi khi lấy danh sách thiết lập lương cho nhân viên");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+        #endregion
+
+        #region process Allowances
+
+        /// <summary>
+        /// Lấy danh sách phụ cấp
+        /// </summary>
+        /// <param name="tenantId"></param>
+        /// <param name="paySheetDto"></param>
+        /// <returns></returns>
+        private async Task<List<AllowanceDto>> GetAllowanceProcessAsync(int tenantId, PaysheetDto paySheetDto, IntegrationEventContext context)
+        {
+            // Lấy danh sách phụ cấp 
+            try
+            {
+                var allowances = await _mediator.Send(new GetAllowanceByTenantIdQuery(tenantId));
+
+                return allowances;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await _mediator.Send(new UpdatePaysheetFailedCommand(paySheetDto.Id));
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paySheetDto.Code, paySheetDto.Name,
+                    paySheetDto.PaysheetStatus, "Lỗi khi lấy danh sách phụ cấp");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+        #endregion
+
+        #region Process Deductions
+
+        /// <summary>
+        /// Lấy danh sách giảm trừ
+        /// </summary>
+        /// <param name="tenantId"></param>
+        /// <param name="paysheetDto"></param>
+        /// <returns></returns>
+        private async Task<List<DeductionDto>> GetDeductionProcessAsync(int tenantId, PaysheetDto paysheetDto, IntegrationEventContext context)
+        {
+            try
+            {
+                var deductions = await _mediator.Send(new GetAllDeductionByTenantDQuery(tenantId));
+
+                return deductions;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await _mediator.Send(new UpdatePaysheetFailedCommand(paysheetDto.Id));
+                var eventContext = GetIntegrationEventContext(paysheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paysheetDto.Code, paysheetDto.Name,
+                    paysheetDto.PaysheetStatus, "Lỗi khi lấy danh sách giảm trừ");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+        #endregion
+
+        #region Process Clockings
+
+        /// <summary>
+        /// Lấy danh sách clocking bao gồm các trạng thái đã chấm công (chấm công vào, chấm công ra) và chấm công coi là ngày nghỉ (holiday, nghỉ phép) 
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="listEmployeeId"></param>
+        /// <param name="branchId"></param>
+        /// <param name="paysheetDto"></param>
+        /// <returns>
+        /// return four items. They are used to calculate payslip-clocking
+        /// Item 1: list clocking
+        /// Item 2: list clocking paid
+        /// Item 3: list clocking un paid
+        /// Item 4: list shift of branch
+        /// Item 5: list holiday
+        /// </returns>
+<<<<<<< HEAD
+        private async Task<Tuple<List<ClockingDto>, List<ClockingDto>, List<ClockingDto>, List<ShiftDto>, List<HolidayDto>>> GetClockingProcessAsync(DateTime startTime, DateTime endTime, List<long> listEmployeeId, int branchId, PaysheetDto paysheetDto, IntegrationEventContext context)
+=======
+        private async Task<Tuple<List<ClockingDto>, List<ClockingDto>, List<ClockingDto>, List<ShiftDto>, List<HolidayDto>>>
+            GetClockingProcessAsync(
+                DateTime startTime, DateTime endTime, 
+                List<long> listEmployeeId, int branchId,
+                PaysheetDto paysheetDto)
+>>>>>>> c6fe4b5d8b22317b73afa42e8563fb720a1aa0f2
+        {
+            try
+            {
+                // Get list clocking has check-in, check-out and nghỉ phép
+                var listClockingTask = _mediator.Send(new GetClockingForPaySheetQuery(startTime, endTime, listEmployeeId));
+
+                var listShiftTask = _mediator.Send(new GetShiftByBranchIdQuery(branchId));
+
+                var listHolidayTask = _mediator.Send(new GetHolidayForPaySheetQuery(startTime, endTime));
+
+                await Task.WhenAll(listClockingTask, listShiftTask, listHolidayTask);
+
+                // Get list clocking has un paid
+                var unListPaidClocking = listClockingTask.Result.Where(c => c.ClockingPaymentStatus == (byte)ClockingPaymentStatuses.UnPaid).ToList();
+
+                // Get list clocking has paid
+                var paidListClocking = listClockingTask.Result.Where(c => c.ClockingPaymentStatus == (byte)ClockingPaymentStatuses.Paid).ToList();
+
+                return new Tuple<List<ClockingDto>, List<ClockingDto>, List<ClockingDto>, List<ShiftDto>, List<HolidayDto>>(
+                    listClockingTask.Result, paidListClocking, unListPaidClocking, listShiftTask.Result, listHolidayTask.Result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await _mediator.Send(new UpdatePaysheetFailedCommand(paysheetDto.Id));
+                var eventContext = GetIntegrationEventContext(paysheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paysheetDto.Code, paysheetDto.Name,
+                    paysheetDto.PaysheetStatus, "Lỗi khi lấy danh sách chấm công, ngày nghỉ lễ, nghỉ phép");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Process api interal
+        /// <summary>
+        /// Lấy tiền đã thanh toán cho nhân viên (UserByRevenueObject).
+        /// Lấy hoa hồng tính theo danh sách nhân viên (ProductRevenue)
+        /// </summary>
+        /// <param name="employees"></param>
+        /// <param name="paySheetDto"></param>
+        /// <returns>
+        /// Return two items.
+        /// Item 1: List userByRevenueObject
+        /// Item 2: List productRevenue
+        /// </returns>
+<<<<<<< HEAD
+        private async Task<Tuple<List<UserByRevenueObject>, List<ProductRevenue>>> GetApiInternalRevenue(List<EmployeeDto> employees, PaysheetDto paySheetDto, IntegrationEventContext context)
+=======
+        private async Task<Tuple<List<UserByRevenueObject>, List<ProductRevenue>>> GetApiInternalRevenue(
+            List<EmployeeDto> employees, PaysheetDto paySheetDto)
+>>>>>>> c6fe4b5d8b22317b73afa42e8563fb720a1aa0f2
+        {
+            try
+            {
+                var lstUser = employees.Where(e => (e.UserId ?? 0) > 0).Select(e => e.UserId ?? 0).ToList();
+
+                var userRevenuesTask = _kiotVietInternalService.GetUserByRevenue(
+                    paySheetDto.TenantId,
+                    null,
+                    lstUser,
+                    paySheetDto.StartTime.Date,
+                    paySheetDto.EndTime.AddDays(1).AddTicks(-1));
+
+                var userProductRevenuesTask = _kiotVietInternalService.GetProductRevenueByUser(
+                    paySheetDto.TenantId,
+                    null,
+                    lstUser,
+                    paySheetDto.StartTime.Date,
+                    paySheetDto.EndTime.Date.AddDays(1).Date);
+
+                await Task.WhenAll(userRevenuesTask, userProductRevenuesTask);
+
+                var userRevenues = userRevenuesTask.Result ?? new List<UserByRevenueObject>();
+                var userProductRevenues = userProductRevenuesTask.Result ?? new List<ProductRevenue>();
+
+                return new Tuple<List<UserByRevenueObject>, List<ProductRevenue>>(userRevenues, userProductRevenues);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await _mediator.Send(new UpdatePaysheetFailedCommand(paySheetDto.Id));
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paySheetDto.Code, paySheetDto.Name,
+                    paySheetDto.PaysheetStatus, "Lỗi khi lấy Doanh thu cho nhân viên");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region PRIVATE
+
+        /// <summary>
+        /// Lấy danh sách nhân viên
+        /// </summary>
+        /// <param name="branchId"></param>
+        /// <param name="paySheetDto"></param>
+        /// <returns>
+        /// return two items.
+        /// Item 1: list EmployeeDto.
+        /// Item 2: list employeeIds 
+        /// </returns>
+        private async Task<Tuple<List<EmployeeDto>, List<long>>> GetListEmployeesDto(int branchId, PaysheetDto paySheetDto, IntegrationEventContext context)
+        {
+            try
+            {
+                // Get list employees
+                var employees = await _mediator.Send(new GetEmployeeByBranchIdQuery(branchId, 0));
+
+                employees = employees.OrderBy(x => x.Name.Split(' ').Last()).ToList();
+                var listEmployeeId = employees.Select(e => e.Id).ToList();
+
+                //get list branch working of employees
+                var lstBranchWorking = await _mediator.Send(new GetEmployeeBranchByEmployeeIdsQuery(listEmployeeId));
+                employees.ForEach(e =>
+                {
+                    var lstBranchWithEmployee = lstBranchWorking.Where(x => x.EmployeeId == e.Id).ToList();
+                    e.EmployeeBranches = _mapper.Map<List<EmployeeBranch>>(lstBranchWithEmployee);
+                });
+
+                return new Tuple<List<EmployeeDto>, List<long>>(employees, listEmployeeId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                await _mediator.Send(new UpdatePaysheetFailedCommand(paySheetDto.Id));
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paySheetDto.Code, paySheetDto.Name,
+                    paySheetDto.PaysheetStatus, "Lỗi khi lấy thông tin danh sách nhân viên");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+
+        private async Task UpdatePaySheetPayslips(PaysheetDto paySheetDto,
+            List<EmployeeDto> listEmployeeDto,
+            List<UserByRevenueObject> userRevenues,
+            List<DeductionDto> listDeductionDto,
+            List<AllowanceDto> listAllowanceDto,
+            List<CommissionDto> listCommissionDto,
+            List<ClockingDto> listClockingDto,
+            List<ClockingDto> listClockingPaid,
+            List<ClockingDto> listClockingUnPaid,
+            List<PayRate> payRatesDto,
+            List<HolidayDto> listHolidayDto,
+            List<ShiftDto> listShiftDto,
+            List<ProductRevenue> userProductRevenues,
+            List<ProductRevenue> branchProductRevenues, IntegrationEventContext context)
+        {
+            try
+            {
+                var result = await _mediator.Send(new UpdatePaySheetPayslipsCommand(
+                        paySheetDto, listEmployeeDto, userRevenues, listDeductionDto, listAllowanceDto, listCommissionDto,
+                        listClockingDto, listClockingPaid, listClockingUnPaid,
+                        payRatesDto, listHolidayDto, listShiftDto, userProductRevenues, branchProductRevenues));
+
+                var descriptions = string.Format(Message.create_successed, Label.paysheet.ToLower());
+                await PublishMessageAsync(
+                    paySheetDto, EventTypeStatic.AutoLoadingAndUpdatePaySheetIntegrationSocket,
+                    descriptions, result.PaysheetStatus, (int)HttpStatusCode.OK,context);
+
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+                var eventAuditPaySheet = new UpdatePaysheetProcessIntegrationEvent(paySheetDto.Id, paySheetDto.Code, paySheetDto.Name, paySheetDto.PaysheetStatus);
+                eventAuditPaySheet.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditPaySheet, nameof(UpdatePaysheetProcessIntegrationEvent));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paySheetDto.Code, paySheetDto.Name,
+                    paySheetDto.PaysheetStatus, "Lỗi khi tạo phiếu lương");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+
+        private async Task<PaysheetDto> CreatePaySheetPayslips(PaysheetDto paySheetDto,
+            List<EmployeeDto> listEmployeeDto,
+            List<UserByRevenueObject> userRevenues,
+            List<DeductionDto> listDeductionDto,
+            List<AllowanceDto> listAllowanceDto,
+            List<CommissionDto> listCommissionDto,
+            List<ClockingDto> listClockingDto,
+            List<ClockingDto> listClockingPaid,
+            List<ClockingDto> listClockingUnPaid,
+            List<PayRate> payRatesDto,
+            List<HolidayDto> listHolidayDto,
+            List<ShiftDto> listShiftDto,
+            List<ProductRevenue> userProductRevenues,
+            List<ProductRevenue> branchProductRevenues, IntegrationEventContext context)
+        {
+            try
+            {
+                var result = await _mediator.Send(new CreatePaySheetPayslipCommand(
+                        paySheetDto, listEmployeeDto, userRevenues, listDeductionDto, listAllowanceDto, listCommissionDto,
+                        listClockingDto, listClockingPaid, listClockingUnPaid,
+                        payRatesDto, listHolidayDto, listShiftDto, userProductRevenues, branchProductRevenues));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                var eventContext = GetIntegrationEventContext(paySheetDto, context);
+                var eventAuditLog = new UpdatePaysheetProcessErrorIntegrationEvent(paySheetDto.Code, paySheetDto.Name,
+                    paySheetDto.PaysheetStatus, "Lỗi khi tạo phiếu lương");
+                eventAuditLog.SetContext(eventContext);
+                _auditLogProcess.SendEventData(eventAuditLog, nameof(UpdatePaysheetProcessErrorIntegrationEvent));
+                throw;
+            }
+        }
+        #endregion
+    }
+}

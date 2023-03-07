@@ -1,0 +1,86 @@
+// display
+.d-none {
+  @extend %d-none;
+}
+
+.d-block {
+  @extend %d-block;
+}
+
+.d-flex {
+  @extend %flex;
+}
+
+// flex
+
+.flex-grow-0 {
+  @extend %flex-grow-0;
+}
+
+.content-space-between {
+  @extend %flex;
+  @extend %justify-content-between;
+}
+
+// @each $direction in (top, bottom) {
+//   .border-line-#{$direction} {
+//     @include border-line($direction);
+//   }
+// }
+
+// @each $value in (hidden, visible) {
+//   .o-#{$value} {
+//     overflow: $value;
+//   }
+// }
+
+// @each $margin in $list-margin {
+//   .ml-#{$margin} {
+//     margin-left: #{0.1 * $margin}rem !important;
+//   }
+
+//   .mr-#{$margin} {
+//     margin-right: #{0.1 * $margin}rem !important;
+//   }
+
+//   .mb-#{$margin} {
+//     margin-bottom: #{0.1 * $margin}rem !important;
+//   }
+
+//   .mt-#{$margin} {
+//     margin-top: #{0.1 * $margin}rem !important;
+//   }
+// }
+
+// @each $row-padding in $row-paddings {
+//   .row-padding-#{$row-padding} {
+//     @include row-padding($row-padding);
+//   }
+// }
+
+::-webkit-scrollbar-thumb {
+  width: $scrollbar-size;
+  background-color: $text-color-light;
+  @include border-radius(8px);
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  color: $text-color-light !important;
+  font-weight: 400;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer */
+  color: $text-color-light !important;
+  font-weight: 400;
+  opacity: 1;
+}
+
+::placeholder {
+  color: $text-color-light !important;
+  font-weight: 400;
+  opacity: 1;
+}
+

@@ -1,0 +1,37 @@
+<div class="ts-main">
+  <div class="container">
+    <div class="col-wrap page-success">
+        <!-- Chấm vào thành công -->
+        <div ng-if="!vm.confirmClocking && vm.isCheckIn" class="page-confirm">
+            <div class="confirm-icon"><span class="icon-check icon-success-in"><i class="fal fa-check"></i></span></span>
+                <p>{{vm.successMessage}}</p>
+            </div>
+        </div>
+        <!-- Chấm ra thành công  -->
+        <div ng-if="!vm.confirmClocking && !vm.isCheckIn" class="page-confirm">
+            <div class="confirm-icon"><span class="icon-check icon-success-out"><i class="fal fa-check"></i></span></span>
+                <p>{{vm.successMessage}}</p>
+            </div>
+        </div>
+        <!-- Đợi xác nhận từ quản lý -->
+        <div ng-if="vm.confirmClocking && !vm.wrongGps" class="page-confirm">
+            <div class="confirm-icon"><span class="icon-check icon-waring"><i class="fal fa-check"></i></span></span>
+                <p>{{vm.successMessage}}</p>
+            </div>
+        </div>
+        <!-- Yêu cầu xác nhận chấm công vào thành công -->
+        <div ng-if="vm.confirmClocking && vm.wrongGps && vm.isCheckIn" class="page-confirm">
+            <div class="confirm-icon"><span class="icon-check icon-confirm-in"><i class="fal fa-check"></i></span></span>
+                <p>Đã gửi yêu cầu xác nhận chấm công vào thành công</p>
+            </div>
+        </div>
+        <!-- Yêu cầu xác nhận chấm công ra  thành công -->
+        <div ng-if="vm.confirmClocking && vm.wrongGps && !vm.isCheckIn" class="page-confirm">
+            <div class="confirm-icon"><span class="icon-check icon-confirm-out"><i class="fal fa-check"></i></span></span>
+                <p>Đã gửi yêu cầu xác nhận chấm công ra thành công</p>
+            </div>
+        </div>
+    </div>
+  </div> 
+</div>
+

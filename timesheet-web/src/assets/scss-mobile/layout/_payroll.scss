@@ -1,0 +1,348 @@
+.ts-payroll-menu {
+    overflow-x: scroll;
+    padding-bottom: 0.8rem;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      @include border-radius(0);
+    }
+  }
+  
+  .ts-menu-head {
+    margin: 0;
+    @extend %flex;
+    @extend %justify-content-start;
+  
+    li {
+      list-style: none;
+      margin-right: 0.8rem;
+      &:first-child {
+        padding-left: 1.5rem;
+      }
+  
+      &:last-child {
+        padding-right: 1.5rem;
+      }
+  
+      a {
+        display: flex;
+        background-color: white;
+        border: 1px solid $gray-5;
+        border-radius: 500px;
+        @extend %flex;
+        @extend %justify-content-between;
+        line-height: 20px;
+        padding: 0.5rem 2rem;
+  
+        i {
+          font-size: 14px;
+          color: $gray-2;
+          margin-right: 0.4rem;
+        }
+  
+        span {
+          &:not(:first-child) {
+            word-break: break-word;
+            white-space: nowrap;
+          }
+        }
+  
+        &.active {
+          border: 1px solid $success;
+          color: $gray;
+          background: linear-gradient(
+              0deg,
+              rgba(255, 255, 255, 0.86),
+              rgba(255, 255, 255, 0.86)
+            ),
+            $success;
+        }
+      }
+    }
+  }
+  
+  .ts-payroll {
+    &-page {
+    }
+  
+    &-header {
+      &-date {
+        p {
+          padding-left: 2.8rem;
+          font-size: 1.2rem;
+          font-weight: 400;
+          line-height: 1.6rem;
+          color: $gray-2;
+          padding-bottom: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  
+    &-list {
+      margin-bottom: 0.8rem;
+  
+      &:last-child {
+        margin-bottom: 7rem;
+      }
+    }
+  
+    &-item {
+      padding: 0.4rem;
+      &-head {
+        padding-top: 0.4rem;
+        > a {
+          @extend %item-start-between;
+          padding-bottom: 1.2rem;
+        }
+  
+        .block-col-main {
+          width: calc(100% - 130px);
+  
+          h4 {
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: -0.07px;
+          }
+  
+          span {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            color: $gray-2;
+          }
+        }
+  
+        .block-col-button {
+          span {
+            text-transform: uppercase;
+            border-radius: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+          }
+          .status-default {
+            background-color: $gray-5;
+            color: $gray;
+          }
+  
+          .status-error {
+            background-color: $danger-86;
+            color: $danger;
+          }
+  
+          .status-success {
+            background-color: $success-86;
+            color: $success;
+          }
+        }
+      }
+      &-main {
+        > a {
+          @extend %item-center-between;
+          text-align: center;
+          padding-top: 1.4rem;
+          padding-bottom: 1.4rem;
+          background-color: $gray-6;
+          border-radius: 0.8rem;
+          > div {
+            position: relative;
+            min-width: 32%;
+            > span:first-child {
+              width: 100%;
+              color: $gray-2;
+              font-size: 1.2rem;
+              line-height: 1.6rem;
+              font-weight: 400;
+              margin-bottom: 0.2rem;
+            }
+  
+            strong {
+              clear: both;
+              width: 100%;
+              float: left;
+              font-size: 1.2rem;
+              line-height: 1.6rem;
+              font-weight: 600;
+            }
+  
+            &:not(:last-child) {
+              &:after {
+                content: "";
+                border-left: 1px dashed $gray-4;
+                height: 100%;
+                width: 1px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                right: 0;
+                margin: auto;
+              }
+            }
+          }
+        }
+  
+        .ts-item-total {
+          strong {
+            color: $primary;
+          }
+        }
+  
+        .ts-item-total-paid {
+          strong {
+            color: $success;
+          }
+        }
+      }
+      &-footer {
+        @extend %item-center-between;
+        padding-bottom: 0.4rem;
+        padding-top: 1.2rem;
+        .block-col-main {
+          width: calc(100% - 95px);
+          span {
+            font-size: 1.1rem;
+            line-height: 1.4rem;
+            color: $gray-2;
+            margin-bottom: 0.2rem;
+          }
+          strong {
+            width: 100%;
+            float: left;
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            font-weight: 600;
+          }
+        }
+  
+        .block-col-button {
+          min-width: 90px;
+          .reload {
+            @extend %item-center;
+            border-radius: 500px;
+            border: 1px solid $gray-5;
+            padding: 0.5rem 1.2rem;
+            color: $primary;
+            span {
+              letter-spacing: -0.3px;
+              font-size: 1.4rem;
+              line-height: 2rem;
+              margin-left: 0.4rem;
+            }
+  
+            i {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  
+    &-detail {
+      &-list {
+        list-style: none;
+        // padding: 0;
+        // margin: 1.2rem;
+        box-shadow: 0px 2px 8px rgba(51, 51, 51, 0.16);
+        // margin-top: 0 !important;
+  
+        &:last-child {
+          margin-bottom: 7rem;
+        }
+      }
+  
+      &-item {
+        &-head {
+          margin-bottom: 1.2rem;
+          > a {
+            @extend %item-center-between;
+          }
+        
+          h5 {
+            margin-bottom: 0;
+            letter-spacing: 0.07px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 2.2rem;
+            text-transform: capitalize;
+          }
+  
+          span {
+            color: $gray-2;
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.6rem;
+            text-transform: uppercase;
+          }
+        }
+        &-main {
+          @extend %item-center-between;
+          flex-wrap: wrap;
+  
+          .ts-box {
+            width: calc(50% - 4px);
+            padding: 1.2rem 1rem;
+            background-color: $gray-6;
+            border-radius: 0.8rem;
+  
+            &:nth-child(1),
+            &:nth-child(2) {
+              margin-bottom: 0.8rem;
+            }
+  
+            span {
+              margin-bottom: 0.2rem;
+              font-size: 1.2rem;
+              font-weight: 400;
+              line-height: 1.6rem;
+              color: $gray-3;
+            }
+  
+            strong {
+              font-size: 1.4rem;
+              line-height: 2rem;
+              font-weight: 600;
+              width: 100%;
+              float: left;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .ts-footer-bottom {
+    padding: 0.8rem 1.6rem;
+  }
+  
+.ts-paysheet-detail-view {
+  .ts-payroll-detail-list {
+    margin-bottom: 1.2rem;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+
+    &:last-child {
+      margin-bottom: 7rem !important;
+    }
+  }
+}
+
+.ts-payroll-header-title {
+  padding: 0 16px;
+  margin-bottom: 6px;
+
+  h2 {
+    text-transform: uppercase;
+    color: $gray-1;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#ts-staff-main-payslip {
+  padding-bottom: 1rem;
+}

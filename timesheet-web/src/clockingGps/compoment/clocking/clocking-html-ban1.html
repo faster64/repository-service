@@ -1,0 +1,69 @@
+<div class="ts-main">
+  <div class="col-wrap"> 
+    <div class="main page-cloking">
+      <div class="header">
+        <div class="container">
+          <div class="name-custome"><h2>{{vm.message}}</h2></div>
+          <div class="header-info">
+            <div class="ts-date">
+              <span class="icon"><i class="far fa-calendar-alt"></i></span>
+              <span>Thứ 2, 05/07/2021</span>
+            </div>
+            <div class="ts-branch">
+              <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+              <p>Cửa hàng Sài Gòn Quận 1</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+        <!-- Add class "cloking-in" Với trường hơp chấm công vào và "cloking-out" Với ngược lại -->
+        <div class="page-cloking-wrap cloking-in">
+          <div class="cloking-shift">
+            <div class="container">
+              <div class="ts-dropdown">
+                <a class="ts-dropdowm-btn" href="#">
+                  <span class="ts-dropdowm-result">Ca sáng 2: 09:30 - 13:30</span>
+                  <span class="ts-icon"><i class="fal fa-angle-right"></i></span>
+                </a>
+
+                <!-- Add class 'active-dropdown' để hiện dropdown -->
+                <ul class="dropdown-menu">
+                  <!-- <select ng-model="vm.clocking" ng-change="vm.onChangeShift()">
+                    <option ng-repeat="clocking in vm.clockings" value="{{clocking.id}}">
+                      {{clocking.shift.name}}
+                    </option>
+                  </select> -->
+ 
+                  <li>Chọn ca làm việc</li>
+                  <li class="time-before">Ca sáng: 08:00 - 12:30</li>
+                  <li class="now">Ca sáng 2: 09:30 - 13:30</li>
+                  <li>Ca chiều: 14:00 - 18:30</li>
+                  <li>Ca tối: 18:30 - 22:30</li>
+                </ul>
+              </div>
+            </div>  
+          </div>
+          <div class="container">
+            <div class="cloking-main">
+                <span class="time-clock">13:31</span>
+            </div>  
+
+            <div class="error-msg">{{vm.error}}</div>
+
+            <div class="cloking-button">
+              <a href="#" class="btn btn-outline  btn-outline-primary btn-back">Thử lại</a>
+              <a href="#" class="btn btn-primary btn-send">Gửi xác nhận chấm công</a>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="footer">
+      <div class="container">
+         <!-- <button  ng-click="vm.submitClocking()"  class="btn btn-success btn-xl btn-in"><i class="far fa-walking"></i>Chấm công vào</button> -->
+        <button  ng-click="vm.submitClocking()"  class="btn btn-primary btn-xl btn-out" ><i class="far fa-walking"></i>Chấm công ra</button>
+      </div> 
+    </div>
+  </div>
+</div>

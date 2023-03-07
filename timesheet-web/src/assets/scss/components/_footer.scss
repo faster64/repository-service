@@ -1,0 +1,14 @@
+.footer {
+  padding-bottom: 1rem;
+  float: left;
+  width: 100%;
+  padding-top: 1rem;
+
+  @media (min-height: 640px) {
+    @include position(absolute, $left: 0, $top: null, $right: 0, $bottom: 0);
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

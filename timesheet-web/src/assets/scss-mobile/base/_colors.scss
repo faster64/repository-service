@@ -1,0 +1,63 @@
+@each $color, $value in $theme-colors {
+  .color-#{$color} {
+    color: $value !important;
+  }
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+}
+
+@each $name, $color in $theme-colors {
+  .text-outline-#{$name} {
+    @include box-text($color, $color);
+    @include box-circle($font-size, 4px);
+    @extend %box-size-auto-sm;
+  }
+
+  .text-bg-#{$name} {
+    @if ($name == "default") {
+      @include box-text(transparent, $text-color, rgba($color, 0.1));
+    } @else {
+      @include box-text(transparent, $color, rgba($color, 0.1));
+    }
+    @include box-circle($font-size, 4px);
+    @extend %box-size-auto-sm;
+  }
+
+  .tag-#{$name} {
+    background-color: $color;
+    .btn-icon {
+      &:hover,
+      &:focus {
+        background-color: rgba($black, 0.2);
+      }
+    }
+  }
+}
+
+%icon-action-color {
+  color: $text-color-light;
+}
+%icon-mask-color {
+  color: $text-color-light;
+}
+
+%disabled-color {
+  color: $text-color-light;
+}
+%link-color {
+  color: $text-link-color;
+}
+.label-discount {
+  color: $text-danger-color;
+}
+.link-color {
+  cursor: pointer;
+  &,
+  & * {
+    @extend %link-color;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

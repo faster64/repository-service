@@ -1,0 +1,27 @@
+.text-center {
+  @extend %text-center;
+}
+.text-right {
+  @extend %text-right;
+}
+
+.font-bold {
+  @extend %font-bold;
+}
+.font-medium {
+  @extend %font-medium;
+}
+.font-regular {
+  @extend %font-regular;
+}
+.font-italic {
+  @extend %font-italic;
+}
+
+.text-color-primary {
+  color: $primary;
+}
+
+.text-color-light {
+  color: $text-color-light;
+}

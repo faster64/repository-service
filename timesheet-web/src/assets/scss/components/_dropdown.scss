@@ -1,0 +1,25 @@
+.ts-dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  @extend %dropdown;
+  li {
+    color: $text-color-title;
+    @extend %dropdown-item;
+    font-weight: 700;
+
+    &.time-before {
+      color: rgba(#000000, 0.25);
+    }
+
+    &.now {
+      .cloking-in & {
+        color: $success;
+      }
+
+      .cloking-out & {
+        color: $primary;
+      }
+    }
+  }
+}

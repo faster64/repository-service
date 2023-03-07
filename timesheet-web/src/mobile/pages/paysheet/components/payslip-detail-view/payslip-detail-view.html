@@ -1,0 +1,70 @@
+<div class="ts-payroll-page">
+	<!-- Header  -->
+	<header class="ts-header">
+		<div class="ts-header-top">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ts-header-back">
+                        <a ng-click="vm.back()">
+                            <span class="ts-icon-sm"><i class="far fa-chevron-left"></i></span>
+                            <span>{{vm.payslip.employee.name}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="ts-payroll-header-date">
+            <p>{{vm.payslip.employee.code}}</p>
+		</div>
+	</header>
+
+  <!-- Main -->
+	<main class="ts-main">
+    <div class="ts-staff-wrap">
+		<div class="ts-staff-main">
+      	    <div class="ts-staff-wrap box-main">
+                <div class="ts-payroll-detail-item">
+                    <div class="ts-staff-items">
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">CÒN CẦN TRẢ</div>
+                            <div class="staff-detail-content">{{ vm.payslip.totalNeedPay | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">LƯƠNG CHÍNH</div>
+                            <div class="staff-detail-content">{{ vm.payslip.mainSalary | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">LÀM THÊM</div>
+                            <div class="staff-detail-content">{{ vm.payslip.overtimeSalary | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">HOA HỒNG</div>
+                            <div class="staff-detail-content">{{ vm.payslip.commissionSalary | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">PHỤ CẤP</div>
+                            <div class="staff-detail-content">{{ vm.payslip.allowance | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">THƯỞNG</div>
+                            <div class="staff-detail-content">{{ vm.payslip.bonus | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">GIẢM TRỪ</div>
+                            <div class="staff-detail-content">{{ vm.payslip.deduction | number:0}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">TỔNG LƯƠNG</div>
+                            <div class="staff-detail-content">{{ vm.payslip.netSalary | number}}</div>
+                        </div>
+                        <div class="ts-staff-item">
+                            <div class="staff-detail-label">ĐÃ TRẢ</div>
+                            <div class="staff-detail-content">{{ vm.payslip.totalPayment | number}}</div>
+                        </div>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>
+  </main>
+</div>

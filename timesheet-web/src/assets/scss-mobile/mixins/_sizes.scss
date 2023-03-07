@@ -1,0 +1,19 @@
+@mixin box-size($width, $height: $width) {
+    width: $width;
+    @include box-size-auto($width, $height);
+}
+
+@mixin box-size-auto($width, $height: $width) {
+    height: $height;
+    min-width: $width;
+}
+
+%box-size-xs { @include box-size($input-height-xs); }
+%box-size-sm { @include box-size($input-height-sm); }
+%box-size-lg { @include box-size($input-height); }
+
+%box-size-auto-sm { @include box-size-auto($input-height-sm); }
+%box-size-auto-lg { @include box-size-auto($input-height); }
+
+
+

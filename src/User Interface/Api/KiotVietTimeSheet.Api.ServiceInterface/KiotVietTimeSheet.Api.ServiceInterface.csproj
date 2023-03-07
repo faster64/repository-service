@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Core" Version="5.5.0" />
+    <PackageReference Include="ServiceStack.Server" Version="5.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Application\KiotVietTimeSheet.Application\KiotVietTimeSheet.Application.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\KiotVietTimeSheet.Infrastructure\KiotVietTimeSheet.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\KiotViet.FileUpload\KiotViet.FileUpload.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources\KiotVietTimeSheet.Resources.csproj" />
+    <ProjectReference Include="..\KiotVietTimeSheet.Api.ServiceModel\KiotVietTimeSheet.Api.ServiceModel.csproj" />
+  </ItemGroup>
+
+</Project>

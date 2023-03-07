@@ -1,0 +1,143 @@
+.ts-header {
+  // position: fixed;
+  // width: 100vw;
+  // top: 0;
+  // z-index: 9; 
+  background-color: $white;
+  padding: $col-padding-md-x $col-padding-x $col-padding-x $col-padding-x;
+  border-radius: 0 0 $border-radius-md $border-radius-md;
+  // box-shadow: 0px 0px 16px rgba(84, 104, 120, 0.16);
+  position: relative;
+  z-index: 10;
+
+  &.header-fixed {
+    box-shadow: 0px 0px 16px rgba(84, 104, 120, 0.16);
+  }
+
+  .ts-icon-sm {
+    margin-right: .8rem;
+  }
+
+  &-back {
+    @extend %item-middle-start;
+    height: 100%;
+
+    a {
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 2.4rem;
+      color: $text-color;
+      @extend %item-center;
+
+      .ts-icon-sm > i {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &-links {
+    @extend %item-center-content-end;
+    .ts-links {
+      @extend %item-center;
+      width: 3.2rem;
+      height: 3.2rem;
+      font-size: 2rem;
+      &:not(:first-child) {
+        margin-left: $col-padding-md-x;
+      }
+
+      > i {
+        @extend %item-center;
+        height: 100%;
+      }
+    }
+  }
+
+  &-date {
+    float: left;
+    a {
+      @extend %item-center;
+
+      > i {
+        margin-right: $icon-space;
+      }
+    }
+  }
+
+  &-branch {
+    a {
+      float: right;
+      display: flex;
+      align-items: center;
+      
+      > i {
+        margin-right: $icon-space/2;
+        font-size: 1.6rem;
+      }
+      span {
+        @include text-ellipsis-multiline(1);
+      }
+    }
+  }
+
+  &-top {
+    margin-bottom: .4rem;
+  }
+
+  &-bottom {
+    margin-top: .8rem;
+
+    .col-6 {
+      &:first-child {
+        padding-right: 0;
+        flex: 0 0 55%;
+        max-width: 55%;
+      }
+      &:last-child {
+        padding-left: 0.5rem;
+        flex: 0 0 45%;
+        max-width: 45%;
+      }
+    }
+  }
+
+  &-shift {
+    margin-top: $col-margin-y;
+    a {
+      @extend %item-center-between;
+      border: 1px solid $color-border;
+      border-radius: $border-radius;
+      line-height: 3.4rem;
+      padding: 9px 16px 9px;
+      font-size: $font-size-md;
+      > span > i {
+        margin-right: $icon-space;
+        margin-top: 1px;
+      }
+      .ts-time {
+        color: $text-color-light;
+        font-size: $font-size;
+        letter-spacing: -0.5px;
+        font-weight: 600;
+      }
+
+      > span {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+
+        > span {
+          display: flex;
+        }
+      }
+
+      .ts-name-shift {
+        @include text-ellipsis-multiline(1);
+        margin-right: 3px;
+        max-width: 165px;
+      }
+    }
+
+
+  }
+}

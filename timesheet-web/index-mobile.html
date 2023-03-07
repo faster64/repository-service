@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="loading"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>
+    <div ng-view id="main-container" class="wrapper"></div>
+    <div class="toTop" id="toTop" onclick="toTop()" style="display: none;">
+        <i class="far fa-arrow-up"></i>
+    </div>
+    <script>
+        window.onload = function() {
+            if (jQuery) {
+                //jQuery.fn.hideLoading();
+            } else if (document.getElementById('loading')) {
+                document.getElementById('loading').style.display = "none";
+            }
+            localStorage.setItem('oldHash', location.hash)
+        }
+        window.onscroll = function() {
+            if ($(this).scrollTop()) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
+            }
+        }
+
+        function toTop() {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 250);
+        };
+
+        function onBackPressedAndroid() {
+            if (window.location.hash == '#/timesheet') {
+                if (typeof Android != 'undefined') {
+                    Android.backToMainApp();
+                } else {
+                    if (
+                        window.webkit &&
+                        window.webkit.messageHandlers &&
+                        window.webkit.messageHandlers.sendToNative
+                    ) {
+                        window.webkit.messageHandlers.sendToNative.postMessage('backToMainApp');
+                    }
+                }
+            } else window.history.back();
+        }
+    </script>
+</body>
+
+</html>

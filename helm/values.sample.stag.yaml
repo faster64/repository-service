@@ -1,0 +1,60 @@
+global:
+  imagePullSecrets: 
+    - name: citigo-registry
+  booking-timesheet-audit:
+    enabled: false
+  booking-timesheet-api:
+    enabled: false
+  booking-timesheet-background:
+    enabled: false
+## timesheet api
+booking-timesheet-api:
+  enabled: false    
+  replicaCount: 1
+  image:
+    repository: $IMAGE_ID
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: true
+    hosts:
+      - host: timesheet-salon-stag.booking.citigo.net
+        tls: false
+  autoscaling:
+    enabled: false
+  serviceAccount:
+    create: false
+## timesheet audit
+booking-timesheet-audit:
+  replicaCount: 1
+  enabled: false    
+  image:
+    repository: $IMAGE_ID
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: false
+  autoscaling:
+    enabled: false
+  serviceAccount:
+    create: false
+## timesheet background
+booking-timesheet-background:
+  replicaCount: 1
+  enabled: false    
+  image:
+    repository: $IMAGE_ID
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: false
+  autoscaling:
+    enabled: false
+  serviceAccount:
+    create: false

@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  api:
+    image: citigo-repo.kvpos.com:4434/kvdev/kv-timesheet-service:development
+    deploy:
+      replicas: 2
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+        max-file: "2"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - 5052:80
+  worker:
+    image: citigo-repo.kvpos.com:4434/kvdev/kv-timesheet-domain-event-process-worker:development
+    deploy:
+      replicas: 2
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+        max-file: "2"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - 5002:5002

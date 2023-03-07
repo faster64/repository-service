@@ -1,0 +1,35 @@
+.radio {
+  &-inline {
+    @extend %item-center-between;
+    margin-bottom: 10px;
+  }
+
+  &-tab {
+    @extend %flex;
+    position: relative;
+    + label {
+      margin-left: 10px;
+    }
+
+    [type="radio"] {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      &:checked {
+        ~ span {
+          background-color: mix($white, $success, 90%);
+          color: $success;
+        }
+      }
+
+      ~ span {
+        color: $text-color-secondary;
+        font-weight: 500;
+        font-size: 1.5rem;
+        border-radius: 2.5rem;
+        line-height: $line-height-base;
+        padding:  .9rem 3.4rem;
+      }
+    }
+  }
+}

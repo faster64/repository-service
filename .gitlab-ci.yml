@@ -1,0 +1,117 @@
+stages:
+  - code-quality
+  - build
+  - publish-aws
+
+variables:
+  AWS_DEFAULT_REGION: ap-southeast-1
+  AWS_ACCOUNT_ID: '188167601821'
+
+code quality:
+  stage: code-quality
+  tags:
+    - docker-devops
+  image: 'docker.citigo.com.vn/cuongtl/dotnetcore-ci:3.1'
+  variables:
+    SONAR_PROJECT_KEY: 'citigo_kiotviet-timesheet.core_AX24uIYv7me1ZCSbBj7k'
+    SONAR_TOKEN: 'fcf43d66f969ba9990472ea15fc1612b99d948e6'
+    SONAR_HOST_URL: 'https://sonarqube.citigo.dev'
+  script:
+    - dotnet tool list --global
+    - >
+      dotnet sonarscanner begin /k:"$SONAR_PROJECT_KEY"
+      /d:sonar.host.url=$SONAR_HOST_URL 
+      /d:sonar.login=$SONAR_TOKEN
+      /d:sonar.sourceEncoding=UTF-8 
+      /d:sonar.sources=src
+      /d:sonar.exclusions=**/*.html,**/*.js,**/*.map,**/Migrations/**,**/EntityConfigurations/**
+      /d:sonar.tests=tests 
+      /d:sonar.qualitygate.wait=true
+      /d:sonar.qualitygate.timeout=300
+    - dotnet build KiotVietTimeSheet.sln --no-incremental
+    - dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
+  only:
+    - merge_requests
+    - master
+    - staging
+
+.build:
+  tags:
+    - docker-devops
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  variables:
+    IMAGE: ''
+    DOCKERFILE: Dockerfile
+  before_script:
+    - apk add tzdata
+    - export TZ="Asia/Ho_Chi_Minh"
+    - export COMMIT_INFO="DATE $(TZ='Asia/Ho_Chi_Minh' date +'%Y-%m-%dT%H:%M:%S%z') - BRANCH/TAG $CI_COMMIT_REF_NAME - COMMIT $CI_COMMIT_SHORT_SHA"
+  script:
+    - docker build --build-arg DOCKER_IMAGE_BUILD_ARG="$COMMIT_INFO" -t $IMAGE -f $DOCKERFILE .
+    - docker login docker.citigo.com.vn -u $DEVOPS_DOCKER_USER -p $DEVOPS_DOCKER_PASSWORD
+    - docker push $IMAGE
+    - docker logout docker.citigo.com.vn
+    
+build kv-timesheet-api aws production:
+  extends: .build
+  variables:
+    IMAGE: docker.citigo.com.vn/kvdev/kv-timesheet-service:${CI_COMMIT_TAG}
+    DOCKERFILE: docker_booking/api/Dockerfile
+  only:
+    - tags
+
+build kv-timesheet-audit aws production:
+  extends: .build
+  variables:
+    IMAGE: docker.citigo.com.vn/kvdev/kv-timesheet-audit-worker:${CI_COMMIT_TAG}
+    DOCKERFILE: docker_booking/audit-worker/Dockerfile
+  only:
+    - tags
+
+build kv-timesheet-background aws production:
+  extends: .build
+  variables:
+    IMAGE: docker.citigo.com.vn/kvdev/kv-timesheet-bg-task:${CI_COMMIT_TAG}
+    DOCKERFILE: docker_booking/background-task-worker/Dockerfile
+  only:
+    - tags 
+    
+deploy-to-aws:
+  stage: publish-aws
+  tags:
+    - docker-devops
+  variables:
+    GIT_STRATEGY: none
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+    BG_IMAGE: 'docker.citigo.com.vn/kvdev/kv-timesheet-bg-task:${CI_COMMIT_TAG}'
+    API_IMAGE: 'docker.citigo.com.vn/kvdev/kv-timesheet-service:${CI_COMMIT_TAG}'
+    AUDIT_IMAGE: 'docker.citigo.com.vn/kvdev/kv-timesheet-audit-worker:${CI_COMMIT_TAG}'
+    BG_IMAGE_AWS: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/kv-timesheet-bg-task:${CI_COMMIT_TAG}
+    API_IMAGE_AWS: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/kv-timesheet-service:${CI_COMMIT_TAG}
+    AUDIT_IMAGE_AWS: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/kv-timesheet-audit-worker:${CI_COMMIT_TAG}
+  image:
+    name: amazon/aws-cli
+    entrypoint:
+      - ''
+  services:
+    - 'docker:dind'
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    - docker tag $BG_IMAGE $BG_IMAGE_AWS
+    - docker push $BG_IMAGE_AWS
+    - docker tag $API_IMAGE $API_IMAGE_AWS
+    - docker push $API_IMAGE_AWS
+    - docker tag $AUDIT_IMAGE $AUDIT_IMAGE_AWS
+    - docker push $AUDIT_IMAGE_AWS
+  only:
+    - tags 
+  except:
+    - branches

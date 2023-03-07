@@ -1,0 +1,277 @@
+.ts-form-main {
+  .radio-inline {
+    margin-bottom: 6rem;
+    margin-top: 4.5rem;
+  }
+
+  .error-msg {
+    margin-top: 3.6rem;
+  }
+}
+
+.title-page {
+  font-size: 2.4rem;
+  color: $text-color-title;
+}
+
+.qrcode {
+  margin: 2.4rem auto;
+
+  img {
+    max-width: 100%;
+  }
+
+  &-success {
+    max-width: 72px;
+  }
+
+  &-error {
+    max-width: 110px;
+
+    .page-error & {
+      margin-bottom: 11.6rem;
+    }
+  }
+}
+
+.comfirm-code {
+  margin-top: 7rem;
+  margin-bottom: 10rem;
+  .title {
+    color: $success;
+    font-size: 2.4rem;
+    margin-bottom: 2.4rem;
+  }
+
+  p {
+  }
+
+  &-time {
+    p {
+      color: $text-color-secondary;
+    }
+  }
+}
+
+.page-confirm {
+  text-align: center;
+
+  p {
+    line-height: 26px;
+    text-align: center;
+  }
+
+  .confirm-icon {
+    .icon-check {
+      border-radius: 100%;
+      width: 80px;
+      height: 80px;
+      @extend %item-center;
+      font-size: 4rem;
+      margin: 10rem auto 4rem;
+    }
+  }
+}
+
+.page-cloking {
+  text-align: left !important;
+  background-color: $bg-page;
+
+  .header {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    background-color: $white;
+  }
+
+  .name-custome {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-weight: 700;
+      color: $text-color-title;
+      line-height: 2.7rem;
+      font-size: 2.2rem;
+      text-align: left;
+    }
+  }
+
+  .header-info {
+    @extend %flex;
+    @extend %justify-content-between;
+    > div {
+      width: 50%;
+      color: $text-color-secondary;
+      @extend %flex;
+
+      > span.icon {
+        margin-right: 1rem;
+      }
+    }
+
+    .ts-date {
+      font-size: 1.3rem;
+      text-align: left;
+    }
+
+    .ts-branch {
+      font-size: 1.3rem;
+
+      p {
+        @include text-ellipsis-multiline(1);
+      }
+    }
+  }
+}
+
+.cloking-main {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 2.4rem;
+
+  span.time-clock {
+    .cloking-in & {
+      color: $success;
+    }
+
+    .cloking-out & {
+      color: $primary;
+    }
+  }
+}
+
+.cloking-button {
+  margin-top: 2rem;
+  @extend %item-center-between;
+}
+
+.cloking-shift {
+  background-color: $white;
+  margin-top: 1.2rem;
+
+  .ts-dropdown {
+    .ts-dropdowm-btn {
+      @extend %item-center-between;
+      color: $text-color;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 0.8rem 0;
+    }
+
+    .ts-dropdowm-result {
+      font-size: 1.6rem;
+      line-height: 3.4rem;
+      font-weight: 700;
+    }
+
+    .ts-icon {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.cloking-in-out {
+  background-color: $white;
+  @extend %item-center-between;
+  margin-top: 1.2rem;
+
+  > div {
+    width: 50%;
+    padding: 14px;
+    @extend %item-middle-start;
+
+    .icon {
+      width: 32px;
+      height: 32ox;
+      @extend %item-center;
+      font-size: 2rem;
+      margin-right: 0.6rem;
+    }
+  }
+
+  .cloking-item-in {
+    padding-left: 3rem;
+  }
+
+  .cloking-item-out {
+    padding-right: 3rem;
+
+    position: relative;
+
+    i {
+      transform: scaleX(-1);
+    }
+
+    &:after {
+      content: "";
+      background-color: $border-color;
+      height: calc(100% - 20px);
+      width: 1px;
+      margin: auto;
+      @include position(absolute, $left: 0, $top: 0, $right: null, $bottom: 0);
+    }
+  }
+}
+
+.title-history {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: -0.5rem;
+  margin-top: 2rem;
+
+  h4 {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
+
+.cloking-time {
+  background-color: $white;
+  margin-top: 1.2rem;
+  &-items {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  &-item {
+    @extend %item-center-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    &:not(:last-child) {
+      border-bottom: 1px dashed rgba(#000000, 0.25);
+    }
+    span {
+      line-height: 2.6rem;
+      font-size: 1.6rem;
+      font-weight: 400;
+      width: 50%;
+    }
+  }
+
+  &-out {
+    text-align: right;
+  }
+}
+
+#loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+}
+
+#loading-image {
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+}

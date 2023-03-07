@@ -1,0 +1,76 @@
+%form-control-focus {
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      box-shadow: none;
+      outline: 0;
+    //   box-shadow: 0 2px 0 0 $input-border-color;
+      border-width: 0 0 2px 0;
+    }
+}
+
+%form-control-checked {
+    &.checked {
+        // box-shadow: 0 1px 0 0  $input-border-color;
+        border-width: 0 0 2px 0;
+    }
+}
+
+%form-control-success {
+    &.success {
+        border-color: $success;
+        // box-shadow: 0 1px 0 0  $success;
+        border-width: 0 0 2px 0;
+    }
+}
+
+%form-control-error {
+    &.error {
+        border-color: $input-border-color-focus;
+        // box-shadow: 0 1px 0 0 $input-border-color-focus;
+        border-width: 0 0 2px 0;
+    }
+}
+
+%form-control {
+    display: block;
+    width: 100%;
+    height: 4rem;
+    padding: 0;
+    background-color: $white;
+    color: $input-color;
+    box-sizing: border-box;
+    text-indent: 0;
+    @extend %form-control-focus;
+    @extend %form-control-success;
+    @extend %form-control-error;
+    @extend %form-control-checked;
+    @include placeholder;
+	@include transition;
+    box-shadow: none;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: $input-border-color;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    font-size: 3.2rem;
+}
+
+%form-control-sm {
+     height: 4.4rem;
+}
+  
+%form-control-lg {
+
+}
+
+%form-control-xl {
+	height: 40px;
+	padding: 1.2rem 2rem;
+}
+
+%form-control-textarea {
+    resize: none;
+    border-color: transparent;
+}

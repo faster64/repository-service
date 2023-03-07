@@ -1,0 +1,1 @@
+CREATE NONCLUSTERED INDEX IDX_Shift_Time ON dbo.Clocking(TenantId ASC, BranchId ASC, ShiftId ASC) INCLUDE(IsDeleted, CheckInDate, CheckOutDate, StartTime, EndTime);

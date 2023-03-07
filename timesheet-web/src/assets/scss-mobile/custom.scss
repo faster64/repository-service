@@ -1,0 +1,95 @@
+@import "toastr";
+$base-color: #4BAC4D;
+$base-text-color:#333333;
+:root {
+    touch-action: pan-x pan-y;
+    height: 100%
+}
+
+#loading {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $base-color;
+    background-color: rgba($color: $base-text-color, $alpha: 0.75);
+    z-index: 9999;
+}
+
+#toast-container {
+    top: 90px;
+}
+
+.ts-btn-outline-gray {
+    color: rgba($color: $base-text-color, $alpha: 0.84);
+    border-color: rgba($color: $base-text-color, $alpha: 0.1);
+    &:hover {
+        color: #fff;
+        background-color: $base-text-color;
+        border-color: $base-text-color
+    }
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 0 rgba(52, 58, 64, 0.5)
+    }
+    &.disabled,
+    &:disabled {
+        color: $base-text-color;
+        background-color: transparent
+    }
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show>&.dropdown-toggle {
+        color: #fff;
+        background-color: $base-text-color;
+        border-color: $base-text-color
+    }
+}
+
+.ts-no-note {
+    color: rgba($color: $base-text-color, $alpha: 0.54);
+}
+
+@media screen and (max-width:360px) {
+    .ts-btn+.ts-btn {
+        margin-left: 0.25rem;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .ts-btn {
+        padding: 0.45rem 1em;
+    }
+    .ts-btn+.ts-btn {
+        margin-left: 0;
+    }
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.no-pad {
+    padding: 0 !important;
+}
+
+.pad-1-6em {
+    padding: 1.6em !important;
+}
+
+.view-by {
+    color: $text-disable;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-right: $col-padding-xs-x;
+    float: left;
+    margin-top: 8px;
+}
+
+.no-scroll {
+    // overflow: hidden !important;
+}

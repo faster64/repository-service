@@ -1,0 +1,260 @@
+<div class="ts-calender-pages" id="ts-calender-pages">
+    <header-pay-sheet-layout-cmp></header-pay-sheet-layout-cmp>
+    <main id="ts-main" class="ts-main ts-payroll-page" >
+        <div class="ts-payroll-menu">
+            <ul id="ts-menu-head" class="ts-menu-head">
+                <li>
+                    <a id="branchFilter" class="js-ts-modal active" rel="ts-branch-modal" ng-click="vm.openModal($event)">
+                        <span><i class="far fa-map-marker-alt"></i></span>
+                        <span>{{vm._l.branch}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="salaryPeriodFilter" class="js-ts-modal active" rel="ts-period-modal" ng-click="vm.openModal($event)">
+                        <span><i class="far fa-calendar-week"></i></span>
+                        <span>Kỳ hạn trả lương</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="statusFilter" class="js-ts-modal active" rel="ts-status-modal" ng-click="vm.openModal($event)">
+                        <span><i class="far fa-sliders-h"></i></span>
+                        <span>Trạng thái</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        <div ng-show="!vm.isNoPaysheetData" class="ts-staff-wrap">
+            <div id="ts-staff-main" class="ts-staff-main"></div>
+        </div>
+        <div ng-show="vm.isNoPaysheetData" class="ts-staff-wrap box-main-empty has-footer">
+            <div class="staff-empty">
+                <img src="../../../../../assets/img/empty-folder.png" alt="">
+                <p>Chưa có dữ liệu bảng lương</p>
+            </div>
+        </div>
+    
+        <!-- Chi nhánh popup -->
+        <div class="ts-modal ts-modal-payroll" id="ts-branch-modal">
+            <div class="modal-wrap modal-wrap-padding h-xlg fw-search">
+                <div class="ts-modal-head">
+                    <div class="row d-flex">
+                        <div class="col-8 ts-modal-head-left">
+                            <a ng-click="vm.backFromFilter($event, 'branch')" class="js-ts-modal-close ts-icon-sm"><i class="far fa-times"></i></a>
+                            <strong>{{vm._l.branch}}</strong>
+                        </div>
+                        <div class="col-4 ts-modal-head-right">
+                            <a ng-click="vm.resetBranchs($event)" class="reset">Đặt lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ts-modal-list-head">
+                    <p>CHỌN CHI NHÁNH</p>
+                </div>
+                <div id="ts-modal-list" class="ts-modal-list">
+                    <div ng-repeat="branch in vm.branchs" class="ts-branch-items">
+                        <span class="ts-input-check">
+                            <input type="checkbox" ng-model="branch.checked" ng-checked="branch.checked"/>
+                            <span class="ts-icon-check">{{branch.name}}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="ts-modal-footer">
+                    <button class="ts-btn ts-btn-success ts-btn-full ts-btn-lg" ng-click="vm.selectBranchItems($event);">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trạng Thái popup -->
+        <div class="ts-modal ts-modal-payroll" id="ts-status-modal">
+            <div class="modal-wrap modal-wrap-padding h-xlg fw-search">
+                <div class="ts-modal-head">
+                    <div class="row d-flex">
+                        <div class="col-8 ts-modal-head-left">
+                            <a ng-click="vm.backFromFilter($event, 'paysheetStatus')" class="js-ts-modal-close ts-icon-sm"><i class="far fa-times"></i></a>
+                            <strong>Trạng thái</strong>
+                        </div>
+                        <div class="col-4 ts-modal-head-right">
+                            <a ng-click="vm.resetStatuses($event)" class="reset">Đặt lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ts-modal-list-head">
+                    <p>CHỌN TRẠNG THÁI</p>
+                </div>
+                <div id="ts-modal-list" class="ts-modal-list">
+                    <div ng-repeat="status in vm.paysheetStatuses" class="ts-branch-items">
+                        <span class="ts-input-check">
+                            <input type="checkbox" ng-model="status.checked" ng-checked="status.checked"/>
+                            <span class="ts-icon-check">{{status.name}}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="ts-modal-footer">
+                    <button class="ts-btn ts-btn-success ts-btn-full ts-btn-lg" ng-click="vm.selectStatusItems($event);">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Kỳ Hạn Lương popup -->
+        <div class="ts-modal ts-modal-payroll" id="ts-period-modal">
+            <div class="modal-wrap modal-wrap-padding h-xlg fw-search">
+                <div class="ts-modal-head">
+                    <div class="row d-flex">
+                        <div class="col-8 ts-modal-head-left">
+                            <a ng-click="vm.backFromFilter($event, 'salaryPeriodSelected')" class="js-ts-modal-close ts-icon-sm"><i class="far fa-times"></i></a>
+                            <strong>{{vm._l.paysheet_payCycleSalary}}</strong>
+                        </div>
+                        <div class="col-4 ts-modal-head-right">
+                            <a ng-click="vm.resetSalaryPeriods($event)" class="reset">Đặt lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ts-modal-list-head">
+                    <p>CHỌN KỲ HẠN LƯƠNG</p>
+                </div>
+                <div class="ts-modal-list">
+                    <div class="ts-period-list">
+                        <div class="ts-form-group">
+                            <label class="ts-form-label">KỲ HẠN</label>
+                            <div class="form-wrap input-group">
+                                <a rel="ts-salaryPeriod-modal" ng-click="vm.openModal($event)">
+                                    <input 
+                                        type="text" 
+                                        class="ts-form-control"
+                                        value="{{vm.salaryPeriodSelected.name}}"
+                                        placeholder="Chọn kỳ hạn"
+                                        readonly>
+                                    <div class="input-group-append">
+                                        <i class="far fa-chevron-down"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div ng-if="vm.salaryPeriodSelected" class="ts-form-group ts-choose-date">
+                            <!-- <label class="ts-form-label">THỜI GIAN</label> -->
+                            <div class="form-wrap input-group">
+                                <a rel="ts-calendar-start-modal" ng-click="vm.openModal($event)">
+                                    <span>{{vm._l.timesheet_startDay}}</span>
+                                    <input 
+                                        type="text" 
+                                        class="ts-form-control"
+                                        value="{{(vm.filterStartDate) ? (vm.filterStartDate | date: 'dd/MM/yyyy') : vm._l.exportDebtDetail_SelectTime }}"
+                                        placeholder="{{vm._l.exportDebtDetail_SelectTime}}"
+                                        readonly>
+                                    <div class="input-group-append">
+                                            <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="form-wrap input-group">
+                                <a rel="ts-calendar-end-modal" ng-click="vm.openModal($event)">
+                                    <span>{{vm._l.timesheet_endDay}}</span>
+                                    <input 
+                                        type="text" 
+                                        class="ts-form-control"
+                                        value="{{(vm.filterEndDate) ? (vm.filterEndDate | date: 'dd/MM/yyyy') : vm._l.exportDebtDetail_SelectTime }}"
+                                        placeholder="{{vm._l.exportDebtDetail_SelectTime}}"
+                                        readonly>
+                                    <div class="input-group-append">
+                                            <i class="far fa-calendar-alt"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ts-modal-footer">
+                    <button class="ts-btn ts-btn-success ts-btn-full ts-btn-lg" ng-click="vm.selectSalaryPeriod($event);">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="ts-modal-salaryPeriod ts-modal-payroll-salaryPeriod" id="ts-salaryPeriod-modal">
+            <div class="modal-wrap h-lg">
+                <div class="ts-modal-head">
+                    <div class="row d-flex">
+                        <div class="col-11 ts-modal-head-left">
+                            <strong>Chọn kỳ hạn</strong>
+                        </div>
+                        <div class="col-1 ts-modal-head-right">
+                            <a ng-click="vm.backToFilterPeriod($event)" class="js-ts-modal-close ts-icon-md"><i class="far fa-times"></i></a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="modal-list">
+                    <ul class="list-items">
+                        <li
+                            ng-repeat="salaryPeriod in vm.salaryPeriods"
+                            class="list-item"
+                            ng-click="vm.chooseSalaryPeriod($event, salaryPeriod);"
+                        >
+                            <div class="item-content">
+                                <h4>{{salaryPeriod.name}}</h4>
+                            </div>
+                            <div ng-if="salaryPeriod.value == vm.salaryPeriodSelected.value" class="ts-check ts-checked">
+                                <i class="far fa-check"></i>
+                            </div>
+                            <div ng-if="salaryPeriod.value != vm.salaryPeriodSelected.value" class="ts-check">
+                                <i class="far fa-check"></i>
+                            </div>
+                        </li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    
+        <div class="ts-modal ts-modal-payroll-calendar" id="ts-calendar-start-modal">
+            <div class="modal-wrap">
+                <div class="modal-calendar-button">
+                    <strong>{{vm._l.timesheet_startDay}}</strong>
+                </div>
+                <div class="modal-list modal-calendar-content">
+                    <div id="calendarStartDate" class="kv-calendar"></div>
+                    <div class="kv-calendar-footer">
+                        <button class="ts-btn ts-btn-success w-100" ng-click="vm.setFilterStartDate()">{{vm._l.confirm}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="ts-modal ts-modal-payroll-calendar" id="ts-calendar-end-modal">
+            <div class="modal-wrap">
+                <div class="modal-calendar-button">
+                    <strong>{{vm._l.timesheet_endDay}}</strong>
+                </div>
+                <div class="modal-list modal-calendar-content">
+                    <div id="calendarEndDate" class="kv-calendar"></div>
+                    <div class="kv-calendar-footer">
+                        <button class="ts-btn ts-btn-success w-100" ng-click="vm.setFilterEndDate()">{{vm._l.confirm}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Toast Xóa bảng lương-->
+        <div class="ts-toast ts-toast-success" id="ts-toast-delete-payroll">
+            <div class="ts-toast-main">
+                <div class="ts-toast-content">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Xóa thành công Bảng lương {{vm.paysheetDelete.code}}</span>
+                </div>
+                <a class="ts-toast-close"><i class="fal fa-times"></i></a>
+            </div>
+        </div>
+
+        <!-- Popup xác nhận tải lại bảng lương-->
+        <div class="ts-modal" id="reload-paysheet-modal">
+            <div class="modal-wrap modal-wrap-padding h-sm">
+                <div class="ts-modal-delete">
+                    <p>{{vm._l.paysheet_autoLoadingAndUpdatePaysheet}}</p>
+                    <div class="modal-footer">
+                        <button ng-click="vm.cancelLoadingAndUpdatePaysheet($event)" class="btn btn-default js-ts-modal-close">Hủy</button>
+                        <button ng-click="vm.autoLoadingAndUpdatePaysheet($event)" class="btn btn-success ts-js-toast js-ts-modal-close">Tải lại bảng lương</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>    
+    <footer-layout-cmp></footer-layout-cmp>
+</div>

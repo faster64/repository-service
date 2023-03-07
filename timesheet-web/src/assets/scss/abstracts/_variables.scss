@@ -1,0 +1,525 @@
+$white: #fff;
+$black: #000;
+$gray-1: #333; // Text
+$gray-2: #a5a6ae; // Title /Secondary
+$gray-3: #8f92a1; // Icons / note
+$gray-4: #b9c4e2; // Placeholder
+$gray-5: #e0e0e0; // Disabled
+$gray-6: #c4c4c4; // Border
+$gray-7: #f1f3f4; // Backgroud header #F1F1F4/
+$gray-8: #fff;
+$gray-9: #c3c7ce;
+$gray-10: #b4b4b4;
+$gray-12: #e5e5e5;
+$gray-11: #111;
+$blue-2: #5cceff;
+$text-color-primary: #333;
+$text-color-secondary: #666;
+$text-color-disabled: #999;
+$border-color: #c4c4c4;
+
+$text-color-title: $gray-11;
+$color-placehoder: $text-color-disabled;
+$bg-page: $gray-12;
+
+// main color guideline new-pos
+$orange: #ffab07;
+$blue: #0090da;
+$teal: #52ada2;
+$green: #4bac4d;
+$yellow: #ffba07;
+$red: #ef3c4d;
+$pink: #fe2552;
+$purple: #8861d6;
+
+// end main color
+
+// End booking color
+$primary: $blue;
+$secondary: $gray-2;
+$success: $green;
+$info: $teal;
+$warning: $orange;
+$danger: $red;
+$light: $gray-6;
+$dark: $gray-1;
+$blue: $blue;
+$note-error: rgba($pink, 0.1);
+
+$hint-color: $gray-4;
+$disabled-color: $gray-3;
+$text-color: $gray-1;
+$link-color: $blue; //#0066ff;
+$body-color: $text-color;
+$discount-color: $red;
+$icon-action-color: $gray-3;
+$icon-mask-color: $gray-3;
+$icon-color: $gray-9;
+$bg-body: $gray-8;
+$color-line: $gray-11;
+$text-secondary: $gray-3;
+$icon-hover: #d7d7d7;
+$thead-background-color: $primary;
+$thead-border-color: $primary;
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "blue": $blue,
+  ),
+  $theme-colors
+);
+
+$btn-icon-colors: (
+  "default": $icon-action-color,
+  "primary": $primary,
+  "success": $success,
+  "danger": $danger,
+  "discount": $pink,
+);
+
+$btn-outline-colors: (
+  "light": $gray-6,
+  "default": $icon-action-color,
+  "primary": $primary,
+  "success": $success,
+  "danger": $danger,
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1366px,
+  3xl: 1600px,
+  4xl: 1920px,
+);
+$fonts-path: "scss/font/";
+$img-path: "../img/";
+$cdn-img-path: "https://cdn-app.kiotviet.vn/retailler/Content";
+$fa-font-path: "../../node_modules/@fortawesome/fontawesome-pro/webfonts";
+$font-awesome-pro: "Font Awesome 5 Pro";
+
+//radius
+$global-radius: 12px;
+$global-radius-sm: 10px;
+$global-radius-lg: 16px;
+$global-radius-xl: 20px;
+$popup-radius: 16px;
+
+$input-padding-x: 0.4rem;
+$select-padding-y: $input-padding-x;
+$select-padding-x: $input-padding-x;
+$input-padding-x-lg: $input-padding-x;
+$input-focus-box-shadow: none;
+$input-focus-border-color: $primary;
+$input-disabled-bg: $white;
+// $input-border-radius: $global-radius !important;
+$input-transition: 0px 4px 24px rgba(16, 55, 99, 0.12);
+
+$font-family-base: "Roboto", sans-serif;
+$font-awesome-pro: "Font Awesome 5 Pro";
+$font-size: 1.6rem;
+$font-size-base: $font-size;
+$font-size-lg: $font-size * 1.23076923;
+$h1-font-size: $font-size * 2;
+$h2-font-size: $font-size * 1.8;
+$h3-font-size: $font-size * 1.23077; // 16rem
+$h4-font-size: $font-size * 1.07692307692; // 14rem
+$h5-font-size: $font-size;
+$h6-font-size: $font-size * 0.85;
+
+$line-height-base: 1.4;
+$input-line-height: $line-height-base;
+$line-height-sm: $line-height-base;
+$line-height-lg: $line-height-base;
+$line-height-message: 1.6;
+
+$input-color: #212121;
+$input-placeholder-color: $gray-4;
+$input-btn-font-size: $font-size;
+$input-btn-font-size-sm: $font-size;
+$input-btn-font-size-lg: $font-size;
+$input-font-size: $input-btn-font-size;
+$input-border-color: rgba($black, 0.25);
+$input-border-color-focus: $red;
+$input-height-border: 0.1rem;
+$input-plaintext-color: $text-color;
+
+$input-btn-padding-x: 0.8rem;
+$input-btn-padding-y: 0.34rem;
+
+$input-btn-padding-x-xs: 0.3rem;
+$input-btn-padding-y-xs: 0.14rem;
+
+$input-btn-padding-x-sm: 0.5rem;
+$input-btn-padding-y-sm: 0.24rem;
+
+$input-btn-padding-x-lg: 1.5rem;
+$input-btn-padding-y-lg: 0.74rem;
+
+$input-height: $line-height-base * $input-btn-font-size + $input-btn-padding-y *
+  2 + $input-height-border;
+$input-height-sm: $line-height-sm * $input-btn-font-size-sm +
+  $input-btn-padding-y-sm * 2 + $input-height-border;
+$input-height-xs: $line-height-sm * $input-btn-font-size-sm +
+  $input-btn-padding-y-xs * 2 + $input-height-border;
+$input-height-lg: $line-height-lg * $input-btn-font-size-lg +
+  $input-btn-padding-y-lg * 2 + $input-height-border;
+
+$input-custom-padding-x-sm: 1rem;
+$input-custom-padding-x: 1.2rem;
+$input-custom-padding-x-lg: 1.5rem;
+
+$input-textarea-padding-x: 1rem;
+$input-textarea-padding-y: 0.8rem;
+
+$btn-box-shadow: none;
+$btn-active-box-shadow: none;
+$btn-active-box-shadow: none;
+$input-btn-focus-width: 0;
+
+$col-form-space: 0.5rem;
+
+$btn-radius: $global-radius;
+$btn-radius-sm: $global-radius-sm;
+
+$btn-border-radius: $global-radius-lg;
+$btn-border-radius-sm: $global-radius-sm;
+$btn-border-radius-lg: $global-radius-lg;
+
+$btn-padding-x: 2.4rem;
+$btn-padding-y: 2.1rem;
+
+$btn-padding-x-md: 1.5rem;
+$btn-padding-y-md: 0.6rem;
+$btn-font-size: 1.7rem;
+$btn-font-size-md: $font-size;
+$btn-line-height-md: $line-height-base;
+$btn-border-radius-md: $global-radius;
+$btn-height: 7.2rem;
+
+$btn-padding-x-xl: 2.6rem;
+$btn-padding-y-xl: 1rem;
+
+$btn-font-size-xl: 1.6rem;
+
+$sub-label-color: $gray-4;
+
+$zindex-top: 10000;
+$zindex-middle: $zindex-top - 1;
+$zindex-bottom: $zindex-middle - 1;
+$list-margin: 0, 4, 5, 8, 10, 12, 20, 24;
+$list-fontsize-icon: 10, 12, 14, 16;
+
+//dropdown user
+$dropdown-user-icon: $icon-mask-color;
+$dropdown-user-icon-font-size: 3.2rem;
+$dropdown-user-part: $icon-action-color;
+$dropdown-radius: $global-radius;
+$dropdown-item-radius: 5px;
+
+//toggle
+$btn-toggle-color: $gray-2;
+$btn-toggle-background: $gray-7;
+$btn-toggle-active-background: $primary;
+$btn-toggle-margin: 8px;
+
+$nav-tabs-border-width: 0;
+$nav-link-padding-y: 0;
+$nav-link-padding-x: 0;
+
+/*****End Bootstrap*********************************/
+
+/**************************************\
+  #BODY
+/**************************************/
+$container-width: 380px;
+$body-border-color: $gray-6;
+$body-page-background: $gray-7;
+$col-left: 428px;
+$col-right: 392px;
+$col-right-extend: 828px;
+$col-right-space: 23px;
+$col-border-color: $body-border-color;
+$background-secondary: $gray-7;
+$page-content-background: $white;
+$page-radius: 15px;
+$radius-circle: 999px;
+$scrollbar-size: 0.6rem;
+$scrollbar-space-x: 1px;
+$page-padding-x: 20px;
+$page-padding-y: 20px;
+$page-content-padding-x: 16px;
+$page-content-padding-y: 16px;
+
+$col-content-padding-y-sm: 8px;
+$col-content-padding-x-sm: 8px;
+$col-content-padding-y: $col-content-padding-y-sm * 1.5;
+$col-content-padding-x: $col-content-padding-x-sm * 1.5;
+$col-content-padding-y-md: $col-content-padding-y-sm * 2;
+$col-content-padding-x-md: $col-content-padding-x-sm * 2;
+
+$col-content-margin-x-sm: 8px;
+$col-content-margin-y-sm: 8px;
+$col-content-margin-y: $col-content-margin-y-sm * 1.5;
+$col-content-margin-x: $col-content-margin-x-sm * 1.5;
+$col-content-margin-y-md: $col-content-margin-y-sm * 2;
+$col-content-margin-x-md: $col-content-margin-x-sm * 2;
+
+/*****background*************************************/
+$background-image: $background-secondary;
+
+/*****End background*********************************/
+
+/*****Icon*************************************/
+
+$icon-font-size: 1.3rem;
+$icon-font-size-sm: 1.2rem;
+$icon-font-size-xs: 1.1rem;
+$icon-padding-y: 1rem;
+$icon-form-margin: 16px;
+$icon-24: 24px;
+$icon-right: 1rem;
+$scroll-background: $background-secondary;
+
+/*****End Body*********************************/
+
+/*****Header*************************************/
+$header-border-color: $body-border-color;
+$header-height: 4.2rem;
+$header-background: $background-secondary;
+
+$products-search-width: 448px;
+
+$header-nav-item-margin-x: 0.8rem;
+$add-new-height: 54px;
+
+/*****Product*************************************/
+$item-padding-x: 16px;
+$item-padding-x-xs: 6px;
+$item-padding-y: 10px;
+$item-content-margin-y: 5px;
+$item-color-border: $header-border-color;
+
+$message-error-color: $danger;
+$message-success-color: $success;
+
+/*****Cart*************************************/
+
+$cart-padding-x: 2px;
+$cart-padding-y: 12px;
+$cell-cart-padding-x: 0.8rem;
+$cell-cart-padding-y: 0.4rem;
+$cell-cart-space: $cell-cart-padding-x * 2;
+
+$cell-action: 3.5rem;
+$cell-numberorder: 2.4rem;
+$cell-first: $cell-action + $cell-numberorder;
+$cell-thumb: 4.8rem;
+$cell-code: 11rem;
+$cell-code-extend: 6rem;
+$cell-cart-quantity: 11rem;
+$cell-price: 10rem;
+$cell-change-price: 10rem;
+$cell-total: 10rem;
+
+$cart-warning: rgba($pink, 0.3);
+$cart-border-color: $body-border-color;
+$cart-background-images: $background-secondary;
+$cart-thumb-font-size: 2.4rem;
+$cart-cell: 0 8px;
+$cart-text-2: #999;
+$cart-icon: rgba($primary, 0.4);
+$cart-label: $primary;
+$cart-label-primary: $orange;
+
+$cart-cell-padding: 8px;
+$cart-row-margin: 0px $cart-cell-padding * -1;
+$cart-content-padding: 0px $cart-cell-padding;
+$cart-cell-padding-top: 3px;
+$cart-notes-color: $gray-4;
+$cart-notes-background: $gray-7;
+$cart-line-color: $gray-6;
+$cart-gift-icon-background: $pink;
+$cart-gift-title-color: $primary;
+
+$color-random: (
+  "1": $orange,
+  "2": $blue,
+  "3": $teal,
+  "4": $green,
+  "5": $yellow,
+  "6": $red,
+  "7": $pink,
+  "8": $purple,
+);
+
+$position: ("top", "bottom", "left", "right");
+
+$search-secondary-bg: $gray-7;
+$search-secondary-padding-x: 10px;
+$search-secondary-padding-y: 8px;
+
+/*****End Product*************************************/
+/*****Grids*************************************/
+
+//GRID******************************
+$product-list-vertical: 15px;
+$product-list-horizontal: 5px;
+$cell-checkbox: 14px;
+$cell-order: 35px;
+$cell-action: 35px;
+$cell-img: 34px;
+$cell-warning: 25px;
+$cell-sort-code: 80px;
+$cell-units: 80px;
+$cell-quatity: 115px;
+$cell-date: 80px;
+$cell-date-time: 135px;
+$cell-mobilenumber: 110px;
+$cell-balance: 100px;
+$cell-products: 150px;
+$cell-warrantytypes: 135px;
+$cell-date-warranty: 190px;
+$cell-btn: 79px;
+$cell-btn-choose: 50px;
+$cell-code-grid: $cell-code + 1rem;
+$cell-note: 150px;
+$cell-campaign: 185px;
+$cell-product-choose: 450px;
+$cell-payment-price: 100px;
+$cell-type: 120px;
+/*****Payments*************************************/
+$voucher-control-width: 100px;
+$payment-cash-padding-x: 13px;
+$payment-cash-padding-y: 9px;
+$payment-cash-method-height: 164px;
+$payment-multi-action-width: 140px;
+$payment-multi-output-width: 110px;
+$payment-suggest-background-color: $gray-7;
+$payment-button-price-border-color: $gray-6;
+$payment-suggest-btn-margin-x: 0.7rem;
+$payment-suggest-btn-margin: 0 $payment-suggest-btn-margin-x
+  $payment-suggest-btn-margin-x 0;
+$payment-suggest-money-radius: 8px;
+$payment-suggest-money-padding-y: 1.2rem;
+$payment-suggest-money-padding-x: 1rem;
+$payment-suggest-money-padding-right: $payment-suggest-money-padding-x -
+  $payment-suggest-btn-margin-x;
+$payment-suggest-money-padding: $payment-suggest-money-padding-y
+  $payment-suggest-money-padding-right
+  ($payment-suggest-money-padding-y - $payment-suggest-btn-margin-x) 1rem;
+$payment-suggest-money-margin: 1.6rem 0 0.8rem 0;
+$payment-suggest-btn-padding: 0.6rem 1.4rem;
+
+$payment-btn-padding: 16px 0px 12px 0px;
+$payment-btn-border-color: $gray-6;
+$payment-btn-color: $gray-3;
+$payment-btn-action-bg-color: $primary;
+$payment-multi-textcheck-color: $gray-1;
+$payment-multi-textcheck-secondary-color: $gray-3;
+/*****Forms*************************************/
+$border-dashed-color: #ececec;
+$border-solid-color: #d9d9d9;
+
+$form-group-margin-bottom: 10px;
+$color-disabled: $gray-5;
+$input-form-control-margin-y: 10px;
+$quantity-form-control-margin-x: 8px;
+
+$form-control-custom-background: $gray-7;
+
+$dropdown-border-color: #cdcfd3;
+$dropdown-padding-x: 16px;
+$dropdown-padding-y: 8px;
+
+$dropdown-textbox-margin-y: 10px;
+
+$dropdown-item-padding-x: 15px;
+$dropdown-item-padding-y: 10px;
+
+$zindex-dropdown: $zindex-top;
+
+$btn-dropdown-width: 136px;
+$btn-dropdown-padding-x: 6px;
+$btn-margin-x: 10px;
+$btn-margin-y: 9px;
+$btn-active-border: #d2d2d2;
+$btn-active-bg: #fff;
+$btn-active-color: $text-color;
+$btn-icon-margin-x: 10px;
+
+/*****Form Check*************************************/
+$form-check-padding-y: $input-btn-padding-y;
+$form-check-icon-space-x: 2rem;
+$form-check-inline-margin-x: 2.4rem;
+$check-switch-width: 3.2rem;
+$check-switch-height: 1.2rem;
+$check-switch-cursor-size: 1.6rem;
+$check-switch-radius: $radius-circle;
+$check-switch-background: $gray-4;
+$check-switch-background-active: $primary;
+$check-custom-margin-x: 1rem;
+
+/*****End Forms*********************************/
+
+/*****k-window*************************************/
+$window-header-height: 6.4rem;
+$window-margin-y: 4rem;
+$window-padding-y: 2.8rem;
+$window-padding-x: 3.2rem;
+$window-title-color: $gray-2;
+$window-title-font-size: 1.6rem;
+$window-btn-space: 1.6rem;
+$window-box-shadow: 0 12px 25px rgba($black, 0.5);
+
+/*****End k-window*********************************/
+
+/*****Popups*************************************/
+$form-padding-y: 20px;
+$form-padding-x: 20px;
+
+/*****End Popups*********************************/
+
+/*****Font-size*************************************/
+$font-size-sm: 1.2rem;
+$font-size-md: 1.4rem;
+$font-size-dropdown-menu: 1.4rem;
+$font-size-message: 1.5rem;
+$headings-font-weight: 400;
+
+/*****End Font-size*********************************/
+
+/*****End Kendo UI*********************************/
+
+/*****Tabs menu *************************************/
+$tabs-item-padding-x: 1rem;
+$tabs-item-padding-y: 1.2rem;
+
+$tabs-menu-active-bg-color: #e9f2fa;
+$tabs-menu-active-color: $primary;
+/*****End tabs menu *************************************/
+
+/*****Tag *************************************/
+$tag-padding-x: 2rem;
+$tag-btn-margin-x: 1rem;
+
+$tag-padding-x-sm: 1rem;
+$tag-btn-margin-x-sm: 0.5rem;
+/*****End Tag *************************************/
+
+/*****Filter *************************************/
+$filter-title-color: $gray-2;
+$filter-item-active-background: $primary;
+/*****End filter *************************************/

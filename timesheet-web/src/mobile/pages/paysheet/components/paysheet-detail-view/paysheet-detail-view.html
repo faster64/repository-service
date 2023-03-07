@@ -1,0 +1,80 @@
+<!-- Header  -->
+<header class="ts-header">
+    <div class="ts-header-top">
+        <div class="row">
+            <div class="col-9">
+                <div class="ts-header-back">
+                    <a ng-click="vm.backToPaysheet()">
+                        <span class="ts-icon-sm"><i class="far fa-chevron-left"></i></span>
+                        <span>{{vm._l.paysheet}} {{vm.paysheet.code}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-3">
+                    <div class="ts-header-links">
+                        <!-- <a ng-click="vm.searchPaysheetDetail($event)" class="ts-links ts-link-search"><i class="far fa-search"></i></a>  -->
+                        <a ng-click="vm.openModal($event)" class="js-ts-modal ts-links ts-link-add" rel="delete-payroll-modal"><i class="far fa-trash-alt"></i></a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="ts-payroll-header-date">
+        <p>{{vm.paysheet.paysheetPeriodName}}</p>
+    </div>
+</header>
+<!-- Main -->
+<main id="ts-main" class="ts-main">
+    <div ng-show="!vm.isNoPayslipData" class="ts-staff-wrap">
+        <div id="ts-staff-main-payslip" class="ts-staff-main ts-paysheet-detail-view">
+        </div>
+    </div>
+    <div ng-show="vm.isNoPayslipData" class="ts-staff-wrap box-main-empty has-footer">
+        <div class="staff-empty">
+			<img src="../../../../../assets/img/empty-folder.png" alt="">
+            <p>Bảng lương hiện tại đang trống</p>
+        </div>
+    </div>
+</main>
+
+ <!-- Footer  -->
+ <footer ng-show="vm.isTemporary" class="ts-footer">
+    <div class="ts-footer-bottom">
+        <button ng-click="vm.completePaysheetTemp()" class="btn btn-success ts-btn-full ts-js-toast" attr-toast="ts-toast-salary-closing">Chốt lương</button>
+    </div>
+</footer>
+
+<!-- Toast Chốt Lương-->
+<div class="ts-toast ts-toast-success" id="ts-toast-salary-closing">
+    <div class="ts-toast-main">
+        <div class="ts-toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span>Chốt lương thành công</span>
+        </div>
+        <a class="ts-toast-close"><i class="fal fa-times"></i></a>
+    </div>
+</div>
+
+<!-- Popup xác nhận xóa bảng lương-->
+<div class="ts-modal" id="delete-payroll-modal">
+    <div class="modal-wrap modal-wrap-padding h-sm">
+        <div class="ts-modal-delete">
+            <p>Bạn có chắc chắn muốn xóa bảng lương này khỏi hệ thống không?</p>
+            <div class="modal-footer">
+                <button ng-click="vm.cancelDeleteDetail($event)" class="btn btn-default js-ts-modal-close">Hủy</button>
+                <button ng-click="vm.deletePaysheetDetail(true, false)" class="btn btn-danger ts-js-toast js-ts-modal-close" attr-toast="ts-toast-delete-payroll">Xóa bảng lương</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ts-modal" id="cancel-payslip-payment-modal">
+    <div class="modal-wrap modal-wrap-padding h-sm">
+        <div class="ts-modal-delete">
+            <p>Bạn có muốn hủy những phiếu thanh toán liên quan?<br>Nếu phiếu thanh toán được giữ lại sẽ được chuyển tạm ứng vào kỳ lương tiếp theo của nhân viên</p>
+            <div class="modal-footer">
+                <button ng-click="vm.cancelDeletePayslipPayment()" class="btn btn-default js-ts-modal-close">Hủy</button>
+                <button ng-click="vm.deletePayslipPayment()" class="btn btn-danger ts-js-toast js-ts-modal-close" attr-toast="ts-toast-delete-payroll">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>

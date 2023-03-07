@@ -1,0 +1,90 @@
+//btn-icon
+
+@mixin btn-icon-color($border-color: transparent,  $color: $body-color) {
+    border-color: $border-color;
+    color: $color;
+}
+
+@mixin btn-icon-hover($color: $primary) {
+    &:hover {
+         background-color: $icon-hover;
+    }
+    &:focus,
+    &.active{
+        background-color: $icon-hover;
+        background-image: none;
+        outline: none;
+    }
+}
+
+@mixin btn-icon-bg-hover($color: $primary) {
+    &:hover {
+        background-color: $icon-hover;
+    }
+    &:focus,
+    &.active{
+        background-color: $icon-hover;
+        outline: none;
+    }
+}
+
+@mixin btn-outline-hover($color: $primary) {
+    &:hover {
+        background-color: rgba($color, .1);
+        color: $color;
+    }
+
+    &:not(:disabled):not(.disabled) {
+        &:focus, &.active, &:active {
+            background-color: rgba($color, .2);
+            color: $color;
+        }
+    }
+
+    &:disabled, &.disabled {
+        background-color: transparent;
+        border-color: rgba($color, .6);
+        color: rgba($color, .6);
+        cursor: not-allowed;
+    }
+}
+
+%btn-icon {
+    // @include btn-icon-styles($icon-font-size, 0);    
+    @extend %radius-circle;
+    @extend %inline-flex;
+    @extend %align-items-center;
+    @extend %justify-content-center;
+    padding: 0;
+    cursor: pointer;
+    line-height: 1;
+    background-color: transparent;
+    border: none;
+    color: $gray-3;
+    &:focus {
+        outline: 0;
+    }
+}
+
+@mixin icon-link($color: $icon-action-color) {
+    color: $color;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    @extend %item-middle;
+    &:hover,
+    &:focus,
+    &.active {
+        color: $color;
+        background-color: rgba($color, .1);
+        text-decoration: none;
+    }
+}
+
+@mixin icon-mask($font-size: $icon-font-size, $color: $icon-mask-color){    
+    @extend %flex; 
+    @extend %center-vertically;
+    @extend %justify-content-center;   
+    @include box-circle(1.4rem, 0);
+    color: $color;
+}

@@ -1,0 +1,21 @@
+<!-- Header  -->
+<header id="header-container" class="ts-header">
+  <div class="ts-header-top">
+    <div class="row">
+      <div class="col-7">
+        <div class="ts-header-back">
+        <a ng-click="vm.backToMainApp();">
+          <span class="ts-icon-sm"><i class="far fa-chevron-left"></i></span>
+          <span>{{vm._l.paysheet_title}}</span>
+        </a>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="ts-header-links">
+          <a ng-click="vm.searchPaysheet($event)" class="ts-links ts-link-search"><i class="far fa-search"></i></a>
+          <a ng-click="vm.createPaysheet($event)" class="ts-links ts-link-add"><i class="fal fa-plus"></i></a>                          
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

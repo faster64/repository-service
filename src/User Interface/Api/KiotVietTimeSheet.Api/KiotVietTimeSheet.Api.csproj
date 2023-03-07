@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>KiotVietTimeSheet.Api.Program</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="www\**" />
+    <Content Remove="www\**" />
+    <EmbeddedResource Remove="www\**" />
+    <None Remove="www\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.1.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Exceptions" Version="6.0.0" />
+    <PackageReference Include="ServiceStack.Api.Swagger" Version="5.5.0" />
+    <PackageReference Include="ServiceStack.Core" Version="5.5.0" />
+    <PackageReference Include="ServiceStack.OrmLite.Core" Version="5.5.0" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer.Core" Version="5.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\KiotVietTimeSheet.Infrastructure\KiotVietTimeSheet.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\KiotVietTimeSheet.Utilities\KiotVietTimeSheet.Utilities.csproj" />
+    <ProjectReference Include="..\KiotVietTimeSheet.Api.ServiceInterface\KiotVietTimeSheet.Api.ServiceInterface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\Types\" />
+    <Folder Include="Logging\" />
+    <Folder Include="Migrations\EfIntegrationEventLogContext\" />
+    <Folder Include="Migrations\EfTimeSheetDbContext\" />
+    <Folder Include="Migrations\EfTimeSheetIntegrationEventLogContext\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-duotone-900.svg" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-duotone-900.woff2" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-light-300.svg" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-light-300.woff2" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\clocking-gps\assets\fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-duotone-900.svg" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-duotone-900.woff2" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-light-300.svg" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-light-300.woff2" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\mobile\assets\fonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BuildVersion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

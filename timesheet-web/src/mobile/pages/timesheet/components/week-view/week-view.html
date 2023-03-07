@@ -1,0 +1,16 @@
+<main class="ts-main">
+    <div ng-show="!vm.isNoClockingData" class="ts-calender ts-kvTimeLineWeed">
+        <div class="ts-calender-wrap box-main">
+          <div class="ts-calender-head">
+              <div class="ts-calender-row"></div>
+          </div>
+          <div class="ts-calender-content"></div>
+        </div>
+    </div>
+    <div ng-show="vm.isNoClockingData" class="no-clocking">
+        <div class="clocking-box">
+            <img src="https://cdn-app.kiotviet.vn/timesheet/img/NoClocking.svg" alt="No Clocking"/>
+            <span>Bạn chưa xếp lịch làm việc cho nhân viên</span>
+        </div>
+    </div>
+</main>

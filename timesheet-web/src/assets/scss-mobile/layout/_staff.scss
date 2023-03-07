@@ -1,0 +1,119 @@
+// Staff Page 
+.ts-staff {
+  &-wrap {
+    // padding: 0 !important;
+    &.box-main-empty {
+      p {
+        margin-top: 2rem;
+        color: $gray-3;
+        line-height: 2rem;
+        font-weight: 400;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  &-item {
+    @extend %item-center-between;
+    padding: $col-padding-x $col-padding-xxs-x;
+    position: relative;
+
+    &:after {
+      content: "";
+      height: 1px;
+      width: calc(100% - #{$col-padding-xxs-x} - #{$col-padding-xxs-x});
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: $color-border;
+    }
+
+    .ts-payroll {
+      color: $gray-3;
+      padding-top: 2px;
+      padding-bottom: 2px;
+
+      > span {
+        &:first-child {
+          margin-right: 0.8rem;
+          i {
+            font-size: 16px;
+          }
+        }
+
+        &:not(:first-child) {
+          line-height: 20px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  &-items {
+    > div:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &-info {
+    @extend %item-middle-start;
+
+    .ts-staff {
+      margin-left: 1.4rem;
+    }
+  }
+
+  &-code {
+    a {
+      display: block;
+    }
+  }
+
+  &-detail {
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+  }
+}
+
+.staff-detail {
+  h4 {
+    padding: 1.6rem;
+  }
+
+  .ts-note,
+  .ts-not-note {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    padding-bottom: 1.6rem;
+    letter-spacing: -0.3px;
+  }
+
+  .ts-not-note {
+    color: $gray-4;
+  }
+
+  &-note {
+    h4 {
+      padding-bottom: 1.2rem;
+      margin-bottom: 0;
+    }
+  }
+
+  &-label {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $gray-2;
+    font-size: 1.1rem;
+  }
+
+  &-content {
+    color: $gray;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+}
